@@ -10,7 +10,7 @@ export default function ThreeNetwork(){
  const host=useRef<HTMLDivElement>(null);
  useEffect(()=>{const root=host.current;if(!root)return;const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;let renderer:THREE.WebGLRenderer;
   try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:"high-performance"})}catch{root.classList.add("webgl-failed");return}
-  renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setClearColor(0x000000,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.domElement.setAttribute("aria-hidden","true");root.prepend(renderer.domElement);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setClearColor(0x000000,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.domElement.setAttribute("aria-hidden","true");renderer.domElement.className="absolute inset-0 z-[1] h-full w-full cursor-crosshair saturate-[1.08] contrast-[1.02]";root.prepend(renderer.domElement);
   const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0xf0eee8,CONFIG.fog);const camera=new THREE.PerspectiveCamera(43,1,.1,50);camera.position.set(0,0,3);
   const uniforms={uTime:{value:0},uWarp:{value:CONFIG.warp},uColor:{value:CONFIG.color},uGrain:{value:CONFIG.grain},uPointer:{value:new THREE.Vector2()}};
   const geometry=new THREE.PlaneGeometry(7.4,6.1,72,72),material=new THREE.ShaderMaterial({vertexShader:vertex,fragmentShader:fragment,uniforms,side:THREE.DoubleSide,transparent:true}),sheet=new THREE.Mesh(geometry,material);sheet.position.x=1.05;sheet.rotation.set(-.08,.14,-.04);scene.add(sheet);
@@ -21,5 +21,10 @@ export default function ThreeNetwork(){
   const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible&&!reduced){cancelAnimationFrame(raf);raf=requestAnimationFrame(render)}else cancelAnimationFrame(raf)},{threshold:.01}),ro=new ResizeObserver(()=>{resize();scroll();renderer.render(scene,camera)});ro.observe(root);observer.observe(root);addEventListener("resize",resize);addEventListener("pointermove",move,{passive:true});addEventListener("scroll",scroll,{passive:true});resize();scroll();render(last);
   return()=>{cancelAnimationFrame(raf);ro.disconnect();observer.disconnect();removeEventListener("resize",resize);removeEventListener("pointermove",move);removeEventListener("scroll",scroll);geometry.dispose();dotGeo.dispose();material.dispose();dots.forEach(m=>(m.material as THREE.Material).dispose());renderer.dispose();renderer.domElement.remove()}
  },[]);
- return <div className="network network-3d network-depth iridescent-network" ref={host} aria-label="Iridescent three-dimensional atmosphere responding to pointer and scroll"><div className="network-fallback" aria-hidden><i/><i/><i/><b/><b/><b/></div><span>IRIDESCENT SYSTEM</span><span>DEPTH 03—10</span><span>WEBGL—26</span></div>;
+ return <div className="scene pointer-events-none fixed inset-0 z-0 h-svh w-screen origin-[68%_44%] opacity-95 mix-blend-multiply transition-opacity duration-150" ref={host} aria-label="Iridescent three-dimensional atmosphere responding to pointer and scroll">
+  <div className="network-fallback absolute top-[8%] right-[8%] bottom-[10%] left-[42%]" aria-hidden>
+   <i className="absolute top-[8%] left-[18%] h-[42%] w-[48%] rotate-7 bg-[#cdd0cb9e] shadow-[inset_-18px_-20px_35px_rgba(119,124,117,.14),inset_12px_10px_24px_rgba(255,255,255,.65)] [clip-path:polygon(20%_0,100%_18%,84%_100%,0_72%)]"/><i className="absolute top-[25%] right-[2%] h-[29%] w-[27%] -rotate-7 bg-[#cdd0cb9e]"/><i className="absolute bottom-[4%] left-[8%] h-[33%] w-[31%] rotate-13 bg-[#cdd0cb9e] [clip-path:polygon(50%_0,100%_100%,0_78%)]"/>
+  </div>
+  <span className="pointer-events-none absolute top-[3%] right-[3%] z-[3] text-[8px] tracking-[.15em] text-muted">IRIDESCENT SYSTEM</span><span className="pointer-events-none absolute right-[3%] bottom-[4%] z-[3] text-[8px] tracking-[.15em] text-muted [writing-mode:vertical-rl]">DEPTH 03—10</span><span className="pointer-events-none absolute bottom-[4%] left-[3%] z-[3] text-[8px] tracking-[.15em] text-muted">WEBGL—26</span>
+ </div>;
 }
