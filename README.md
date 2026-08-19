@@ -2,7 +2,7 @@
 
 Portfolio built with Next.js App Router, React, TypeScript, Tailwind CSS and Three.js. It is ready to publish to a Git repository and deploy on Vercel.
 
-The current visual system lives in `app/globals.css`. Tailwind CSS 4 is loaded in that same file and can be used alongside the existing classes in any component.
+Application code lives under `src/`: routes in `src/app`, reusable UI in `src/components`, content in `src/data`, React behavior in `src/hooks`, and shared page structures in `src/templates`. Tailwind CSS 4 is loaded from `src/app/globals.css`.
 
 ## Local development
 
@@ -31,3 +31,11 @@ npm start
 4. Deploy. The site does not currently require environment variables.
 
 Vercel will run `npm install` and `npm run build` automatically.
+
+### Canonical URL
+
+SEO metadata defaults to `https://javigarcia.dev`. If the production domain is different, define the following environment variable in Vercel before deploying:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.example
+```
