@@ -53,7 +53,7 @@ export function ScrollEffects() {
   return (
     <>
       <div
-        className="scroll-progress motion-atmosphere pointer-events-none fixed top-0 right-0 z-19 h-svh w-[3px] origin-top bg-acid max-[800px]:w-0.5"
+        className="scroll-progress motion-atmosphere pointer-events-none fixed top-0 right-0 z-19 h-svh w-0.75 origin-top bg-acid max-[800px]:w-0.5"
         aria-hidden
       />
       <div
@@ -61,7 +61,7 @@ export function ScrollEffects() {
         aria-hidden
       />
       <div
-        className="cursor-atmosphere motion-atmosphere pointer-events-none fixed top-0 left-0 z-18 size-[170px] rounded-full bg-[radial-gradient(circle,rgba(201,255,72,.22),rgba(201,255,72,0)_68%)] opacity-35 mix-blend-multiply transition-[width,height,opacity] duration-300"
+        className="cursor-atmosphere motion-atmosphere pointer-events-none fixed top-0 left-0 z-18 size-42.5 rounded-full bg-[radial-gradient(circle,rgba(201,255,72,.22),rgba(201,255,72,0)_68%)] opacity-35 mix-blend-multiply transition-[width,height,opacity] duration-300"
         aria-hidden
       />
     </>

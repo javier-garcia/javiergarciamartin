@@ -4,11 +4,11 @@ import { labelClass, sectionClass } from "@/components/styles";
 export function AboutSection() {
   return (
     <section
-      className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 max-[800px]:gap-[50px]`}
+      className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 max-[800px]:gap-12.5`}
       id="about"
     >
       <p className={`${labelClass} scroll-reveal`}>04 / Experience</p>
-      <div className="scroll-reveal grid grid-cols-[1.5fr_1fr_1fr] gap-[5%] max-[800px]:grid-cols-1 max-[800px]:gap-[30px]">
+      <div className="scroll-reveal grid grid-cols-[1.5fr_1fr_1fr] gap-[5%] max-[800px]:grid-cols-1 max-[800px]:gap-7.5">
         <ExpertiseEffects className="relative" intensity={0.5}>
           <h2
             className="text-[clamp(44px,6vw,88px)] leading-[.95] font-medium tracking-[-.06em]"

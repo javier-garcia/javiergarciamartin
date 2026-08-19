@@ -26,7 +26,7 @@ export function ProjectAccordion({
   return (
     <div className="group border-t border-ink" data-open={open ? "true" : "false"}>
       <button
-        className="group/trigger scroll-reveal grid w-full cursor-pointer grid-cols-[7%_30%_1fr_40px] items-center border-0 bg-transparent py-[35px] text-left transition-[padding,background-color] duration-300 hover:pl-3 hover:bg-white/20 max-[800px]:grid-cols-[10%_1fr_30px]"
+        className="group/trigger scroll-reveal grid w-full cursor-pointer grid-cols-[7%_30%_1fr_40px] items-center border-0 bg-transparent py-8.75 text-left transition-[padding,background-color] duration-300 hover:pl-3 hover:bg-white/20 max-[800px]:grid-cols-[10%_1fr_30px]"
         style={{ "--delay": `${index * 0.07}s` } as CSSProperties}
         type="button"
         aria-controls={panelId}
@@ -35,7 +35,7 @@ export function ProjectAccordion({
       >
         {summary}
 
-        <span className="relative inline-flex size-10 items-center justify-center justify-self-end text-[30px] leading-none transition-transform duration-300 group-data-[open=true]:rotate-180 group-hover/trigger:rotate-90">
+        <span className="relative inline-flex size-10 items-center justify-center justify-self-end text-3xl leading-none transition-transform duration-300 group-data-[open=true]:rotate-180 group-hover/trigger:rotate-90">
           <span className="group-data-[open=true]:hidden">+</span>
           <span className="hidden group-data-[open=true]:inline">−</span>
         </span>

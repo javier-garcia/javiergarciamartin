@@ -6,13 +6,13 @@ export function ContactFooter({ homeLink = false }: { homeLink?: boolean }) {
     <footer className={footerClass}>
       <p className={labelClass}>Need senior capacity on a demanding platform?</p>
       <a
-        className="group relative my-[70px] mb-[140px] flex justify-between overflow-hidden pb-4 text-[clamp(42px,7.5vw,116px)] leading-none tracking-[-.06em] max-[800px]:my-[60px] max-[800px]:mb-[100px] max-[800px]:leading-[.95]"
+        className="group relative my-17.5 mb-35 flex justify-between overflow-hidden pb-4 text-[clamp(42px,7.5vw,116px)] leading-none tracking-[-.06em] max-[800px]:my-15 max-[800px]:mb-25 max-[800px]:leading-[.95]"
         href="mailto:hello@javigarcia.dev"
       >
         <span className="transition-transform duration-500 ease-out group-hover:translate-x-2">
           Let’s talk about the project.
         </span>
-        <span className="inline-block text-acid transition-[transform,text-shadow] duration-500 ease-out group-hover:translate-x-[9px] group-hover:-translate-y-[9px] group-hover:-rotate-5 group-hover:[text-shadow:-3px_0_rgba(255,58,118,.56),3px_0_rgba(0,185,255,.56)]">
+        <span className="inline-block text-acid transition-[transform,text-shadow] duration-500 ease-out group-hover:translate-x-2.25 group-hover:-translate-y-2.25 group-hover:-rotate-5 group-hover:[text-shadow:-3px_0_rgba(255,58,118,.56),3px_0_rgba(0,185,255,.56)]">
           ↗
         </span>
         <span

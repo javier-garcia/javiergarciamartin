@@ -40,18 +40,18 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 flex h-[88px] w-full items-center justify-between border-b border-line px-[3vw] transition-[translate,background-color,box-shadow,backdrop-filter] duration-300 ease-out max-[800px]:h-[70px] ${menu ? "z-40" : "z-10"} ${hidden && !menu ? "-translate-y-[105%]" : "translate-y-0"} ${floating && !menu ? "bg-[#f6f5f1]/95 shadow-[0_1px_0_rgba(24,25,22,.12),0_12px_34px_rgba(24,25,22,.07)] backdrop-blur-[11px]" : "bg-transparent"}`}
+        className={`fixed top-0 left-0 flex h-22 w-full items-center justify-between border-b border-line px-[3vw] transition-[translate,background-color,box-shadow,backdrop-filter] duration-300 ease-out max-[800px]:h-17.5 ${menu ? "z-40" : "z-10"} ${hidden && !menu ? "-translate-y-[105%]" : "translate-y-0"} ${floating && !menu ? "bg-[#f6f5f1]/95 shadow-[0_1px_0_rgba(24,25,22,.12),0_12px_34px_rgba(24,25,22,.07)] backdrop-blur-[11px]" : "bg-transparent"}`}
       >
         <Link
           className="interactive-underline text-[19px] font-extrabold tracking-[-.04em]"
           href="#top"
         >
           JG
-          <span className="ml-[7px] align-top text-[11px] tracking-[.08em] text-muted">—26</span>
+          <span className="ml-1.75 align-top text-[11px] tracking-[.08em] text-muted">—26</span>
         </Link>
 
         <button
-          className="hidden border-0 bg-transparent text-[16px] font-semibold max-[800px]:block"
+          className="hidden border-0 bg-transparent text-base font-semibold max-[800px]:block"
           aria-expanded={menu}
           aria-controls="mobile-navigation"
           onClick={() => {
