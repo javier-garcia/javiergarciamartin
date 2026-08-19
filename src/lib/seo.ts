@@ -10,7 +10,9 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://javigarcia.dev",
   locale: "en_GB",
   email: "hello@javigarcia.dev",
-  socialImage: "/images/morae-case-study.png",
+  socialImage: "/images/og-portfolio.png",
+  socialImageWidth: 1734,
+  socialImageHeight: 907,
 };
 
 type PageMetadata = {
@@ -26,6 +28,16 @@ export function createPageMetadata({
   path,
   image = siteConfig.socialImage,
 }: PageMetadata): Metadata {
+  const imageDimensions = image === siteConfig.socialImage
+    ? {
+        width: siteConfig.socialImageWidth,
+        height: siteConfig.socialImageHeight,
+      }
+    : {
+        width: 3558,
+        height: 1920,
+      };
+
   return {
     title,
     description,
@@ -37,7 +49,7 @@ export function createPageMetadata({
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: "website",
-      images: [{ url: image, width: 3558, height: 1920, alt: title }],
+      images: [{ url: image, ...imageDimensions, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
