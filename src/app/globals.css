@@ -1,15 +1,12 @@
 @import "tailwindcss";
 
-[data-distort-title] {
-  transition: color 120ms linear;
-}
-
+[data-distort-title],
 [data-distort-image] {
   transition: opacity 120ms linear;
 }
 
 .webgl-title-active {
-  color: transparent;
+  opacity: 0;
   text-shadow: none;
 }
 
