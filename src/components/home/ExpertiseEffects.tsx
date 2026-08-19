@@ -389,10 +389,7 @@ export function ExpertiseEffects({
         material.uniforms.uStrength.value = 0;
 
         if (!pointerIsOverTitle) {
-          if (activeTitle) activeTitle.classList.remove(getActiveClass(activeTitle));
-          activeTitle = null;
-          window.clearTimeout(clearTimer);
-          clearTimer = window.setTimeout(() => renderer.clear(), 140);
+          restoreSurface();
         } else {
           renderer.render(scene, camera);
         }
@@ -411,9 +408,14 @@ export function ExpertiseEffects({
     }
 
     function activateTitle(title: HTMLElement, event: globalThis.PointerEvent) {
-      if (activeTitle === title) return;
-
       window.clearTimeout(clearTimer);
+
+      if (activeTitle === title) {
+        pointerIsOverTitle = true;
+        updateShaderPointer(title, event);
+        return;
+      }
+
       if (activeTitle) activeTitle.classList.remove(getActiveClass(activeTitle));
       activeTitle = title;
 
@@ -482,6 +484,8 @@ export function ExpertiseEffects({
       if (title) return title;
 
       return [...root.querySelectorAll<HTMLImageElement>("[data-distort-image]")].find((image) => {
+        if (image.closest("[inert], [aria-hidden='true']")) return false;
+
         const bounds = image.getBoundingClientRect();
 
         return event.clientX >= bounds.left
@@ -514,11 +518,20 @@ export function ExpertiseEffects({
       if (animationFrame) {
         startRendering();
       } else {
-        activeTitle.classList.remove(getActiveClass(activeTitle));
-        activeTitle = null;
-        window.clearTimeout(clearTimer);
-        clearTimer = window.setTimeout(() => renderer.clear(), 140);
+        restoreSurface();
       }
+    }
+
+    function restoreSurface() {
+      if (!activeTitle) return;
+
+      const surface = activeTitle;
+
+      surface.classList.remove(getActiveClass(surface));
+      activeTitle = null;
+      window.clearTimeout(clearTimer);
+
+      clearTimer = window.setTimeout(() => renderer.clear(), 160);
     }
 
     function handleLayoutResize() {

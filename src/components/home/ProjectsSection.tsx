@@ -44,10 +44,7 @@ function ProjectItem({ project, index }: { project: Project; index: number }) {
           <span className="text-[11px] text-muted">{project.number}</span>
           <span>
             <small className={`${smallMetaClass} mb-2`}>{project.eyebrow}</small>
-            <strong
-              className="text-[clamp(34px,5vw,70px)] font-medium tracking-[-.05em]"
-              data-distort-title
-            >
+            <strong className="text-[clamp(34px,5vw,70px)] font-medium tracking-[-.05em]">
               {project.title}
             </strong>
           </span>
