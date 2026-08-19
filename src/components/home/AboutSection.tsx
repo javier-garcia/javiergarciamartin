@@ -20,15 +20,16 @@ export function AboutSection() {
           </h2>
         </ExpertiseEffects>
         <p className="mt-2 text-[17px] leading-[1.65]">
-          I am Javi Garcia, a senior frontend developer specialising in React and Next.js, with deep
-          experience integrating content platforms including Craft CMS and WordPress. My strongest
-          work happens where understanding the existing system matters as much as writing the next
-          component.
+          I am Javi Garcia, a senior React and Next.js developer with more than 20 years across
+          software development, interaction design and UX. That path includes helping migrate a
+          healthcare product to React while training its development team, and creative frontend
+          work for Casa Batlló.
         </p>
         <p className="mt-2 text-[17px] leading-[1.65]">
-          I collaborate with digital agencies as experienced development capacity: joining
-          established teams, taking responsibility for difficult issues and contributing from the
-          first stage of the engagement through to production.
+          More recently, my work has focused on complex Next.js and headless platforms, integrating
+          systems including Craft CMS and WordPress. I join established agency teams to understand
+          the platform already in place, take responsibility for difficult issues and carry work
+          through to production.
         </p>
       </div>
     </section>

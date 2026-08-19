@@ -48,7 +48,7 @@ function ProjectItem({ project, index }: { project: Project; index: number }) {
               {project.title}
             </strong>
           </span>
-          <span className="max-w-117.5 text-[17px] leading-[1.5] text-[#50524d] max-[800px]:hidden">
+          <span className="max-w-117.5 text-[17px] leading-normal text-[#50524d] max-[800px]:hidden">
             {project.intro}
           </span>
         </>
@@ -64,7 +64,7 @@ function ProjectItem({ project, index }: { project: Project; index: number }) {
               {project.result}
             </p>
             <Link
-              className="interactive-underline group/case-link mt-5.5 inline-flex w-fit items-center gap-2 pb-1 text-xs tracking-[.1em] uppercase before:absolute before:inset-0 before:z-10"
+              className="interactive-underline group/case-link mt-5.5 inline-flex w-fit items-center gap-2 pb-1 text-xs tracking-widest uppercase before:absolute before:inset-0 before:z-10"
               href={project.href}
             >
               <span className="relative z-20">View full case study</span>

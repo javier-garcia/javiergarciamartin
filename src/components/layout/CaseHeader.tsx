@@ -15,7 +15,7 @@ export function CaseHeader() {
       </Link>
       <a
         className="interactive-underline text-sm font-medium tracking-[.01em]"
-        href="mailto:hello@javigarcia.dev"
+        href="mailto:javi@javiergarciamartin.com"
       >
         Contact ↗
       </a>

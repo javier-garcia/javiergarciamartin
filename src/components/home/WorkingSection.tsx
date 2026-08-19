@@ -9,7 +9,7 @@ function WorkingStep({ step, index }: { step: (typeof workingSteps)[number]; ind
       style={{ "--delay": `${index * 0.08}s` } as React.CSSProperties}
     >
       <b className="text-[10px] text-muted">{step[0]}</b>
-      <div className="grid grid-cols-[32%_1fr] gap-[6%] text-base leading-[1.5] transition-transform duration-300 hover:translate-x-2 max-[800px]:grid-cols-1 max-[800px]:gap-3">
+      <div className="grid grid-cols-[32%_1fr] gap-[6%] text-base leading-normal transition-transform duration-300 hover:translate-x-2 max-[800px]:grid-cols-1 max-[800px]:gap-3">
         <h3 className="text-xl font-medium">{step[1]}</h3>
         <p>{step[2]}</p>
       </div>
@@ -27,9 +27,9 @@ export function WorkingSection() {
             className="text-[clamp(52px,7vw,104px)] leading-[.88] font-medium tracking-[-.065em]"
             data-distort-title
           >
-            Useful from
+            Built for
             <br />
-            <em className="font-serif font-normal">day zero.</em>
+            <em className="font-serif font-normal">existing teams.</em>
           </h2>
         </ExpertiseEffects>
         <p className="text-lg leading-[1.6]">

@@ -164,7 +164,7 @@ export default function ThreeNetwork() {
   }, []);
   return (
     <div
-      className="scene pointer-events-none fixed inset-0 z-0 h-svh w-screen opacity-95 mix-blend-multiply transition-opacity duration-150"
+      className="scene pointer-events-none fixed inset-0 z-0 h-svh w-full opacity-95 mix-blend-multiply transition-opacity duration-150"
       ref={host}
       aria-label="Iridescent three-dimensional atmosphere responding to pointer and scroll"
     >
@@ -179,10 +179,10 @@ export default function ThreeNetwork() {
       {/* <span className="pointer-events-none absolute top-[3%] right-[3%] z-[3] text-[8px] tracking-[.15em] text-muted">
         IRIDESCENT SYSTEM
       </span> */}
-      <span className="pointer-events-none absolute right-[3%] bottom-[4%] z-[3] text-[8px] tracking-[.15em] text-muted [writing-mode:vertical-rl]">
+      <span className="pointer-events-none absolute right-[3%] bottom-[4%] z-3 text-[8px] tracking-[.15em] text-muted [writing-mode:vertical-rl]">
         DEPTH 03—10
       </span>
-      <span className="pointer-events-none absolute bottom-[4%] left-[3%] z-[3] text-[8px] tracking-[.15em] text-muted">
+      <span className="pointer-events-none absolute bottom-[4%] left-[3%] z-3 text-[8px] tracking-[.15em] text-muted">
         WEBGL—26
       </span>
     </div>
