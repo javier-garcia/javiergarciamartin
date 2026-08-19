@@ -5,6 +5,19 @@ import { ContactFooter } from "@/components/layout/ContactFooter";
 import { CaseHeader } from "@/components/layout/CaseHeader";
 
 type Phase = { label: string; title: string; text: string };
+type Chapter = {
+  label: string;
+  title: string;
+  paragraphs: string[];
+  future?: boolean;
+  comparison?: {
+    before: { label: string; items: string[] };
+    after: { label: string; items: string[] };
+  };
+  flow?: string[];
+  migrationFlow?: boolean;
+};
+
 type Props = {
   index: string;
   eyebrow: string;
@@ -13,6 +26,7 @@ type Props = {
   context: string;
   challenge: string;
   phases: Phase[];
+  chapters?: Chapter[];
   contributions: string[];
   stack: string[];
   outcome: string;
@@ -22,6 +36,85 @@ type Props = {
 
 const label = "text-[11px] font-bold tracking-[.14em] uppercase";
 const meta = "text-[9px] tracking-[.13em] text-muted uppercase";
+
+function ArchitectureFlow({ items }: { items: string[] }) {
+  return (
+    <ol className="mt-10 grid list-none grid-cols-[repeat(auto-fit,minmax(140px,1fr))] border-t border-ink p-0">
+      {items.map((item, index) => (
+        <li
+          className="relative border-b border-line py-5 pr-9 text-base leading-[1.35] not-last:after:absolute not-last:top-1/2 not-last:right-4 not-last:-translate-y-1/2 not-last:text-muted not-last:content-['→']"
+          key={item}
+        >
+          <span className={`${meta} mb-2 block`}>0{index + 1}</span>
+          {item}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function MigrationFlow() {
+  return (
+    <figure className="relative mt-12 border-y border-ink py-10" aria-label="Craft-first and WordPress-fallback request flow">
+      <div className="grid max-w-150 grid-cols-[1fr_auto_1fr] items-center gap-4">
+        <div className="border border-line bg-paper p-5">
+          <span className={`${meta} mb-3 block`}>Incoming</span>
+          <strong className="text-2xl font-medium">Request</strong>
+        </div>
+
+        <span className="text-2xl text-muted" aria-hidden>→</span>
+
+        <div className="border border-ink bg-acid p-5">
+          <span className={`${meta} mb-3 block text-ink`}>01 / Preferred source</span>
+          <strong className="text-2xl font-medium">Craft CMS</strong>
+        </div>
+      </div>
+
+      <div className="mt-8 grid grid-cols-2 gap-[7%] max-[800px]:grid-cols-1 max-[800px]:gap-8">
+        <div className="border-l border-line pl-5">
+          <span className={`${meta} mb-4 block`}>Content found</span>
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+            <span className="text-lg">Craft response</span>
+            <span className="text-xl text-muted" aria-hidden>→</span>
+            <strong className="border border-ink p-4 text-lg font-medium">Next.js</strong>
+          </div>
+        </div>
+
+        <div className="border-l border-ink pl-5">
+          <span className={`${meta} mb-4 block`}>Content not found</span>
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+            <strong className="border border-line p-4 text-lg font-medium">WordPress</strong>
+            <span className="text-xl text-muted" aria-hidden>→</span>
+            <div className="grid gap-2">
+              <span className="border border-line p-3 text-sm">Found → Next.js</span>
+              <span className="border border-ink bg-ink p-3 text-sm text-paper">Not found → 404</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+function ContentComparison({ comparison }: { comparison: NonNullable<Chapter["comparison"]> }) {
+  return (
+    <div className="mt-10 grid grid-cols-2 gap-[7%] max-[800px]:grid-cols-1 max-[800px]:gap-10">
+      {[comparison.before, comparison.after].map((column, index) => (
+        <div className="border-t border-ink pt-5" key={column.label}>
+          <p className={meta}>{column.label}</p>
+          <ul className="mt-6 list-none p-0">
+            {column.items.map((item) => (
+              <li className="border-b border-line py-3 text-base" key={item}>
+                {index === 1 ? <span className="mr-3 text-acid">●</span> : null}
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function CaseStudyPage(props: Props) {
   return (
@@ -113,6 +206,36 @@ export default function CaseStudyPage(props: Props) {
             ))}
           </div>
         </section>
+
+        {props.chapters?.map((chapter, index) => (
+          <section
+            className={`grid grid-cols-[17%_1fr] border-b border-line px-[3vw] py-27.5 max-[800px]:grid-cols-1 max-[800px]:gap-10 max-[800px]:px-[5vw] max-[800px]:py-18.75 ${chapter.future ? "bg-ink text-paper" : ""}`}
+            key={chapter.title}
+          >
+            <p className={label}>0{index + 1} / {chapter.label}</p>
+            <article className="max-w-287.5">
+              <h2 className="max-w-225 text-[clamp(38px,5.5vw,82px)] leading-[1.02] font-medium tracking-[-.055em]">
+                {chapter.title}
+              </h2>
+
+              <div className="mt-12 grid grid-cols-2 gap-[7%] max-[800px]:grid-cols-1 max-[800px]:gap-6">
+                {chapter.paragraphs.map((paragraph) => (
+                  <p className={`m-0 text-lg leading-[1.65] ${chapter.future ? "text-[#c7c8c1]" : ""}`} key={paragraph}>
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              {chapter.comparison ? (
+                <ContentComparison comparison={chapter.comparison} />
+              ) : null}
+
+              {chapter.flow ? <ArchitectureFlow items={chapter.flow} /> : null}
+
+              {chapter.migrationFlow ? <MigrationFlow /> : null}
+            </article>
+          </section>
+        ))}
 
         <section className="ml-[17%] grid grid-cols-2 gap-[7%] border-b border-line px-[3vw] py-25 max-[800px]:ml-0 max-[800px]:grid-cols-1 max-[800px]:gap-15 max-[800px]:px-[5vw] max-[800px]:py-18.75">
           <div className="border-t border-ink pt-5.5">

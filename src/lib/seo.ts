@@ -9,7 +9,7 @@ export const siteConfig = {
     "Senior React and Next.js developer helping digital agencies evolve complex web platforms across Craft CMS, WordPress and other content systems.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://javigarcia.dev",
   locale: "en_GB",
-  email: "hello@javigarcia.dev",
+  email: "javi@javiergarciamartin.com",
   socialImage: "/images/og-portfolio.png",
   socialImageWidth: 1734,
   socialImageHeight: 907,

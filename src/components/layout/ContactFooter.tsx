@@ -7,7 +7,7 @@ export function ContactFooter({ homeLink = false }: { homeLink?: boolean }) {
       <p className={labelClass}>Need senior capacity on a demanding platform?</p>
       <a
         className="group relative my-17.5 mb-35 flex justify-between overflow-hidden pb-4 text-[clamp(42px,7.5vw,116px)] leading-none tracking-[-.06em] max-[800px]:my-15 max-[800px]:mb-25 max-[800px]:leading-[.95]"
-        href="mailto:hello@javigarcia.dev"
+        href="mailto:javi@javiergarciamartin.com"
       >
         <span className="transition-transform duration-500 ease-out group-hover:translate-x-2">
           Let’s talk about the project.

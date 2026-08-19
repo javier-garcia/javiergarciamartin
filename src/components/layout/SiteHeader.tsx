@@ -68,7 +68,7 @@ export function SiteHeader() {
           className="hidden gap-10 text-[17px] font-semibold tracking-[-.01em] min-[801px]:flex"
         >
           {navigationLinks}
-          <a className="interactive-underline" href="mailto:hello@javigarcia.dev">
+          <a className="interactive-underline" href="mailto:javi@javiergarciamartin.com">
             Contact ↗
           </a>
         </nav>
@@ -81,7 +81,7 @@ export function SiteHeader() {
           className="fixed inset-0 z-30 hidden min-h-svh flex-col items-start justify-center gap-6 bg-acid p-[10vw] text-[clamp(42px,12vw,58px)] leading-[1.05] font-semibold tracking-[-.04em] max-[800px]:flex"
         >
           {navigationLinks}
-          <a className="interactive-underline" href="mailto:hello@javigarcia.dev">
+          <a className="interactive-underline" href="mailto:javi@javiergarciamartin.com">
             Contact ↗
           </a>
         </nav>

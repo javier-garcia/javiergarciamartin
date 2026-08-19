@@ -20,11 +20,11 @@ export const projects: Project[] = [
     href: "/work/morae",
     eyebrow: "Platform evolution · Next.js + Craft CMS",
     intro:
-      "Taking over a live legal-tech platform and evolving it without losing the knowledge embedded in its past.",
+      "Rebuilding an established headless platform and progressively changing its CMS architecture while it remains live.",
     detail:
-      "I had worked on Morae when its website was still a monolithic WordPress build. After another company delivered its first WordPress-headless architecture with GraphQL, Apollo and Next.js, our team took over. I could read the inherited system in context, rebuild substantial parts of the frontend and progressively move content from WordPress to Craft CMS while both systems continued to coexist.",
+      "I had worked on Morae when its website was still a monolithic WordPress build. A different company later delivered its first headless implementation. When our team took over, that history helped me understand the inherited content model, contribute to a substantial frontend rebuild and progressively introduce Craft CMS while both systems continued to coexist.",
     result:
-      "Historical knowledge became delivery speed: data modelling, Craft architecture, GraphQL, React components, redirects and revalidation could move forward without destabilising the live platform.",
+      "Previous knowledge helped separate legacy requirements worth preserving from implementation structures that could be redesigned as the platform evolved.",
   },
   {
     number: "02",
