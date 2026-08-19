@@ -7,7 +7,7 @@ function ServiceItem({ service, index }: { service: (typeof services)[number]; i
 
   return (
     <article
-      className="scroll-reveal group relative isolate flex min-h-[320px] flex-col justify-between overflow-hidden py-8 pr-[12%] max-[800px]:min-h-[270px] max-[800px]:pr-[8%]"
+      className="scroll-reveal group relative isolate flex min-h-80 flex-col justify-between overflow-hidden py-8 pr-[12%] max-[800px]:min-h-67.5 max-[800px]:pr-[8%]"
       style={{ "--delay": `${index * 0.08}s` } as React.CSSProperties}
     >
       <div className="flex items-center gap-4">
@@ -24,13 +24,13 @@ function ServiceItem({ service, index }: { service: (typeof services)[number]; i
 
       <div>
         <h3
-          className="max-w-[620px] text-[clamp(42px,5.2vw,76px)] leading-[.88] font-medium tracking-[-.065em] motion-reduce:group-hover:[text-shadow:-4px_0_rgba(255,58,118,.72),4px_0_rgba(0,185,255,.72)]"
+          className="max-w-155 text-[clamp(42px,5.2vw,76px)] leading-[.88] font-medium tracking-[-.065em] motion-reduce:group-hover:[text-shadow:-4px_0_rgba(255,58,118,.72),4px_0_rgba(0,185,255,.72)]"
           data-distort-title
         >
           {service[1]}
         </h3>
 
-        <p className="mt-8 max-w-[500px] text-[17px] leading-[1.6] text-[#50524d] transition-[translate,color] duration-500 ease-out group-hover:translate-x-1 group-hover:text-ink">
+        <p className="mt-8 max-w-125 text-[17px] leading-[1.6] text-[#50524d] transition-[translate,color] duration-500 ease-out group-hover:translate-x-1 group-hover:text-ink">
           {service[2]}
         </p>
       </div>
@@ -44,7 +44,7 @@ export function ExpertiseSection() {
       <h2 className={`${labelClass} scroll-reveal`}>02 / What I can help with</h2>
 
       <ExpertiseEffects
-        className="scroll-reveal relative my-[80px] mr-0 mb-[110px] ml-[17%] max-w-[1180px] max-[800px]:my-[60px] max-[800px]:mb-[75px] max-[800px]:ml-0"
+        className="scroll-reveal relative my-20 mr-0 mb-27.5 ml-[17%] max-w-295 max-[800px]:my-15 max-[800px]:mb-18.75 max-[800px]:ml-0"
         intensity={0.45}
       >
         <p
