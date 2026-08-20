@@ -44,10 +44,11 @@ export const projects: Project[] = [
     href: "/work/revalidation-flow",
     eyebrow: "Craft CMS · Next.js caching",
     intro:
-      "Tracing an issue across Craft events, bulk actions, webhooks and Next.js cache behaviour.",
+      "Tracing a stale-cache issue across Craft lifecycle events, semantic dependencies and Next.js invalidation.",
     detail:
-      "Content publishing issues rarely live in one layer. I work through the complete path: Craft element events and action behaviour, payload construction, tags and paths, Next.js invalidation and the frontend result — including the awkward cases that only fail during bulk operations or when content is disabled.",
-    result: "Issues are resolved at their actual cause, not hidden behind another workaround.",
+      "A disabled Entry could remain represented by stale cached data. I tested whether element-index actions followed a different lifecycle, rejected that hypothesis and traced the actual problem to application logic that skipped revalidation once the Entry's new state was disabled.",
+    result:
+      "The final fix retained the existing Entry lifecycle and removed the guard that suppressed the invalidation required by the state transition.",
   },
 ];
 
