@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { ExpertiseEffects } from "@/components/home/ExpertiseEffects";
+import { ScrollEffects } from "@/components/home/ScrollEffects";
 import { ContactFooter } from "@/components/layout/ContactFooter";
 import { CaseHeader } from "@/components/layout/CaseHeader";
 
@@ -32,6 +33,7 @@ const meta = "text-[9px] tracking-[.13em] text-muted uppercase";
 export default function CaseStudyPage(props: Props) {
   return (
     <>
+      <ScrollEffects atmosphere={false} />
       <CaseHeader />
       <main className="overflow-hidden">
         <section className="grid min-h-[82svh] grid-cols-[17%_1fr] content-start border-b border-line px-[3vw] pt-19.25 pb-25 max-[800px]:block max-[800px]:min-h-[78svh] max-[800px]:px-[5vw] max-[800px]:pt-13.75 max-[800px]:pb-17.5">
@@ -80,10 +82,7 @@ export default function CaseStudyPage(props: Props) {
 
         {props.showVisual !== false ? (
           props.image ? (
-            <ExpertiseEffects
-              className="relative aspect-[3558/1920] min-h-97.5"
-              intensity={0.55}
-            >
+            <ExpertiseEffects className="relative aspect-[3558/1920] min-h-97.5" intensity={0.55}>
               <figure className="relative m-0 size-full overflow-hidden bg-[#20221e]">
                 <Image
                   className="object-cover object-top"
@@ -186,10 +185,7 @@ export default function CaseStudyPage(props: Props) {
           href={props.next.href}
         >
           <span className={meta}>Next case study</span>
-          <ExpertiseEffects
-            className="relative max-[800px]:mt-5.5"
-            intensity={0.45}
-          >
+          <ExpertiseEffects className="relative max-[800px]:mt-5.5" intensity={0.45}>
             <span
               className="block text-[clamp(30px,5vw,72px)] tracking-[-.05em]"
               data-distort-title

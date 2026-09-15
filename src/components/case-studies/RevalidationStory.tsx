@@ -50,7 +50,12 @@ function RevalidationModel() {
               <span className={`${smallMetaClass} mb-3`}>0{index + 1}</span>
               {step}
               {index < flow.length - 1 ? (
-                <span className="absolute top-1/2 right-2 -translate-y-1/2 text-muted max-[560px]:rotate-90" aria-hidden>→</span>
+                <span
+                  className="absolute top-1/2 right-2 -translate-y-1/2 text-muted max-[560px]:rotate-90"
+                  aria-hidden
+                >
+                  →
+                </span>
               ) : null}
             </li>
           ))}
@@ -73,9 +78,8 @@ function DependencyProblem() {
       <div>
         <SectionTitle>The hard part is deciding what became stale.</SectionTitle>
         <p className="mt-7 max-w-180 text-lg leading-[1.6]">
-          A relational CMS mutation can affect more than one route. Craft emits semantic
-          information so Next.js can invalidate fetches and pages associated with meaningful tags
-          and paths.
+          A relational CMS mutation can affect more than one route. Craft emits semantic information
+          so Next.js can invalidate fetches and pages associated with meaningful tags and paths.
         </p>
 
         <div className="mt-10 grid grid-cols-4 gap-px bg-line max-[760px]:grid-cols-2 max-[460px]:grid-cols-1">
@@ -87,7 +91,10 @@ function DependencyProblem() {
           ))}
         </div>
 
-        <figure className="mt-8 border-l-2 border-acid bg-[#e7e5de] p-6" aria-label="Special reverse relationship lookup used for asset invalidation">
+        <figure
+          className="mt-8 border-l-2 border-acid bg-[#e7e5de] p-6"
+          aria-label="Special reverse relationship lookup used for asset invalidation"
+        >
           <span className={smallMetaClass}>Special case / reverse lookup</span>
           <div className="mt-6 grid grid-cols-[auto_1fr_auto_1.4fr_auto_1fr] items-center gap-4 max-[760px]:grid-cols-1">
             <strong className="text-xl font-medium">Asset changed</strong>
@@ -96,7 +103,9 @@ function DependencyProblem() {
             <span className="text-sm leading-[1.5] text-muted">
               Entries · root Entries from nested content · Global Sets
             </span>
-            <span className="text-xl text-muted max-[760px]:rotate-90" aria-hidden>→</span>
+            <span className="text-xl text-muted max-[760px]:rotate-90" aria-hidden>
+              →
+            </span>
             <strong className="text-base font-medium">Semantic invalidation</strong>
           </div>
           <figcaption className="mt-6 max-w-180 text-sm leading-[1.55] text-muted">
@@ -158,7 +167,10 @@ function RootCauseAndFix() {
         </p>
 
         <div className="mt-10 grid grid-cols-2 gap-[7%] max-[700px]:grid-cols-1 max-[700px]:gap-9">
-          <figure className="border-t border-[#5d5f58] pt-5" aria-label="Old Entry save handler logic">
+          <figure
+            className="border-t border-[#5d5f58] pt-5"
+            aria-label="Old Entry save handler logic"
+          >
             <span className={smallMetaClass}>Old logic / flow stops</span>
             <div className="mt-7 grid gap-3 text-base">
               <code>Entry::EVENT_AFTER_SAVE</code>
@@ -171,7 +183,10 @@ function RootCauseAndFix() {
             </div>
           </figure>
 
-          <figure className="border-t border-acid pt-5" aria-label="Corrected Entry lifecycle invalidation logic">
+          <figure
+            className="border-t border-acid pt-5"
+            aria-label="Corrected Entry lifecycle invalidation logic"
+          >
             <span className={`${smallMetaClass} text-acid`}>Corrected lifecycle</span>
             <div className="mt-7 grid gap-3 text-base">
               <code>Entry::EVENT_AFTER_SAVE</code>
@@ -205,18 +220,22 @@ function BeyondEntries() {
         <SectionTitle>Semantic invalidation follows content relationships.</SectionTitle>
 
         <div className="mt-9 grid grid-cols-2 gap-[7%] max-[700px]:grid-cols-1 max-[700px]:gap-8">
-          <figure className="border-y border-ink py-5" aria-label="Asset referenced through nested content">
+          <figure
+            className="border-y border-ink py-5"
+            aria-label="Asset referenced through nested content"
+          >
             <span className={smallMetaClass}>Nested content</span>
             <p className="mt-6 text-lg leading-[1.7]">
               Asset → nested block → root Entry → cached page
             </p>
           </figure>
 
-          <figure className="border-y border-ink py-5" aria-label="Asset referenced by a Global Set">
+          <figure
+            className="border-y border-ink py-5"
+            aria-label="Asset referenced by a Global Set"
+          >
             <span className={smallMetaClass}>Shared content</span>
-            <p className="mt-6 text-lg leading-[1.7]">
-              Asset → Global Set → multiple pages
-            </p>
+            <p className="mt-6 text-lg leading-[1.7]">Asset → Global Set → multiple pages</p>
           </figure>
         </div>
 
@@ -232,9 +251,18 @@ function BeyondEntries() {
 
 function Takeaway() {
   const lessons = [
-    ["State transitions are data changes", "Disabled, deleted and restored content all need cache consideration."],
-    ["Events encode assumptions", "The lifecycle was correct; the enabled-state filter encoded the wrong rule."],
-    ["Invalidation follows dependencies", "The useful unit is often a semantic content dependency, not one current page."],
+    [
+      "State transitions are data changes",
+      "Disabled, deleted and restored content all need cache consideration.",
+    ],
+    [
+      "Events encode assumptions",
+      "The lifecycle was correct; the enabled-state filter encoded the wrong rule.",
+    ],
+    [
+      "Invalidation follows dependencies",
+      "The useful unit is often a semantic content dependency, not one current page.",
+    ],
   ] as const;
 
   return (

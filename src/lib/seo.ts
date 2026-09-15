@@ -20,6 +20,8 @@ type PageMetadata = {
   description: string;
   path: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 };
 
 export function createPageMetadata({
@@ -27,16 +29,24 @@ export function createPageMetadata({
   description,
   path,
   image = siteConfig.socialImage,
+  imageWidth,
+  imageHeight,
 }: PageMetadata): Metadata {
-  const imageDimensions = image === siteConfig.socialImage
-    ? {
-        width: siteConfig.socialImageWidth,
-        height: siteConfig.socialImageHeight,
-      }
-    : {
-        width: 3558,
-        height: 1920,
-      };
+  const imageDimensions =
+    imageWidth && imageHeight
+      ? {
+          width: imageWidth,
+          height: imageHeight,
+        }
+      : image === siteConfig.socialImage
+        ? {
+            width: siteConfig.socialImageWidth,
+            height: siteConfig.socialImageHeight,
+          }
+        : {
+            width: 3558,
+            height: 1920,
+          };
 
   return {
     title,

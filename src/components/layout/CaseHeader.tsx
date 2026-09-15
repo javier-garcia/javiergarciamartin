@@ -7,11 +7,9 @@ export function CaseHeader() {
         JG
         <span className="ml-1.75 align-top text-[11px] tracking-[.08em] text-muted">—26</span>
       </Link>
-      <Link
-        className="interactive-underline text-sm font-medium tracking-[.01em] max-[800px]:hidden"
-        href="/#work"
-      >
-        ← All work
+      <Link className="interactive-underline text-sm font-medium tracking-[.01em]" href="/#work">
+        <span className="max-[520px]:hidden">← All work</span>
+        <span className="hidden max-[520px]:inline">← Work</span>
       </Link>
       <a
         className="interactive-underline text-sm font-medium tracking-[.01em]"

@@ -21,10 +21,7 @@ export function HeroSection() {
             <br />
             for complex Next.js
             <br />
-            <em className="inline-block font-serif font-normal">
-              &amp; React
-            </em>{" "}
-            projects.
+            <em className="inline-block font-serif font-normal">&amp; React</em> projects.
           </h1>
         </ExpertiseEffects>
         <div className="intro-reveal relative z-[2] flex items-end justify-between [animation-delay:.25s]">

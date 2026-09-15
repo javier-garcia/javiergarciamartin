@@ -1,12 +1,7 @@
 "use client";
 
 import * as THREE from "three";
-import {
-  useEffect,
-  useRef,
-  type PointerEvent,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, type PointerEvent, type ReactNode } from "react";
 
 type ExpertiseEffectsProps = {
   children: ReactNode;
@@ -151,15 +146,9 @@ function createTitleTexture(element: HTMLElement, padding: number) {
     const ascent = metrics.fontBoundingBoxAscent || metrics.actualBoundingBoxAscent;
     const descent = metrics.fontBoundingBoxDescent || metrics.actualBoundingBoxDescent;
     const fontBoxHeight = ascent + descent;
-    const baseline = run.rect.top - bounds.top
-      + (run.rect.height - fontBoxHeight) / 2
-      + ascent;
+    const baseline = run.rect.top - bounds.top + (run.rect.height - fontBoxHeight) / 2 + ascent;
 
-    context.fillText(
-      run.text.trimEnd(),
-      padding + run.rect.left - bounds.left,
-      padding + baseline,
-    );
+    context.fillText(run.text.trimEnd(), padding + run.rect.left - bounds.left, padding + baseline);
   });
 
   const texture = new THREE.CanvasTexture(canvas);
@@ -203,34 +192,23 @@ function createImageTexture(element: HTMLImageElement, padding: number) {
 
   if (!context) return null;
 
-  const coverScale = styles.objectFit === "cover"
-    ? Math.max(
-        bounds.width / element.naturalWidth,
-        bounds.height / element.naturalHeight,
-      )
-    : Math.min(
-        bounds.width / element.naturalWidth,
-        bounds.height / element.naturalHeight,
-      );
+  const coverScale =
+    styles.objectFit === "cover"
+      ? Math.max(bounds.width / element.naturalWidth, bounds.height / element.naturalHeight)
+      : Math.min(bounds.width / element.naturalWidth, bounds.height / element.naturalHeight);
   const drawWidth = element.naturalWidth * coverScale;
   const drawHeight = element.naturalHeight * coverScale;
-  const drawX = padding + (bounds.width - drawWidth)
-    * getObjectPositionFactor(styles.objectPosition, "x");
-  const drawY = padding + (bounds.height - drawHeight)
-    * getObjectPositionFactor(styles.objectPosition, "y");
+  const drawX =
+    padding + (bounds.width - drawWidth) * getObjectPositionFactor(styles.objectPosition, "x");
+  const drawY =
+    padding + (bounds.height - drawHeight) * getObjectPositionFactor(styles.objectPosition, "y");
 
   context.scale(pixelRatio, pixelRatio);
   context.save();
   context.beginPath();
   context.rect(padding, padding, bounds.width, bounds.height);
   context.clip();
-  context.drawImage(
-    element,
-    drawX,
-    drawY,
-    drawWidth,
-    drawHeight,
-  );
+  context.drawImage(element, drawX, drawY, drawWidth, drawHeight);
   context.restore();
 
   const texture = new THREE.CanvasTexture(canvas);
@@ -243,16 +221,10 @@ function createImageTexture(element: HTMLImageElement, padding: number) {
 }
 
 function getActiveClass(element: HTMLElement) {
-  return element instanceof HTMLImageElement
-    ? "webgl-image-active"
-    : "webgl-title-active";
+  return element instanceof HTMLImageElement ? "webgl-image-active" : "webgl-title-active";
 }
 
-export function ExpertiseEffects({
-  children,
-  className,
-  intensity = 1,
-}: ExpertiseEffectsProps) {
+export function ExpertiseEffects({ children, className, intensity = 1 }: ExpertiseEffectsProps) {
   const field = useRef<HTMLDivElement>(null);
   const parallaxFrame = useRef(0);
 
@@ -354,9 +326,10 @@ export function ExpertiseEffects({
 
     function positionMesh(title: HTMLElement) {
       activeTexturePadding = TEXTURE_PADDING;
-      const titleTexture = title instanceof HTMLImageElement
-        ? createImageTexture(title, activeTexturePadding)
-        : createTitleTexture(title, activeTexturePadding);
+      const titleTexture =
+        title instanceof HTMLImageElement
+          ? createImageTexture(title, activeTexturePadding)
+          : createTitleTexture(title, activeTexturePadding);
 
       if (!titleTexture) return false;
 
@@ -459,14 +432,15 @@ export function ExpertiseEffects({
 
       material.uniforms.uPointer.value.set(
         THREE.MathUtils.clamp(
-          (event.clientX - bounds.left + activeTexturePadding)
-            / (bounds.width + activeTexturePadding * 2),
+          (event.clientX - bounds.left + activeTexturePadding) /
+            (bounds.width + activeTexturePadding * 2),
           0,
           1,
         ),
         THREE.MathUtils.clamp(
-          1 - (event.clientY - bounds.top + activeTexturePadding)
-            / (bounds.height + activeTexturePadding * 2),
+          1 -
+            (event.clientY - bounds.top + activeTexturePadding) /
+              (bounds.height + activeTexturePadding * 2),
           0,
           1,
         ),
@@ -483,16 +457,20 @@ export function ExpertiseEffects({
 
       if (title) return title;
 
-      return [...root.querySelectorAll<HTMLImageElement>("[data-distort-image]")].find((image) => {
-        if (image.closest("[inert], [aria-hidden='true']")) return false;
+      return (
+        [...root.querySelectorAll<HTMLImageElement>("[data-distort-image]")].find((image) => {
+          if (image.closest("[inert], [aria-hidden='true']")) return false;
 
-        const bounds = image.getBoundingClientRect();
+          const bounds = image.getBoundingClientRect();
 
-        return event.clientX >= bounds.left
-          && event.clientX <= bounds.right
-          && event.clientY >= bounds.top
-          && event.clientY <= bounds.bottom;
-      }) ?? null;
+          return (
+            event.clientX >= bounds.left &&
+            event.clientX <= bounds.right &&
+            event.clientY >= bounds.top &&
+            event.clientY <= bounds.bottom
+          );
+        }) ?? null
+      );
     }
 
     function handlePointerMove(event: globalThis.PointerEvent) {
@@ -541,15 +519,10 @@ export function ExpertiseEffects({
 
         if (activeTitle) {
           const activeBounds = activeTitle.getBoundingClientRect();
-          const imageSizeChanged = activeTitle instanceof HTMLImageElement
-            && (
-              Math.abs(
-                activeBounds.width + activeTexturePadding * 2 - activeTextureWidth,
-              ) > 1
-              || Math.abs(
-                activeBounds.height + activeTexturePadding * 2 - activeTextureHeight,
-              ) > 1
-            );
+          const imageSizeChanged =
+            activeTitle instanceof HTMLImageElement &&
+            (Math.abs(activeBounds.width + activeTexturePadding * 2 - activeTextureWidth) > 1 ||
+              Math.abs(activeBounds.height + activeTexturePadding * 2 - activeTextureHeight) > 1);
 
           if (imageSizeChanged) {
             positionMesh(activeTitle);

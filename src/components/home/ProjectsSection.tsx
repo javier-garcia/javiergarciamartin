@@ -1,83 +1,19 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ExpertiseEffects } from "@/components/home/ExpertiseEffects";
-import { ProjectAccordion } from "@/components/home/ProjectAccordion";
+import { ProjectMedia } from "@/components/case-studies/ProjectMedia";
 import { labelClass, sectionClass, smallMetaClass } from "@/components/styles";
-import { projects, type Project } from "@/data/portfolio";
+import { projectCaseStudies } from "@/data/case-studies";
 
-function ProjectVisual({ project, index }: { project: Project; index: number }) {
-  if (project.image) {
-    return (
-      <div className="relative mb-15 min-h-97.5 overflow-hidden bg-[#20221e] max-[800px]:mb-8.75 max-[800px]:min-h-65">
-        <Image
-          className="object-cover object-top"
-          src={project.image.src}
-          alt={project.image.alt}
-          fill
-          sizes="(max-width: 800px) 100vw, 55vw"
-          data-distort-image
-        />
-      </div>
-    );
+const selectedProjectSlugs = ["morae", "core-one", "nti", "saratoga"];
+
+const selectedProjects = selectedProjectSlugs.map((slug) => {
+  const project = projectCaseStudies.find((candidate) => candidate.slug === slug);
+
+  if (!project) {
+    throw new Error(`Missing selected project: ${slug}`);
   }
 
-  return (
-    <div className="relative mb-15 min-h-97.5 overflow-hidden bg-[#20221e] max-[800px]:mb-8.75 max-[800px]:min-h-65">
-      <div className="absolute top-[10%] left-[16%] h-[63%] w-[72%] -rotate-5 border border-[#85887b] bg-[#d9d8d0] p-5.5 text-[10px] tracking-[.12em] uppercase shadow-[0_20px_60px_#0006]">
-        system / context / delivery
-      </div>
-      <div className="absolute top-[22%] left-[19%] flex h-[64%] w-[72%] rotate-4 justify-between border border-[#85887b] bg-[#d9d8d0] p-5.5 shadow-[0_20px_60px_#0006]">
-        <b className="text-[34px] tracking-[-.06em] lowercase">{index === 0 ? "morae" : "next"}</b>
-        <i className="h-[70%] w-[42%] rounded-[50%_50%_40%_60%] bg-acid" />
-      </div>
-    </div>
-  );
-}
-
-function ProjectItem({ project, index }: { project: Project; index: number }) {
-  return (
-    <ProjectAccordion
-      defaultOpen={index === 0}
-      index={index}
-      summary={
-        <>
-          <span className="text-[11px] text-muted">{project.number}</span>
-          <span>
-            <small className={`${smallMetaClass} mb-2`}>{project.eyebrow}</small>
-            <strong className="text-[clamp(34px,5vw,70px)] font-medium tracking-[-.05em]">
-              {project.title}
-            </strong>
-          </span>
-          <span className="max-w-117.5 text-[17px] leading-normal text-[#50524d] max-[800px]:hidden">
-            {project.intro}
-          </span>
-        </>
-      }
-    >
-      <div className="relative grid min-h-0 cursor-pointer grid-cols-[55%_minmax(0,1fr)] gap-[6%] overflow-hidden max-[800px]:grid-cols-1">
-        <ProjectVisual project={project} index={index} />
-        <div className="mb-15 flex flex-col justify-between text-[19px] leading-[1.6] max-[800px]:mb-8.75 max-[800px]:gap-8.75 max-[800px]:text-[17px]">
-          <p>{project.detail}</p>
-          <div>
-            <p className="border-t border-line pt-5 text-base leading-[1.55]">
-              <small className={`${smallMetaClass} mb-2.5`}>What this demonstrates</small>
-              {project.result}
-            </p>
-            <Link
-              className="interactive-underline group/case-link mt-5.5 inline-flex w-fit items-center gap-2 pb-1 text-xs tracking-widest uppercase before:absolute before:inset-0 before:z-10"
-              href={project.href}
-            >
-              <span className="relative z-20">View full case study</span>
-              <span className="relative z-20 text-lg transition-transform duration-300 group-hover/case-link:translate-x-1 group-hover/case-link:-translate-y-1">
-                ↗
-              </span>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </ProjectAccordion>
-  );
-}
+  return project;
+});
 
 export function ProjectsSection() {
   return (
@@ -85,17 +21,77 @@ export function ProjectsSection() {
       className={`${sectionClass} bg-[linear-gradient(180deg,rgba(240,238,232,.68),rgba(240,238,232,.86)_22%)]`}
       id="work"
     >
-      <div className="scroll-reveal mb-16.25 flex justify-between">
+      <div className="scroll-reveal mb-16.25 flex justify-between gap-8">
         <h2 className={labelClass}>01 / Selected work</h2>
-        <p className="text-xs text-muted max-[800px]:hidden">
-          Existing platforms. Real constraints. Production work.
+
+        <p className="max-w-100 text-right text-xs leading-[1.5] text-muted max-[800px]:hidden">
+          Products and platforms delivered inside real teams, constraints and production systems.
         </p>
       </div>
-      <ExpertiseEffects className="relative" intensity={0.5}>
-        {projects.map((project, index) => (
-          <ProjectItem key={project.title} project={project} index={index} />
-        ))}
-      </ExpertiseEffects>
+
+      <div className="border-t border-ink">
+        {selectedProjects.map((project, index) => {
+          const projectMedia =
+            project.imageSlots.find((media) => media.id === "cover") ??
+            project.imageSlots.find((media) => media.id === "hero");
+
+          if (!projectMedia) return null;
+
+          return (
+            <article
+              className="scroll-reveal border-b border-line py-14 max-[800px]:py-10"
+              key={project.slug}
+              style={{ "--delay": `${index * 0.06}s` } as React.CSSProperties}
+            >
+              <Link
+                className="group/project grid grid-cols-[7%_52%_1fr] items-start gap-[4%] outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-8 focus-visible:ring-offset-paper max-[900px]:grid-cols-[8%_1fr] max-[900px]:gap-y-8"
+                href={`/work/${project.slug}`}
+              >
+                <span className="pt-1 text-[10px] text-muted">{project.number}</span>
+
+                <div className="max-[900px]:col-start-2">
+                  <ProjectMedia
+                    compact
+                    media={projectMedia}
+                    priority={index === 0}
+                    sizes="(max-width: 900px) 92vw, 52vw"
+                  />
+                </div>
+
+                <div className="flex h-full flex-col justify-between gap-10 max-[900px]:col-start-2">
+                  <div>
+                    <span className={smallMetaClass}>{project.eyebrow}</span>
+
+                    <h3 className="mt-5 text-[clamp(44px,6vw,86px)] leading-[.88] font-medium tracking-[-.065em] transition-transform duration-500 ease-out group-hover/project:translate-x-1.5 group-focus-visible/project:translate-x-1.5 motion-reduce:transform-none">
+                      {project.title}
+                    </h3>
+
+                    <p className="mt-8 max-w-140 text-[18px] leading-[1.55] text-[#50524d]">
+                      {project.home.intro}
+                    </p>
+                  </div>
+
+                  <div>
+                    <dl className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 border-t border-line pt-5 text-sm leading-[1.45]">
+                      <dt className="text-muted">Role</dt>
+                      <dd>{project.role}</dd>
+                      <dt className="text-muted">Areas</dt>
+                      <dd>{project.areas.slice(0, 3).join(" · ")}</dd>
+                    </dl>
+
+                    <span className="interactive-underline mt-8 inline-flex items-center gap-2 pb-1 text-xs tracking-widest uppercase">
+                      View case study
+                      <span className="text-lg transition-transform duration-300 group-hover/project:translate-x-1 group-hover/project:-translate-y-1 group-focus-visible/project:translate-x-1 group-focus-visible/project:-translate-y-1 motion-reduce:transform-none">
+                        ↗
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </article>
+          );
+        })}
+      </div>
     </section>
   );
 }

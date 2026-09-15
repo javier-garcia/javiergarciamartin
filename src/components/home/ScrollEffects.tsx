@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export function ScrollEffects() {
+export function ScrollEffects({ atmosphere = true }: { atmosphere?: boolean }) {
   useEffect(() => {
     const root = document.documentElement;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -42,28 +42,32 @@ export function ScrollEffects() {
     };
     update();
     addEventListener("scroll", onScroll, { passive: true });
-    addEventListener("pointermove", onPointer, { passive: true });
+    if (atmosphere) addEventListener("pointermove", onPointer, { passive: true });
     return () => {
       observer.disconnect();
       removeEventListener("scroll", onScroll);
-      removeEventListener("pointermove", onPointer);
+      if (atmosphere) removeEventListener("pointermove", onPointer);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [atmosphere]);
   return (
     <>
       <div
         className="scroll-progress motion-atmosphere pointer-events-none fixed top-0 right-0 z-19 h-svh w-0.75 origin-top bg-acid max-[800px]:w-0.5"
         aria-hidden
       />
-      <div
-        className="scroll-orbit motion-atmosphere pointer-events-none fixed top-[32vh] -right-[18vw] -z-1 size-[36vw] rounded-full bg-[radial-gradient(circle,rgba(201,255,72,.14),rgba(201,255,72,0)_67%)] max-[800px]:-right-[38vw] max-[800px]:size-[70vw]"
-        aria-hidden
-      />
-      <div
-        className="cursor-atmosphere motion-atmosphere pointer-events-none fixed top-0 left-0 z-18 size-42.5 rounded-full bg-[radial-gradient(circle,rgba(201,255,72,.22),rgba(201,255,72,0)_68%)] opacity-35 mix-blend-multiply transition-[width,height,opacity] duration-300"
-        aria-hidden
-      />
+      {atmosphere ? (
+        <>
+          <div
+            className="scroll-orbit motion-atmosphere pointer-events-none fixed top-[32vh] -right-[18vw] -z-1 size-[36vw] rounded-full bg-[radial-gradient(circle,rgba(201,255,72,.14),rgba(201,255,72,0)_67%)] max-[800px]:-right-[38vw] max-[800px]:size-[70vw]"
+            aria-hidden
+          />
+          <div
+            className="cursor-atmosphere motion-atmosphere pointer-events-none fixed top-0 left-0 z-18 size-42.5 rounded-full bg-[radial-gradient(circle,rgba(201,255,72,.22),rgba(201,255,72,0)_68%)] opacity-35 mix-blend-multiply transition-[width,height,opacity] duration-300"
+            aria-hidden
+          />
+        </>
+      ) : null}
     </>
   );
 }

@@ -1,4 +1,6 @@
+import { ProjectMedia } from "@/components/case-studies/ProjectMedia";
 import { labelClass, smallMetaClass } from "@/components/styles";
+import type { ProjectCaseStudy } from "@/data/case-studies";
 import type { ReactNode } from "react";
 import Link from "next/link";
 
@@ -67,18 +69,66 @@ function SectionHeading({ children }: { children: ReactNode }) {
   );
 }
 
+type StoryMediaProps = {
+  project: ProjectCaseStudy;
+  imageId: string;
+  embedded?: boolean;
+};
+
+function StoryMedia({ project, imageId, embedded = false }: StoryMediaProps) {
+  const media = project.imageSlots.find((candidate) => candidate.id === imageId);
+  const context = project.visualSequence.find((candidate) => candidate.imageId === imageId);
+
+  if (!media) return null;
+
+  const content = (
+    <div>
+      {context ? (
+        <div className="mb-8 grid grid-cols-[24%_1fr] gap-[6%] max-[700px]:grid-cols-1 max-[700px]:gap-4">
+          <span className={smallMetaClass}>{context.eyebrow}</span>
+          <div>
+            <h3 className="text-[clamp(26px,3vw,44px)] leading-[1.05] font-medium tracking-[-.045em]">
+              {context.title}
+            </h3>
+            {context.text ? (
+              <p className="mt-5 max-w-170 text-base leading-[1.6] text-muted">{context.text}</p>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
+
+      <ProjectMedia media={media} sizes="(max-width: 800px) 90vw, 77vw" />
+    </div>
+  );
+
+  if (embedded) {
+    return (
+      <div className="mt-14 scroll-mt-8" id={`media-${imageId}`}>
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <section className={`${supportingSection} scroll-mt-8`} id={`media-${imageId}`}>
+      <p className={labelClass}>Project view</p>
+      {content}
+    </section>
+  );
+}
+
 function ArchitectureEvolution() {
   return (
-    <section className={primarySection}>
+    <section className={primarySection} id="technical-challenges">
       <p className={labelClass}>01 / Architecture evolution</p>
 
       <div>
         <SectionHeading>A platform with history.</SectionHeading>
 
         <p className="mt-8 max-w-180 text-lg leading-[1.65]">
-          I had worked on Morae when it was still a monolithic WordPress site. Another company
-          later made it headless. When our team took over, we substantially rebuilt the frontend
-          and then began introducing Craft without forcing the whole platform through one release.
+          I had worked on Morae when it was still a monolithic WordPress site. Another company later
+          made it headless. When our team took over, we substantially rebuilt the frontend and then
+          began introducing Craft without forcing the whole platform through one release.
         </p>
 
         <ol className="mt-14 grid list-none grid-cols-4 border-y border-ink p-0 max-[900px]:grid-cols-2 max-[560px]:grid-cols-1">
@@ -88,7 +138,9 @@ function ArchitectureEvolution() {
               key={stage.number}
             >
               <div className="flex justify-between gap-4">
-                <span className={smallMetaClass}>{stage.number} / {stage.label}</span>
+                <span className={smallMetaClass}>
+                  {stage.number} / {stage.label}
+                </span>
                 {stage.transition ? (
                   <span className="text-[9px] leading-[1.25] text-muted uppercase">
                     {stage.transition} ↓
@@ -100,9 +152,7 @@ function ArchitectureEvolution() {
                 <strong className="block text-[clamp(22px,2.2vw,34px)] leading-[1.05] font-medium tracking-[-.04em]">
                   {stage.title}
                 </strong>
-                <span className="mt-3 block text-sm leading-[1.4] text-muted">
-                  {stage.detail}
-                </span>
+                <span className="mt-3 block text-sm leading-[1.4] text-muted">{stage.detail}</span>
               </div>
             </li>
           ))}
@@ -180,13 +230,17 @@ function InsightsModel() {
             </p>
           </div>
 
-          <span className="self-center text-3xl text-muted max-[800px]:rotate-90" aria-hidden>→</span>
+          <span className="self-center text-3xl text-muted max-[800px]:rotate-90" aria-hidden>
+            →
+          </span>
 
           <div className="border-y border-ink py-6">
             <span className={smallMetaClass}>Craft content model</span>
             <div className="mt-7 grid grid-cols-2 gap-px bg-line max-[520px]:grid-cols-1">
               {craftInsightTypes.map((type) => (
-                <span className="bg-paper p-4 text-lg" key={type}>{type}</span>
+                <span className="bg-paper p-4 text-lg" key={type}>
+                  {type}
+                </span>
               ))}
             </div>
             <div className="mt-6 flex items-center gap-4 border-l-2 border-acid pl-4">
@@ -219,13 +273,18 @@ function ProgressiveMigration() {
           requiring every content type and record to migrate together.
         </p>
 
-        <figure className="mt-14 border-y border-ink py-9" aria-label="Craft-first and WordPress-fallback request architecture">
+        <figure
+          className="mt-14 border-y border-ink py-9"
+          aria-label="Craft-first and WordPress-fallback request architecture"
+        >
           <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-5 max-w-150">
             <div className="p-4">
               <span className={smallMetaClass}>Incoming</span>
               <strong className="mt-2 block text-2xl font-medium">Request</strong>
             </div>
-            <span className="text-2xl text-muted" aria-hidden>→</span>
+            <span className="text-2xl text-muted" aria-hidden>
+              →
+            </span>
             <div className="bg-acid p-4">
               <span className={`${smallMetaClass} text-ink`}>Preferred source</span>
               <strong className="mt-2 block text-2xl font-medium">Craft CMS</strong>
@@ -242,7 +301,9 @@ function ProgressiveMigration() {
               <span className={smallMetaClass}>Not found</span>
               <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
                 <strong className="text-xl font-medium">WordPress</strong>
-                <span className="text-xl text-muted" aria-hidden>→</span>
+                <span className="text-xl text-muted" aria-hidden>
+                  →
+                </span>
                 <div className="grid gap-2 text-sm">
                   <span>Found → Render</span>
                   <span className="text-muted">Not found → 404</span>
@@ -252,13 +313,15 @@ function ProgressiveMigration() {
           </div>
         </figure>
 
-        <p className="mt-6 text-sm text-muted">WordPress has not yet been removed from every area.</p>
+        <p className="mt-6 text-sm text-muted">
+          WordPress has not yet been removed from every area.
+        </p>
       </div>
     </section>
   );
 }
 
-function SupportingArchitecture() {
+function SupportingArchitecture({ project }: { project: ProjectCaseStudy }) {
   return (
     <>
       <section className={supportingSection}>
@@ -272,9 +335,9 @@ function SupportingArchitecture() {
           <div className="mt-9 grid grid-cols-2 gap-[7%] max-[800px]:grid-cols-1 max-[800px]:gap-9">
             <div>
               <p className="m-0 text-lg leading-[1.6]">
-                Editors can choose from approximately 20–30 configurable components, configure
-                them and reorder them freely. Each Entry Type limits which components are valid,
-                keeping composition flexible without creating an unrestricted page builder.
+                Editors can choose from approximately 20–30 configurable components, configure them
+                and reorder them freely. Each Entry Type limits which components are valid, keeping
+                composition flexible without creating an unrestricted page builder.
               </p>
               <p className="mt-5 text-base leading-[1.6] text-muted">
                 Component previews inside Craft help editors understand what they are adding.
@@ -284,8 +347,16 @@ function SupportingArchitecture() {
             <div>
               <span className={smallMetaClass}>Craft → React architecture</span>
               <ol className="mt-5 grid list-none gap-0 border-t border-ink p-0">
-                {["Craft component", "GraphQL", "typeHandle", "Component Renderer", "React component"].map((step) => (
-                  <li className="border-b border-line py-3 text-sm" key={step}>{step}</li>
+                {[
+                  "Craft component",
+                  "GraphQL",
+                  "typeHandle",
+                  "Component Renderer",
+                  "React component",
+                ].map((step) => (
+                  <li className="border-b border-line py-3 text-sm" key={step}>
+                    {step}
+                  </li>
                 ))}
               </ol>
               <p className="mt-4 text-sm leading-[1.55] text-muted">
@@ -294,8 +365,12 @@ function SupportingArchitecture() {
               </p>
             </div>
           </div>
+
+          <StoryMedia embedded imageId="page-system" project={project} />
         </div>
       </section>
+
+      <StoryMedia imageId="interaction" project={project} />
 
       <section className={supportingSection}>
         <p className={labelClass}>06 / Redirects</p>
@@ -351,9 +426,9 @@ function SupportingArchitecture() {
           <article className="border-t border-ink pt-5">
             <h2 className="text-2xl font-medium">Cache revalidation</h2>
             <p className="mt-5 text-base leading-[1.6] text-muted">
-              Craft events trigger semantic tag and path invalidation so the next request uses
-              fresh GraphQL data. Disabled and deleted content must invalidate its previous state,
-              not only content that remains enabled.
+              Craft events trigger semantic tag and path invalidation so the next request uses fresh
+              GraphQL data. Disabled and deleted content must invalidate its previous state, not
+              only content that remains enabled.
             </p>
             <Link
               className="interactive-underline mt-5 inline-block pb-1 text-xs tracking-widest uppercase"
@@ -370,10 +445,22 @@ function SupportingArchitecture() {
 
 function Outcome() {
   const lessons = [
-    ["Understand before replacing", "Legacy structure can contain editorial knowledge that is not visible from the schema alone."],
-    ["Redesign the model", "A CMS migration can reconsider whether old structures still represent the content domain."],
-    ["Evolve incrementally", "Old and new systems can coexist while a production platform changes area by area."],
-    ["State transitions matter", "Caching must react when content becomes disabled, deleted or otherwise stops being visible."],
+    [
+      "Understand before replacing",
+      "Legacy structure can contain editorial knowledge that is not visible from the schema alone.",
+    ],
+    [
+      "Redesign the model",
+      "A CMS migration can reconsider whether old structures still represent the content domain.",
+    ],
+    [
+      "Evolve incrementally",
+      "Old and new systems can coexist while a production platform changes area by area.",
+    ],
+    [
+      "State transitions matter",
+      "Caching must react when content becomes disabled, deleted or otherwise stops being visible.",
+    ],
   ] as const;
 
   return (
@@ -405,14 +492,15 @@ function Outcome() {
   );
 }
 
-export function MoraeStory() {
+export function MoraeStory({ project }: { project: ProjectCaseStudy }) {
   return (
     <>
       <ArchitectureEvolution />
       <VerticalOwnership />
       <InsightsModel />
       <ProgressiveMigration />
-      <SupportingArchitecture />
+      <SupportingArchitecture project={project} />
+      <StoryMedia imageId="responsive" project={project} />
       <Outcome />
     </>
   );

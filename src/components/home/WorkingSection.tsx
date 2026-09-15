@@ -20,7 +20,7 @@ function WorkingStep({ step, index }: { step: (typeof workingSteps)[number]; ind
 export function WorkingSection() {
   return (
     <section className={sectionClass} id="working">
-      <p className={`${labelClass} scroll-reveal`}>03 / How I work</p>
+      <p className={`${labelClass} scroll-reveal`}>04 / How I work</p>
       <div className="scroll-reveal my-18.75 mr-0 mb-26.25 ml-[17%] grid grid-cols-[1.25fr_.75fr] items-end gap-[8%] max-[800px]:my-15 max-[800px]:mb-18.75 max-[800px]:ml-0 max-[800px]:grid-cols-1 max-[800px]:gap-11.25">
         <ExpertiseEffects className="relative" intensity={0.5}>
           <h2

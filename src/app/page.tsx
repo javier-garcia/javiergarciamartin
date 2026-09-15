@@ -4,6 +4,7 @@ import { ExpertiseSection } from "@/components/home/ExpertiseSection";
 import { HeroSection } from "@/components/home/HeroSection";
 import { ProjectsSection } from "@/components/home/ProjectsSection";
 import { ScrollEffects } from "@/components/home/ScrollEffects";
+import { TechnicalChallengesSection } from "@/components/home/TechnicalChallengesSection";
 import { WorkingSection } from "@/components/home/WorkingSection";
 import { ContactFooter } from "@/components/layout/ContactFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -29,6 +30,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <ProjectsSection />
+        <TechnicalChallengesSection />
         <ExpertiseSection />
         <WorkingSection />
         <AboutSection />

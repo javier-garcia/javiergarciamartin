@@ -41,7 +41,7 @@ function ServiceItem({ service, index }: { service: (typeof services)[number]; i
 export function ExpertiseSection() {
   return (
     <section className={sectionClass} id="expertise">
-      <h2 className={`${labelClass} scroll-reveal`}>02 / What I can help with</h2>
+      <h2 className={`${labelClass} scroll-reveal`}>03 / What I can help with</h2>
 
       <ExpertiseEffects
         className="scroll-reveal relative my-20 mr-0 mb-27.5 ml-[17%] max-w-295 max-[800px]:my-15 max-[800px]:mb-18.75 max-[800px]:ml-0"

@@ -166,7 +166,7 @@ export default function ThreeNetwork() {
     <div
       className="scene pointer-events-none fixed inset-0 z-0 h-svh w-full opacity-95 mix-blend-multiply transition-opacity duration-150"
       ref={host}
-      aria-label="Iridescent three-dimensional atmosphere responding to pointer and scroll"
+      aria-hidden
     >
       <div
         className="network-fallback absolute top-[8%] right-[8%] bottom-[10%] left-[42%]"
