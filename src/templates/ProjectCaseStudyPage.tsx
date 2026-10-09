@@ -19,9 +19,9 @@ const sectionClass =
 function ProjectHero({ project }: { project: ProjectCaseStudy }) {
   const heroMedia = project.imageSlots.find((media) => media.id === "hero");
   const metadata = [
-    ["Role", project.role],
+    ["My role", project.role],
     ["Duration", project.duration],
-    ["Team", project.team],
+    ["Collaboration", project.team],
     ["Areas", project.areas.join(" / ")],
   ].filter((item): item is [string, string] => Boolean(item[1]));
 

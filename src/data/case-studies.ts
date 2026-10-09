@@ -72,7 +72,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     summary:
       "I returned to a platform I had previously worked on in its monolithic WordPress period. That context became useful when our agency team took over its headless successor, substantially rebuilt the frontend and progressively introduced Craft CMS alongside the existing WordPress content source.",
     role: "Frontend development / CMS integration",
-    team: "Project manager, designer, lead developer, Javier and occasional backend support",
+    team: "I worked with a project manager, designer and lead developer, with backend support when needed.",
     duration: "Approximately 2–3 years",
     areas: [
       "Platform evolution",
@@ -220,7 +220,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     summary:
       "I implemented the entire Core One website, following the designer’s direction. My work covered the pages, CMS integration, responsive interface and all animation and interaction work, including the opening lines, Beyond the Mission, pointer-lit mountains, merging circles and 3D particle transformations.",
     role: "Sole developer · Full website implementation",
-    team: "Designer and Javier as the sole implementation developer",
+    team: "I worked directly with the designer and handled the full implementation.",
     areas: ["Creative frontend", "Animation", "3D", "Responsive implementation", "CMS integration"],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Craft CMS"],
     challenge:
@@ -530,7 +530,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     ],
     nextProject: "morae",
     contentNotice:
-      "This page documents confirmed implementation scope only. Project context, Javier’s specific contribution and outcomes are still being verified before publication.",
+      "This page documents confirmed implementation scope only. Project context, my specific contribution and outcomes are still being verified before publication.",
     home: {
       intro: "Frontend implementation across a Next.js and Craft CMS platform.",
     },
