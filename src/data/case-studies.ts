@@ -129,7 +129,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
           "Extend event-driven tag and path invalidation, including targeted relationship handling for assets and content state transitions.",
         importance:
           "CMS changes could invalidate the relevant cached representation instead of relying on global or time-based regeneration.",
-        technicalCaseHref: "/work/revalidation-flow",
+        technicalCaseHref: "/case-studies/revalidation-flow",
       },
     ],
     outcome:

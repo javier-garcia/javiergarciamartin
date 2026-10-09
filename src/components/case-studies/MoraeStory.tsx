@@ -63,7 +63,7 @@ const craftInsightTypes = [
 
 function SectionHeading({ children }: { children: ReactNode }) {
   return (
-    <h2 className="max-w-225 text-[clamp(40px,5.7vw,84px)] leading-[1.02] font-medium tracking-[-.055em]">
+    <h2 className="max-w-225 text-[clamp(40px,5.7vw,84px)] leading-[1.02] font-medium tracking-heading">
       {children}
     </h2>
   );
@@ -87,7 +87,7 @@ function StoryMedia({ project, imageId, embedded = false }: StoryMediaProps) {
         <div className="mb-8 grid grid-cols-[24%_1fr] gap-[6%] max-[700px]:grid-cols-1 max-[700px]:gap-4">
           <span className={smallMetaClass}>{context.eyebrow}</span>
           <div>
-            <h3 className="text-[clamp(26px,3vw,44px)] leading-[1.05] font-medium tracking-[-.045em]">
+            <h3 className="text-[clamp(26px,3vw,44px)] leading-[1.05] font-medium tracking-heading">
               {context.title}
             </h3>
             {context.text ? (
@@ -149,7 +149,7 @@ function ArchitectureEvolution() {
               </div>
 
               <div className="mt-16 max-[560px]:mt-9">
-                <strong className="block text-[clamp(22px,2.2vw,34px)] leading-[1.05] font-medium tracking-[-.04em]">
+                <strong className="block text-[clamp(22px,2.2vw,34px)] leading-[1.05] font-medium tracking-heading">
                   {stage.title}
                 </strong>
                 <span className="mt-3 block text-sm leading-[1.4] text-muted">{stage.detail}</span>
@@ -221,7 +221,7 @@ function InsightsModel() {
         <div className="mt-14 grid grid-cols-[1fr_auto_1.35fr] items-stretch gap-8 max-[800px]:grid-cols-1">
           <div className="border-y border-ink py-6">
             <span className={smallMetaClass}>Previous WordPress model</span>
-            <strong className="mt-10 block text-3xl font-medium tracking-[-.04em]">
+            <strong className="mt-10 block text-3xl font-medium tracking-heading">
               Insights CPT
             </strong>
             <span className="mt-3 block text-base text-muted">Insight Type taxonomy</span>
@@ -328,7 +328,7 @@ function SupportingArchitecture({ project }: { project: ProjectCaseStudy }) {
         <p className={labelClass}>05 / Editorial system</p>
 
         <div>
-          <h2 className="text-[clamp(32px,4vw,58px)] leading-[1.05] font-medium tracking-[-.05em]">
+          <h2 className="text-[clamp(32px,4vw,58px)] leading-[1.05] font-medium tracking-heading">
             Controlled flexibility for editors.
           </h2>
 
@@ -376,7 +376,7 @@ function SupportingArchitecture({ project }: { project: ProjectCaseStudy }) {
         <p className={labelClass}>06 / Redirects</p>
 
         <div>
-          <h2 className="text-[clamp(32px,4vw,58px)] leading-[1.05] font-medium tracking-[-.05em]">
+          <h2 className="text-[clamp(32px,4vw,58px)] leading-[1.05] font-medium tracking-heading">
             Keeping redirects editorial.
           </h2>
 
@@ -432,7 +432,7 @@ function SupportingArchitecture({ project }: { project: ProjectCaseStudy }) {
             </p>
             <Link
               className="interactive-underline mt-5 inline-block pb-1 text-xs tracking-widest uppercase"
-              href="/work/revalidation-flow"
+              href="/case-studies/revalidation-flow"
             >
               Read technical case →
             </Link>
@@ -468,7 +468,7 @@ function Outcome() {
       <p className={labelClass}>08 / Outcome</p>
 
       <div>
-        <h2 className="max-w-250 text-[clamp(40px,5.7vw,84px)] leading-[1.02] font-medium tracking-[-.055em]">
+        <h2 className="max-w-250 text-[clamp(40px,5.7vw,84px)] leading-[1.02] font-medium tracking-heading">
           Evolution rather than replacement.
         </h2>
 

@@ -14,7 +14,7 @@ export function HeroSection() {
         </p>
         <ExpertiseEffects className="intro-reveal relative my-[7vh] max-w-262.5 [animation-delay:.1s] max-[800px]:my-[9vh]">
           <h1
-            className="text-[clamp(52px,6.75vw,112px)] leading-[.91] font-medium tracking-[-.07em] max-[800px]:text-[13.8vw]"
+            className="text-[clamp(52px,6.75vw,112px)] leading-[.91] font-medium tracking-heading max-[800px]:text-[13.8vw]"
             data-distort-title
           >
             Senior developer
@@ -30,7 +30,7 @@ export function HeroSection() {
             Craft CMS, WordPress and other content systems.
           </p>
           <a
-            className="flex size-31 items-end justify-between rounded-[50%_50%_50%_50%] bg-acid p-5.25 text-xs leading-[1.1] transition-all duration-300 hover:rotate-6 hover:scale-106 hover:rounded-[42%_58%_48%_52%] max-[800px]:size-23.5 max-[800px]:p-4"
+            className="flex size-31 shrink-0 flex-col items-center justify-center gap-2 rounded-[50%_50%_50%_50%] bg-acid p-5.25 text-center text-xs leading-[1.1] transition-all duration-300 hover:rotate-6 hover:scale-106 hover:rounded-[42%_58%_48%_52%] max-[800px]:size-23.5 max-[800px]:p-4"
             href="#work"
           >
             <span>
@@ -38,7 +38,9 @@ export function HeroSection() {
               <br />
               work
             </span>
-            <b className="text-[26px] font-normal">↓</b>
+            <span className="text-[26px] leading-none" aria-hidden>
+              ↓
+            </span>
           </a>
         </div>
       </div>

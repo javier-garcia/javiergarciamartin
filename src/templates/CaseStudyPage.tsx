@@ -9,7 +9,7 @@ import { CaseHeader } from "@/components/layout/CaseHeader";
 type Phase = { label: string; title: string; text: string };
 
 type Props = {
-  index: string;
+  project: { label: string; href: string };
   eyebrow: string;
   title: string;
   lead: string;
@@ -22,7 +22,6 @@ type Props = {
   metadata?: { label: string; value: string }[];
   showOverview?: boolean;
   showVisual?: boolean;
-  next: { label: string; href: string };
   image?: { src: string; alt: string; width?: number; height?: number };
   children?: ReactNode;
 };
@@ -37,14 +36,14 @@ export default function CaseStudyPage(props: Props) {
       <CaseHeader />
       <main className="overflow-hidden">
         <section className="grid min-h-[82svh] grid-cols-[17%_1fr] content-start border-b border-line px-[3vw] pt-19.25 pb-25 max-[800px]:block max-[800px]:min-h-[78svh] max-[800px]:px-[5vw] max-[800px]:pt-13.75 max-[800px]:pb-17.5">
-          <p className={label}>{props.index} / Case study</p>
+          <p className={label}>Technical case study · {props.project.label}</p>
           <p className={`${meta} m-0 max-[800px]:mt-8.75`}>{props.eyebrow}</p>
           <ExpertiseEffects
             className="relative col-start-2 my-[12vh] mb-13.75 max-w-300 max-[800px]:mb-11.25"
             intensity={0.58}
           >
             <h1
-              className="text-[clamp(60px,9vw,144px)] leading-[.88] font-medium tracking-[-.07em] max-[800px]:text-[15vw]"
+              className="text-[clamp(60px,9vw,144px)] leading-[.88] font-medium tracking-heading max-[800px]:text-[15vw]"
               data-distort-title
             >
               {props.title}
@@ -53,6 +52,13 @@ export default function CaseStudyPage(props: Props) {
           <p className="col-start-2 m-0 max-w-180 text-[21px] leading-[1.45] max-[800px]:text-[17px]">
             {props.lead}
           </p>
+
+          <Link
+            className="interactive-underline col-start-2 mt-6 w-fit pb-1 text-sm"
+            href={props.project.href}
+          >
+            View {props.project.label} project →
+          </Link>
 
           {props.metadata ? (
             <dl className="col-start-2 mt-12 grid grid-cols-4 gap-6 border-t border-line pt-5 max-[800px]:grid-cols-2">
@@ -126,7 +132,7 @@ export default function CaseStudyPage(props: Props) {
                 >
                   <b className="text-[10px] text-muted">0{index + 1}</b>
                   <small className={`${meta} max-[800px]:col-start-2`}>{phase.label}</small>
-                  <h3 className="text-[28px] font-medium tracking-[-.04em] max-[800px]:col-start-2">
+                  <h3 className="text-[28px] font-medium tracking-heading max-[800px]:col-start-2">
                     {phase.title}
                   </h3>
                   <p className="mt-0.75 text-base leading-[1.6] max-[800px]:col-start-2">
@@ -157,7 +163,7 @@ export default function CaseStudyPage(props: Props) {
               <h2 className={label}>Technologies</h2>
               <ExpertiseEffects className="relative mt-11.25" intensity={0.45}>
                 <p
-                  className="text-[clamp(28px,4vw,58px)] leading-[1.12] tracking-[-.05em]"
+                  className="text-[clamp(28px,4vw,58px)] leading-[1.12] tracking-heading"
                   data-distort-title
                 >
                   {props.stack.join(" · ")}
@@ -172,7 +178,7 @@ export default function CaseStudyPage(props: Props) {
             <h2 className={label}>What this demonstrates</h2>
             <ExpertiseEffects className="relative max-w-287.5" intensity={0.45}>
               <p
-                className="m-0 text-[clamp(38px,5.5vw,82px)] leading-[1.04] tracking-[-.055em]"
+                className="m-0 text-[clamp(38px,5.5vw,82px)] leading-[1.04] tracking-heading"
                 data-distort-title
               >
                 {props.outcome}
@@ -183,15 +189,15 @@ export default function CaseStudyPage(props: Props) {
 
         <Link
           className="flex items-end justify-between border-b border-line px-[3vw] py-13.75 max-[800px]:block max-[800px]:px-[5vw] max-[800px]:py-10"
-          href={props.next.href}
+          href={props.project.href}
         >
-          <span className={meta}>Next case study</span>
+          <span className={meta}>Related project</span>
           <ExpertiseEffects className="relative max-[800px]:mt-5.5" intensity={0.45}>
             <span
-              className="block text-[clamp(30px,5vw,72px)] tracking-[-.05em]"
+              className="block text-[clamp(30px,5vw,72px)] tracking-heading"
               data-distort-title
             >
-              {props.next.label} →
+              View {props.project.label} project →
             </span>
           </ExpertiseEffects>
         </Link>

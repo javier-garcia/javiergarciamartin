@@ -11,7 +11,7 @@ export function AboutSection() {
       <div className="scroll-reveal grid grid-cols-[1.5fr_1fr_1fr] gap-[5%] max-[800px]:grid-cols-1 max-[800px]:gap-7.5">
         <ExpertiseEffects className="relative" intensity={0.5}>
           <h2
-            className="text-[clamp(44px,6vw,88px)] leading-[.95] font-medium tracking-[-.06em]"
+            className="text-[clamp(44px,6vw,88px)] leading-[.95] font-medium tracking-heading"
             data-distort-title
           >
             Senior judgement.

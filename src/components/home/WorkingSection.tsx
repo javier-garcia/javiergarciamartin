@@ -24,7 +24,7 @@ export function WorkingSection() {
       <div className="scroll-reveal my-18.75 mr-0 mb-26.25 ml-[17%] grid grid-cols-[1.25fr_.75fr] items-end gap-[8%] max-[800px]:my-15 max-[800px]:mb-18.75 max-[800px]:ml-0 max-[800px]:grid-cols-1 max-[800px]:gap-11.25">
         <ExpertiseEffects className="relative" intensity={0.5}>
           <h2
-            className="text-[clamp(52px,7vw,104px)] leading-[.88] font-medium tracking-[-.065em]"
+            className="text-[clamp(52px,7vw,104px)] leading-[.88] font-medium tracking-heading"
             data-distort-title
           >
             Built for

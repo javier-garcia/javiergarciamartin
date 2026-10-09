@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/work/revalidation-flow",
+        destination: "/case-studies/revalidation-flow",
+        permanent: true,
+      },
+      {
         source: "/work/shared-multisite",
         destination: "/work/nti",
         permanent: true,

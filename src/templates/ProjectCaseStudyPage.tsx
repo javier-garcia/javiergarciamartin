@@ -36,7 +36,7 @@ function ProjectHero({ project }: { project: ProjectCaseStudy }) {
           intensity={0.5}
         >
           <h1
-            className="text-[clamp(68px,11vw,172px)] leading-[.85] font-medium tracking-[-.075em]"
+            className="text-[clamp(68px,11vw,172px)] leading-[.85] font-medium tracking-heading"
             data-distort-title
           >
             {project.title}
@@ -84,7 +84,7 @@ function ProjectContext({ project }: { project: ProjectCaseStudy }) {
         className={`grid gap-[7%] max-[800px]:grid-cols-1 max-[800px]:gap-9 ${project.challenge ? "grid-cols-2" : "grid-cols-1"}`}
       >
         <div>
-          <h2 className="text-[clamp(38px,5vw,72px)] leading-[1.02] font-medium tracking-[-.055em]">
+          <h2 className="text-[clamp(38px,5vw,72px)] leading-[1.02] font-medium tracking-heading">
             The project in context.
           </h2>
           <p className="mt-8 text-lg leading-[1.65]">{project.summary}</p>
@@ -113,7 +113,7 @@ function Contribution({ project }: { project: ProjectCaseStudy }) {
 
       <div className="grid grid-cols-2 gap-[7%] max-[800px]:grid-cols-1 max-[800px]:gap-10">
         <div>
-          <h2 className="text-[clamp(36px,4.6vw,68px)] leading-[1.02] font-medium tracking-[-.05em]">
+          <h2 className="text-[clamp(36px,4.6vw,68px)] leading-[1.02] font-medium tracking-heading">
             Working inside the project, not around it.
           </h2>
           <ul className="mt-9 list-none border-t border-ink p-0">
@@ -172,7 +172,7 @@ function VisualSequence({ project }: { project: ProjectCaseStudy }) {
 
               <div className={fullWidthMedia ? "order-first max-w-225" : "pb-5"}>
                 <span className={smallMetaClass}>{item.eyebrow}</span>
-                <h2 className="mt-5 text-[clamp(28px,3.5vw,50px)] leading-[1.05] font-medium tracking-[-.045em]">
+                <h2 className="mt-5 text-[clamp(28px,3.5vw,50px)] leading-[1.05] font-medium tracking-heading">
                   {item.title}
                 </h2>
                 {item.text ? (
@@ -204,7 +204,7 @@ function TechnicalChallenges({ project }: { project: ProjectCaseStudy }) {
             key={challenge.title}
           >
             <span className="text-[10px] text-muted">0{index + 1}</span>
-            <h2 className="text-2xl leading-[1.1] font-medium tracking-[-.035em]">
+            <h2 className="text-2xl leading-[1.1] font-medium tracking-heading">
               {challenge.title}
             </h2>
             <div className="max-[800px]:col-start-2">
@@ -238,7 +238,7 @@ function Outcome({ project }: { project: ProjectCaseStudy }) {
 
       <div>
         <p
-          className={`m-0 leading-[1.04] tracking-[-.055em] ${
+          className={`m-0 leading-[1.04] tracking-heading ${
             project.contentNotice
               ? "max-w-200 text-[clamp(24px,3.5vw,48px)]"
               : "max-w-250 text-[clamp(36px,5vw,76px)]"
@@ -281,7 +281,7 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
           <span className={smallMetaClass}>Next project</span>
           <ExpertiseEffects className="relative max-[800px]:mt-5.5" intensity={0.4}>
             <span
-              className="block text-[clamp(30px,5vw,72px)] tracking-[-.05em]"
+              className="block text-[clamp(30px,5vw,72px)] tracking-heading"
               data-distort-title
             >
               {nextProject.title} →
