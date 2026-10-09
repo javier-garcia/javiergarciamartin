@@ -62,7 +62,7 @@ export function ProjectsSection() {
                   <div>
                     <span className={smallMetaClass}>{project.eyebrow}</span>
 
-                    <h3 className="mt-5 text-[clamp(44px,6vw,86px)] leading-[.88] font-medium tracking-[-.065em] transition-transform duration-500 ease-out group-hover/project:translate-x-1.5 group-focus-visible/project:translate-x-1.5 motion-reduce:transform-none">
+                    <h3 className="mt-5 text-[clamp(44px,6vw,86px)] leading-[.88] font-medium tracking-heading transition-transform duration-500 ease-out group-hover/project:translate-x-1.5 group-focus-visible/project:translate-x-1.5 motion-reduce:transform-none">
                       {project.title}
                     </h3>
 

@@ -7,10 +7,10 @@ function ServiceItem({ service, index }: { service: (typeof services)[number]; i
 
   return (
     <article
-      className="scroll-reveal group relative isolate flex min-h-80 flex-col justify-between overflow-hidden py-8 pr-[12%] max-[800px]:min-h-67.5 max-[800px]:pr-[8%]"
+      className="scroll-reveal group relative isolate flex min-h-80 flex-col gap-10 overflow-hidden py-8 pr-[12%] max-[800px]:min-h-67.5 max-[800px]:pr-[8%]"
       style={{ "--delay": `${index * 0.08}s` } as React.CSSProperties}
     >
-      <div className="flex items-center gap-4">
+      <div className="flex shrink-0 items-center gap-4">
         <span className="flex size-10 items-center justify-center rounded-full border border-line text-[10px] text-muted transition-[background-color,color,border-color] duration-500 group-hover:border-ink group-hover:bg-ink group-hover:text-paper">
           {service[0]}
         </span>
@@ -24,7 +24,7 @@ function ServiceItem({ service, index }: { service: (typeof services)[number]; i
 
       <div>
         <h3
-          className="max-w-155 text-[clamp(42px,5.2vw,76px)] leading-[.88] font-medium tracking-[-.065em] motion-reduce:group-hover:[text-shadow:-4px_0_rgba(255,58,118,.72),4px_0_rgba(0,185,255,.72)]"
+          className="max-w-155 text-[clamp(42px,5.2vw,76px)] leading-[.88] font-medium tracking-heading motion-reduce:group-hover:[text-shadow:-4px_0_rgba(255,58,118,.72),4px_0_rgba(0,185,255,.72)]"
           data-distort-title
         >
           {service[1]}
@@ -48,7 +48,7 @@ export function ExpertiseSection() {
         intensity={0.45}
       >
         <p
-          className="text-[clamp(33px,5vw,74px)] leading-[1.04] tracking-[-.05em]"
+          className="text-[clamp(33px,5vw,74px)] leading-[1.04] tracking-heading"
           data-distort-title
         >
           Bring me into the project when the platform is{" "}

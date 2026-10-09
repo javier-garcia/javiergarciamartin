@@ -13,7 +13,7 @@ const mutationTypes = [
 
 function SectionTitle({ children }: { children: ReactNode }) {
   return (
-    <h2 className="max-w-200 text-[clamp(34px,4.5vw,64px)] leading-[1.03] font-medium tracking-[-.05em]">
+    <h2 className="max-w-200 text-[clamp(34px,4.5vw,64px)] leading-[1.03] font-medium tracking-heading">
       {children}
     </h2>
   );
@@ -270,7 +270,7 @@ function Takeaway() {
       <p className={labelClass}>06 / Takeaway</p>
 
       <div>
-        <blockquote className="m-0 max-w-250 text-[clamp(36px,5vw,72px)] leading-[1.04] tracking-[-.055em]">
+        <blockquote className="m-0 max-w-250 text-[clamp(36px,5vw,72px)] leading-[1.04] tracking-heading">
           Cache invalidation must react to content that has just stopped existing from the
           frontend’s perspective.
         </blockquote>

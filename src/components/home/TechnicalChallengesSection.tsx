@@ -7,6 +7,7 @@ const challenges = [
     title: "Progressive platform evolution",
     description:
       "Moving from WordPress-origin structures towards Craft while preserving publishing, preview and redirect behaviour that still mattered.",
+    action: "Explore project",
     href: "/work/morae#technical-challenges",
   },
   {
@@ -14,13 +15,15 @@ const challenges = [
     title: "Publishing state and cache invalidation",
     description:
       "Resolving which cached pages and dependencies should change when related CMS content is published, disabled or updated.",
-    href: "/work/revalidation-flow",
+    action: "Read technical case",
+    href: "/case-studies/revalidation-flow",
   },
   {
     project: "NTI",
     title: "Shared components across multiple sites",
     description:
       "Keeping genuinely common behaviour reusable while allowing controlled variation for individual sites.",
+    action: "Explore project",
     href: "/work/nti#technical-challenges",
   },
   {
@@ -28,6 +31,7 @@ const challenges = [
     title: "Motion and 3D inside a content platform",
     description:
       "Integrating expressive visual behaviour into a responsive, CMS-driven Next.js application rather than an isolated demo.",
+    action: "Explore project",
     href: "/work/core-one#technical-challenges",
   },
 ] as const;
@@ -51,14 +55,14 @@ export function TechnicalChallengesSection() {
               <span className={`${smallMetaClass} max-[900px]:col-start-2`}>
                 {challenge.project}
               </span>
-              <h3 className="text-xl leading-[1.1] font-medium tracking-[-.025em] max-[900px]:col-start-2">
+              <h3 className="text-xl leading-[1.1] font-medium tracking-heading max-[900px]:col-start-2">
                 {challenge.title}
               </h3>
               <p className="text-sm leading-[1.55] text-[#50524d] max-[900px]:col-start-2">
                 {challenge.description}
               </p>
               <span className="inline-flex items-center gap-2 whitespace-nowrap text-[10px] tracking-widest uppercase max-[900px]:col-start-2">
-                Read case
+                {challenge.action}
                 <span className="text-xl transition-transform duration-300 group-hover/challenge:translate-x-1 group-hover/challenge:-translate-y-1 group-focus-visible/challenge:translate-x-1 group-focus-visible/challenge:-translate-y-1 motion-reduce:transform-none">
                   ↗
                 </span>

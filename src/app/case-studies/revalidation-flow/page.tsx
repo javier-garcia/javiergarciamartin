@@ -6,13 +6,13 @@ export const metadata = createPageMetadata({
   title: "Keeping Craft CMS and Next.js in sync",
   description:
     "Extending and debugging event-driven cache revalidation across Craft CMS lifecycle events, semantic dependencies and Next.js caching.",
-  path: "/work/revalidation-flow",
+  path: "/case-studies/revalidation-flow",
 });
 
 export default function Page() {
   return (
     <CaseStudyPage
-      index="03"
+      project={{ label: "Morae", href: "/work/morae" }}
       eyebrow="CMS events · Next.js caching"
       title="Keeping Craft CMS and Next.js in sync."
       lead="Extending and debugging an event-driven cache revalidation system across Craft CMS, GraphQL and Next.js."
@@ -26,7 +26,6 @@ export default function Page() {
       ]}
       showOverview={false}
       showVisual={false}
-      next={{ label: "Morae", href: "/work/morae" }}
     >
       <RevalidationStory />
     </CaseStudyPage>

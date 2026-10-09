@@ -22,6 +22,7 @@
   --color-line: #c9c8c0;
   --font-sans: Arial, Helvetica, sans-serif;
   --font-serif: Georgia, serif;
+  --tracking-heading: -0.01em;
 }
 
 :root {
@@ -34,6 +35,14 @@
 }
 
 @layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: var(--tracking-heading);
+  }
   html {
     overflow-x: hidden;
     overflow-x: clip;
