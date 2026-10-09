@@ -370,7 +370,7 @@ function SupportingArchitecture({ project }: { project: ProjectCaseStudy }) {
         </div>
       </section>
 
-      <StoryMedia imageId="interaction" project={project} />
+      {/* <StoryMedia imageId="interaction" project={project} /> */}
 
       <section className={supportingSection}>
         <p className={labelClass}>06 / Redirects</p>

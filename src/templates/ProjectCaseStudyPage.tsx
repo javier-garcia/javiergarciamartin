@@ -144,6 +144,8 @@ function Contribution({ project }: { project: ProjectCaseStudy }) {
 function VisualSequence({ project }: { project: ProjectCaseStudy }) {
   if (!project.visualSequence.length) return null;
 
+  const fullWidthMedia = project.slug === "core-one" || project.slug === "nti";
+
   return (
     <section className={sectionClass} id="project-sequence">
       <p className={labelClass}>03 / Project sequence</p>
@@ -156,12 +158,19 @@ function VisualSequence({ project }: { project: ProjectCaseStudy }) {
 
           return (
             <article
-              className="grid grid-cols-[1.45fr_.55fr] items-end gap-[6%] odd:[&>figure]:order-2 max-[800px]:grid-cols-1 max-[800px]:gap-7 max-[800px]:odd:[&>figure]:order-none"
+              className={
+                fullWidthMedia
+                  ? "flex flex-col gap-8 max-[800px]:gap-7"
+                  : "grid grid-cols-[1.45fr_.55fr] items-end gap-[6%] odd:[&>figure]:order-2 max-[800px]:grid-cols-1 max-[800px]:gap-7 max-[800px]:odd:[&>figure]:order-none"
+              }
               key={item.imageId}
             >
-              <ProjectMedia media={media} />
+              <ProjectMedia
+                media={media}
+                sizes={fullWidthMedia ? "(max-width: 800px) 90vw, 94vw" : undefined}
+              />
 
-              <div className="pb-5">
+              <div className={fullWidthMedia ? "order-first max-w-225" : "pb-5"}>
                 <span className={smallMetaClass}>{item.eyebrow}</span>
                 <h2 className="mt-5 text-[clamp(28px,3.5vw,50px)] leading-[1.05] font-medium tracking-[-.045em]">
                   {item.title}
