@@ -73,7 +73,7 @@ export function ProjectsSection() {
 
                   <div>
                     <dl className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 border-t border-line pt-5 text-sm leading-[1.45]">
-                      <dt className="text-muted">Role</dt>
+                      <dt className="text-muted">My role</dt>
                       <dd>{project.role}</dd>
                       <dt className="text-muted">Areas</dt>
                       <dd>{project.areas.slice(0, 3).join(" · ")}</dd>

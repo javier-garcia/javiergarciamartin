@@ -21,7 +21,7 @@ function ProjectHero({ project }: { project: ProjectCaseStudy }) {
   const metadata = [
     ["My role", project.role],
     ["Duration", project.duration],
-    ["Collaboration", project.team],
+    ["Collaboration", project.collaboration],
     ["Areas", project.areas.join(" / ")],
   ].filter((item): item is [string, string] => Boolean(item[1]));
 
