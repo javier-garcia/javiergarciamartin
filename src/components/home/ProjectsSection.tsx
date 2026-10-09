@@ -13,7 +13,7 @@ const selectedProjects = selectedProjectSlugs.map((slug) => {
   }
 
   return project;
-});
+}).filter((project) => project.published !== false);
 
 export function ProjectsSection() {
   return (

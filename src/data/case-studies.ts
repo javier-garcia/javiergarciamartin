@@ -1,6 +1,8 @@
 export type ProjectImageSlot = {
   id: string;
   src?: string;
+  videoSrc?: string;
+  animated?: boolean;
   alt: string;
   caption?: string;
   brief: string;
@@ -155,6 +157,8 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
           "Composition of two or three pages or modules demonstrating editorial flexibility and variation across the page-building system.",
         suggestedFilename: "morae-page-system.webp",
         src: "/images/morae-page-system.webp",
+        sourceWidth: 3590,
+        sourceHeight: 4956,
         aspectRatio: "3 / 2",
         recommendedDimensions: "1800 × 1200 px",
       },
@@ -173,6 +177,9 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         brief:
           "Desktop and mobile composition of the same experience, showing actual responsive behaviour rather than decorative device mockups.",
         suggestedFilename: "morae-responsive.webp",
+        src: "/images/morae-responsive-07ce4794faa7.webp",
+        sourceWidth: 3594,
+        sourceHeight: 14150,
         aspectRatio: "3 / 2",
         recommendedDimensions: "1800 × 1200 px",
       },
@@ -209,50 +216,67 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     client: "Core One",
     eyebrow: "Creative frontend · Motion and 3D",
     intro:
-      "A Next.js and Craft CMS platform combining structured content with demanding animation and 3D frontend work.",
+      "Sole implementation of a designer-led Next.js and Craft CMS website, from responsive pages to interactive motion and 3D particles.",
     summary:
-      "Core One combines structured content with motion and 3D frontend work inside a CMS-driven Next.js platform.",
-    role: "Frontend development",
+      "I implemented the entire Core One website, following the designer’s direction. My work covered the pages, CMS integration, responsive interface and all animation and interaction work, including the opening lines, Beyond the Mission, pointer-lit mountains, merging circles and 3D particle transformations.",
+    role: "Sole developer · Full website implementation",
+    team: "Designer and Javier as the sole implementation developer",
     areas: ["Creative frontend", "Animation", "3D", "Responsive implementation", "CMS integration"],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Craft CMS"],
     challenge:
-      "The frontend needed to support visually demanding animation and 3D elements without allowing the experience to become disconnected from the wider content platform or responsive interface.",
+      "The project required translating the designer’s direction into a complete working website. I was responsible for implementing both the content experience and the distinctive behaviours: interactive graphics, pointer responses, animated lines and particles that transition between forms.",
     approach: [
-      "Implement motion and 3D as part of the production frontend rather than as an isolated prototype.",
-      "Keep the surrounding pages and content experience coherent beyond the most recognisable visual moment.",
-      "Adapt the experience for smaller screens without treating the desktop composition as a fixed canvas.",
+      "Translate the designer’s direction into the site’s pages, components and animated behaviours.",
+      "Carry implementation across the complete Next.js and Craft CMS website, including its responsive interface.",
+      "Build the individual interactions as part of the surrounding page experience.",
     ],
     contribution: [
-      "Frontend implementation involving animation and 3D elements.",
-      "Integration of the visual experience into the Next.js and Craft CMS platform.",
-      "Responsive behaviour and production-facing interface work.",
+      "Implemented all pages and frontend components following the designer’s direction.",
+      "Implemented the Next.js and Craft CMS integration and responsive website.",
+      "Built Beyond the Mission, the opening line animations, pointer-lit mountains and the circles that merge near the end of the homepage.",
+      "Implemented the 3D particle animation and transitions between particle forms.",
     ],
     technicalChallenges: [
       {
-        title: "Motion inside a content platform",
+        title: "Connected interaction states",
         problem:
-          "Visually demanding frontend elements still needed to coexist with CMS content and the rest of the site experience.",
+          "Beyond the Mission combines a selectable graphic with related content, so its visual and content states need to work together.",
         decision:
-          "Treat animation and 3D as integrated interface behaviour rather than a separate showcase layer.",
-        importance: "The visual work could remain part of a maintainable Next.js application.",
+          "Implemented the connection between the selected circle segment, the active tab and its content.",
+        importance: "The graphic acts as part of the navigation through the section’s content.",
       },
       {
-        title: "Responsive visual behaviour",
+        title: "Particle transformations",
         problem:
-          "Large-screen motion and spatial composition cannot simply be scaled down for mobile.",
+          "The particle experience includes movement between different forms as well as a 3D animated state.",
         decision:
-          "Adapt composition and behaviour for the available viewport while retaining a clear content hierarchy.",
-        importance: "The project experience remains usable beyond the desktop presentation.",
+          "Implemented the particle animation and the transitions connecting those forms.",
+        importance: "The transformation itself becomes a visible part of the experience.",
       },
     ],
     outcome:
-      "The implementation combines a CMS-driven Next.js platform with animation and 3D as part of the frontend experience.",
+      "A complete Next.js and Craft CMS website implemented by one developer from the designer’s direction. The delivered experience brings together responsive pages, interactive graphics, pointer-driven effects and 3D particle animation. It demonstrates my ability to carry a visual concept through to its working implementation.",
     imageSlots: [
       {
+        id: "cover",
+        src: "/images/core-one-project-cover.webp",
+        sourceWidth: 3590,
+        sourceHeight: 1960,
+        alt: "Core One website project preview",
+        brief: "Independent Core One cover for the portfolio homepage.",
+        suggestedFilename: "core-one-project-cover.webp",
+        aspectRatio: "3590 / 1960",
+        recommendedDimensions: "3590 × 1960 px",
+      },
+      {
         id: "hero",
-        alt: "Core One main experience featuring its most recognisable visual or 3D element",
+        src: "/images/core-one-video-poster.webp",
+        videoSrc: "/video/core-one-motion.mp4",
+        sourceWidth: 1920,
+        sourceHeight: 1038,
+        alt: "Core One homepage motion and interaction showcase",
         brief:
-          "Capture the primary Core One experience with its most recognisable visual or 3D element. Show the real interface rather than an isolated render.",
+          "Capture the opening of the actual homepage with navigation, headline and the animated lines clearly visible. Wait for a complete, readable state. Keep enough interface context for this image to also work as the portfolio homepage cover.",
         suggestedFilename: "core-one-project-hero.webp",
         aspectRatio: "16 / 10",
         recommendedDimensions: "1800 × 1125 px",
@@ -260,27 +284,38 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
       },
       {
         id: "motion",
-        alt: "Sequence showing multiple states of a Core One animation",
+        src: "/images/coreone_interaction.webp",
+        animated: true,
+        sourceWidth: 1920,
+        sourceHeight: 1035,
+        alt: "Beyond the Mission in its Anticipate, Innovate and Prevail states",
         brief:
-          "Two or three states from an animation or interaction sequence. This may later be replaced by video if motion is essential to understanding it.",
-        suggestedFilename: "core-one-motion-sequence.webp",
+          "Animated capture of Beyond the Mission showing its graphic, active tabs and associated content as the selection changes.",
+        suggestedFilename: "coreone_interaction.webp",
         aspectRatio: "16 / 9",
         recommendedDimensions: "1800 × 1013 px",
       },
       {
-        id: "content",
-        alt: "Core One interior content page",
+        id: "particles",
+        src: "/images/core-one-particles-poster.webp",
+        videoSrc: "/video/core-one-particle-transformation.mp4",
+        sourceWidth: 1920,
+        sourceHeight: 1038,
+        alt: "Core One particles in their initial form, during transformation and in their destination form",
         brief:
-          "Interior page demonstrating that the project extends beyond the hero and includes a complete content experience.",
-        suggestedFilename: "core-one-content-experience.webp",
-        aspectRatio: "3 / 2",
-        recommendedDimensions: "1800 × 1200 px",
+          "Video of the particle transformation in the real interface, showing how the particles move between forms alongside the page content.",
+        suggestedFilename: "core-one-particle-transformation.mp4",
+        aspectRatio: "1920 / 1038",
+        recommendedDimensions: "1920 × 1038 px",
       },
       {
         id: "mobile",
+        src: "/images/core-one-mobile.webp",
+        sourceWidth: 2768,
+        sourceHeight: 1268,
         alt: "Core One visual experience adapted for mobile screens",
         brief:
-          "Mobile adaptation of the actual experience, ideally alongside the equivalent desktop state without decorative device frames obscuring the UI.",
+          "Show the same homepage section on desktop and mobile, preferably Beyond the Mission with the same tab selected. Include the full graphic and related content so the layout adaptation is visible. Use a focused section rather than full-page screenshots.",
         suggestedFilename: "core-one-mobile.webp",
         aspectRatio: "3 / 2",
         recommendedDimensions: "1800 × 1200 px",
@@ -289,28 +324,28 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     visualSequence: [
       {
         imageId: "motion",
-        eyebrow: "Motion sequence",
-        title: "Movement should explain the experience, not compete with it.",
+        eyebrow: "Beyond the Mission",
+        title: "A graphic you can interact with.",
       },
       {
-        imageId: "content",
-        eyebrow: "Content experience",
-        title: "The platform extends beyond its most visually distinctive moment.",
+        imageId: "particles",
+        eyebrow: "3D particles",
+        title: "From one particle form to another.",
       },
       {
         imageId: "mobile",
         eyebrow: "Responsive adaptation",
-        title: "Spatial and animated behaviour needs a mobile-specific composition.",
+        title: "The same experience across screen sizes.",
       },
     ],
     nextProject: "nti",
     home: {
       intro:
-        "Combining a structured Next.js platform with animation and 3D frontend implementation.",
+        "Sole implementation of a designer-led website, including interactive graphics, responsive pages and 3D particle transformations.",
     },
     contentTodos: [
-      "Confirm project duration and team composition.",
-      "Confirm the exact animation and 3D implementation details Javier can describe publicly.",
+      "Confirm project duration.",
+      "Document the animation and 3D tools and a specific implementation difficulty before adding deeper technical claims.",
       "Confirm whether any project sector can be named.",
     ],
   },
@@ -321,51 +356,54 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     client: "NTI",
     eyebrow: "Multisite platform · Shared component system",
     intro:
-      "A multisite Next.js platform balancing shared frontend foundations with the needs of individual sites.",
+      "Developing pages and components for a Next.js and Craft CMS multisite platform using shared UI packages.",
     summary:
-      "NTI uses a shared component library across a Craft CMS multisite platform. The central challenge is deciding where consistency creates value and where each site needs controlled variation.",
-    role: "Frontend development",
-    areas: ["Multisite architecture", "Shared components", "CMS-driven variation", "Responsive UI"],
+      "NTI brings several branded websites together on a Next.js and Craft CMS multisite platform. My contribution focused on developing new pages using the common UI packages and contributing components within that shared frontend architecture.",
+    role: "Frontend development · Pages and components",
+    areas: ["Multisite development", "Shared UI packages", "Page implementation", "Responsive UI"],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Craft CMS"],
     challenge:
-      "Changes to a shared component can affect several site experiences, while duplicating components for every local requirement would undermine the value of the common system.",
+      "New pages needed to fit the platform’s shared UI foundations while serving the content and visual identity of individual sites. The work involved building within a common system used across several brands.",
     approach: [
-      "Identify behaviour and interface patterns that are genuinely shared.",
-      "Use controlled variants where sites need to differ without duplicating whole components.",
-      "Consider the effect of each change across the wider multisite platform.",
+      "Build pages from the common UI packages used by the multisite platform.",
+      "Contribute components within the shared frontend structure.",
+      "Keep page composition consistent with the site’s visual identity and shared interface patterns.",
     ],
     contribution: [
-      "Worked with the shared React component library across the multisite platform.",
-      "Implemented CMS-driven variations while preserving common frontend behaviour.",
-      "Delivered responsive interface work with awareness of cross-site regressions.",
+      "Developed new pages using the platform’s shared UI packages.",
+      "Contributed frontend components to the multisite project.",
+      "Worked across page composition and reusable UI within the Next.js and Craft CMS platform.",
     ],
     technicalChallenges: [
       {
-        title: "Shared without becoming identical",
+        title: "Building pages from shared UI",
         problem:
-          "Each site needed access to common interface foundations without losing room for legitimate local requirements.",
+          "Individual pages need their own content composition while belonging to the wider site and component system.",
         decision:
-          "Keep reusable behaviour in shared components and express site differences through controlled variants.",
+          "Used the common UI packages to implement new pages within that system.",
         importance:
-          "The system can support consistency without turning every exception into a duplicated component.",
+          "New page development builds on reusable interface foundations.",
       },
       {
-        title: "Cross-site impact",
-        problem: "A local-looking component change may alter several site experiences.",
+        title: "Components in a multisite context",
+        problem: "Component work sits within a frontend architecture shared by several branded websites.",
         decision:
-          "Treat the wider usage and responsive states as part of the implementation scope.",
+          "Contributed components within the project’s shared structure alongside page implementation.",
         importance:
-          "Shared changes are evaluated as system changes rather than isolated page edits.",
+          "The work connects individual page delivery with development in a reusable UI system.",
       },
     ],
     outcome:
-      "A shared component system supports the multisite platform while allowing controlled differences between site experiences.",
+      "My contribution added pages and components to NTI’s multisite platform using its common UI packages. The project demonstrates my ability to deliver within a shared frontend architecture across branded site experiences.",
     imageSlots: [
       {
         id: "cover",
         alt: "Selected interfaces from the NTI multisite platform",
+        src: "/images/nti-project-cover.webp",
+        sourceWidth: 3592,
+        sourceHeight: 1958,
         brief:
-          "Horizontal composition showing two or three representative NTI sites as one related multisite family.",
+          "Horizontal composition of two or three representative sites, retaining their logos and enough interface detail to distinguish each brand. This is the independent portfolio homepage cover.",
         suggestedFilename: "nti-project-cover.webp",
         aspectRatio: "16 / 10",
         recommendedDimensions: "1800 × 1125 px",
@@ -385,19 +423,25 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         priority: true,
       },
       {
-        id: "components",
-        alt: "Shared NTI components used across different sites and page contexts",
+        id: "page",
+        src: "/images/nti-page-implementation.webp",
+        sourceWidth: 3122,
+        sourceHeight: 4964,
+        alt: "Header, services and related projects from the NTI Networking page",
         brief:
-          "Compare shared components in different pages or sites, showing both coherence and controlled variation without using code screenshots.",
-        suggestedFilename: "nti-shared-components.webp",
+          "Composition of three sections from the Networking page: header, services and related projects. Keep the captures at the same scale with a small gap between them to show page implementation using shared UI packages.",
+        suggestedFilename: "nti-page-implementation.webp",
         aspectRatio: "3 / 2",
         recommendedDimensions: "1800 × 1200 px",
       },
       {
         id: "responsive",
-        alt: "Responsive NTI multisite experiences across desktop and mobile",
+        src: "/images/nti-responsive-system.webp",
+        sourceWidth: 2298,
+        sourceHeight: 1268,
+        alt: "The same NTI page section shown on desktop and mobile",
         brief:
-          "Desktop and mobile examples demonstrating how the shared system responds across viewports.",
+          "Show the same section of the selected contribution page on desktop and mobile, with equivalent content. Keep text, cards and navigation large enough to see how the layout changes. One site is sufficient.",
         suggestedFilename: "nti-responsive-system.webp",
         aspectRatio: "3 / 2",
         recommendedDimensions: "1800 × 1200 px",
@@ -405,30 +449,31 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     ],
     visualSequence: [
       {
-        imageId: "components",
-        eyebrow: "Shared library",
-        title: "One component foundation, several contexts.",
-        text: "The useful boundary is not complete uniformity. It is a shared implementation that makes intentional variation explicit.",
+        imageId: "page",
+        eyebrow: "Page implementation",
+        title: "New pages built on shared UI.",
+        text: "My page implementation work used the common UI packages that underpin the multisite platform.",
       },
       {
         imageId: "responsive",
-        eyebrow: "System behaviour",
-        title: "Responsive states are part of the shared contract.",
+        eyebrow: "Responsive experience",
+        title: "The same page across screen sizes.",
       },
     ],
-    nextProject: "saratoga",
+    nextProject: "morae",
     home: {
       intro:
-        "A multisite platform balancing shared components with the particular needs of each site.",
+        "Developing pages and components across a multisite platform using shared UI packages.",
     },
     contentTodos: [
       "Confirm team composition and duration.",
-      "Confirm examples of specific shared component decisions Javier can describe publicly.",
+      "Identify a specific page Javier implemented for the contribution and responsive captures.",
       "Confirm whether any project sector can be named.",
     ],
   },
   {
     slug: "saratoga",
+    published: false,
     number: "04",
     title: "Saratoga",
     client: "Saratoga",

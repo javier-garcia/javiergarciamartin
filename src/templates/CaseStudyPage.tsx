@@ -23,7 +23,7 @@ type Props = {
   showOverview?: boolean;
   showVisual?: boolean;
   next: { label: string; href: string };
-  image?: { src: string; alt: string };
+  image?: { src: string; alt: string; width?: number; height?: number };
   children?: ReactNode;
 };
 
@@ -82,13 +82,14 @@ export default function CaseStudyPage(props: Props) {
 
         {props.showVisual !== false ? (
           props.image ? (
-            <ExpertiseEffects className="relative aspect-[3558/1920] min-h-97.5" intensity={0.55}>
-              <figure className="relative m-0 size-full overflow-hidden bg-[#20221e]">
+            <ExpertiseEffects className="relative" intensity={0.55}>
+              <figure className="relative m-0 w-full bg-[#20221e]">
                 <Image
-                  className="object-cover object-top"
+                  className="block h-auto w-full"
                   src={props.image.src}
                   alt={props.image.alt}
-                  fill
+                  width={props.image.width ?? 1800}
+                  height={props.image.height ?? 1200}
                   sizes="100vw"
                   priority
                   data-distort-image

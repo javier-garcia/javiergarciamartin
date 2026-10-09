@@ -19,21 +19,45 @@ export function ProjectMedia({
     aspectRatio: media.aspectRatio,
   } as CSSProperties;
 
+  if (media.videoSrc && !compact) {
+    return (
+      <figure className="m-0 min-w-0 w-full">
+        <video
+          className="block h-auto w-full bg-[#20221e]"
+          src={media.videoSrc}
+          poster={media.src}
+          width={media.sourceWidth}
+          height={media.sourceHeight}
+          controls
+          playsInline
+          muted
+          preload="metadata"
+          aria-label={media.alt}
+        >
+          <a href={media.videoSrc}>Watch video</a>
+        </video>
+        {media.caption ? (
+          <figcaption className="mt-3 text-xs leading-[1.5] text-muted">{media.caption}</figcaption>
+        ) : null}
+      </figure>
+    );
+  }
+
   if (media.src) {
     return (
-      <figure className="m-0">
+      <figure className="m-0 min-w-0 w-full">
         <div
-          className="relative overflow-hidden bg-[#20221e] transition-transform duration-700 ease-out group-hover/project:-translate-y-1 group-focus-visible/project:-translate-y-1 motion-reduce:transform-none"
-          style={style}
+          className="relative bg-[#20221e] transition-transform duration-700 ease-out group-hover/project:-translate-y-1 group-focus-visible/project:-translate-y-1 motion-reduce:transform-none"
         >
           <Image
-            className="object-cover transition-transform duration-700 ease-out group-hover/project:scale-[1.015] group-focus-visible/project:scale-[1.015] motion-reduce:transform-none"
-            style={{ objectPosition: media.objectPosition ?? "center" }}
+            className="block h-auto w-full"
             src={media.src}
             alt={media.alt}
-            fill
+            width={media.sourceWidth ?? 1800}
+            height={media.sourceHeight ?? 1200}
             sizes={sizes}
             priority={priority ?? media.priority}
+            unoptimized={media.animated}
           />
         </div>
 
