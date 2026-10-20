@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const allowIndexing = process.env.SITE_ALLOW_INDEXING === "true";
+const allowIndexing = process.env.SITE_ALLOW_INDEXING !== "false" && process.env.VERCEL_ENV !== "preview";
 
 const nextConfig: NextConfig = {
   async redirects() {

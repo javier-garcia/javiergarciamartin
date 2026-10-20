@@ -34,8 +34,14 @@ Vercel will run `npm install` and `npm run build` automatically.
 
 ### Canonical URL
 
-SEO metadata defaults to `https://javigarcia.dev`. If the production domain is different, define the following environment variable in Vercel before deploying:
+SEO metadata defaults to `https://javiergarciamartin.com`. If the production domain is different, define the following environment variable in Vercel before deploying:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://your-domain.example
 ```
+
+### Search indexing
+
+Production builds allow search indexing by default. Vercel Preview deployments remain blocked. Set `SITE_ALLOW_INDEXING=false` to disable indexing in other test environments. Remove that override or set it to `true` for production. Rebuild and redeploy after changing these settings.
+
+If `NEXT_PUBLIC_SITE_URL` is configured, ensure it is `https://javiergarciamartin.com` for production.
