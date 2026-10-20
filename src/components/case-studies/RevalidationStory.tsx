@@ -44,7 +44,7 @@ function RevalidationModel() {
         <ol className="mt-10 grid list-none grid-cols-6 border-y border-ink p-0 max-[900px]:grid-cols-3 max-[560px]:grid-cols-1">
           {flow.map((step, index) => (
             <li
-              className="scroll-reveal relative border-line py-5 pr-8 text-sm leading-[1.4] not-last:border-r max-[900px]:border-b max-[560px]:border-r-0"
+              className="scroll-reveal relative border-line py-5 pr-8 pl-4 text-sm leading-[1.4] not-last:border-r max-[900px]:border-b max-[560px]:border-r-0"
               key={step}
             >
               <span className={`${smallMetaClass} mb-3`}>0{index + 1}</span>

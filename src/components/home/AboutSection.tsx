@@ -23,7 +23,7 @@ export function AboutSection() {
           I am Javi Garcia, a senior React and Next.js developer with more than 20 years across
           software development, interaction design and UX. That path includes helping migrate a
           healthcare product to React while training its development team, and creative frontend
-          work for Casa Batlló.
+          work for Casa Batlló, one of Antoni Gaudí’s iconic buildings in Barcelona.
         </p>
         <p className="mt-2 text-[17px] leading-[1.65]">
           More recently, my work has focused on complex Next.js and headless platforms, integrating
