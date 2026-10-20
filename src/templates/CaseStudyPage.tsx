@@ -43,7 +43,7 @@ export default function CaseStudyPage(props: Props) {
             intensity={0.58}
           >
             <h1
-              className="text-[clamp(60px,9vw,144px)] leading-[.88] font-medium tracking-heading max-[800px]:text-[15vw]"
+              className="text-[clamp(60px,9vw,144px)] leading-[1.05] font-medium tracking-heading max-[800px]:text-[15vw]"
               data-distort-title
             >
               {props.title}

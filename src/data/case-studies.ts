@@ -233,14 +233,14 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     contribution: [
       "Implemented all pages and frontend components following the designer’s direction.",
       "Implemented the Next.js and Craft CMS integration and responsive website.",
-      "Built Beyond the Mission, the opening line animations, pointer-lit mountains and the circles that merge near the end of the homepage.",
+      "Built interactive graphics that respond to user input, including a circular selector linked to content tabs, landscapes that light up under the pointer, and animated lines and merging shapes.",
       "Implemented the 3D particle animation and transitions between particle forms.",
     ],
     technicalChallenges: [
       {
         title: "Connected interaction states",
         problem:
-          "Beyond the Mission combines a selectable graphic with related content, so its visual and content states need to work together.",
+          "Users can explore content by selecting segments of a circular graphic or using text tabs. Both controls need to stay in sync with the content displayed.",
         decision:
           "Implemented the connection between the selected circle segment, the active tab and its content.",
         importance: "The graphic acts as part of the navigation through the section’s content.",
