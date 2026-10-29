@@ -10,7 +10,7 @@ export function HeroSection() {
     >
       <div className="relative z-[2] flex min-h-[calc(100svh-187px)] w-full flex-col justify-between max-[800px]:min-h-[calc(100svh-140px)]">
         <p className={`${labelClass} intro-reveal`}>
-          Senior React / Next.js developer · Available for agency collaborations
+          Senior React / Next.js developer · 20+ years of experience
         </p>
         <ExpertiseEffects className="intro-reveal relative my-[7vh] max-w-262.5 [animation-delay:.1s] max-[800px]:my-[9vh]">
           <h1
