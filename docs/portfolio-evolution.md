@@ -48,7 +48,7 @@ Verified content from the supplied source:
 - Structure plate: dynamic CMS text and background; pointer/motion-responsive glow; randomly generated tweened particles; a second particle layer following mouse/device tilt; two dynamic pixelation layers.
 - Creation-tool plate: controls for copy, background, colour, hotspot positions, particles, pixelation and glow.
 
-Remaining content questions: collaborators, detailed personal responsibilities and any specific libraries. These remain source TODOs rather than invented claims. All required display media is now available; a separate MP4 or poster is unnecessary for the current Vimeo integration.
+The owner has confirmed sole responsibility for the entire concept, design and implementation, including the creation tool, and the use of Processing. No specific Processing library is inferred. CMS integration remains documented, but its implementation details are not remembered. All required display media is now available; a separate MP4 or poster is unnecessary for the current Vimeo integration.
 
 ## Validation
 
@@ -79,11 +79,11 @@ Modified:
 - Optional `displayTitle` and `subtitle` separate the visible CeBIT heading from the full `title` retained for SEO. Existing projects continue to use `title` unchanged.
 - `heroMediaId` selects the interaction video immediately after introduction and metadata, without changing the default `hero` slot for existing projects.
 - Optional `ProjectStorySection.mediaIds` references existing media slots and renders them using `ProjectMedia`. `label` provides the section eyebrow. Assigned hero/story media is excluded from the standalone visual sequence.
-- CeBIT follows: video → concept/context → system explanation and diagram → creation-tool explanation and interface → references → next project. No unconfirmed contribution or technical-decision section is published.
+- CeBIT follows: video → concept/context → system explanation and diagram → creation-tool explanation and interface → personal contribution → references → next project. The contribution is owner-confirmed; no speculative technical-decision section is published.
 - Confirmed technologies appear in project metadata even when the outcome is empty. Numbering follows the sections actually included in the story layout; legacy numbering is retained for other project templates.
 - `public/images/cebit-project-cover.webp` is a 1400 × 633 crop from the upper composition of `cebit-project-hero.webp` (left 0, top 0). The original 1400 × 1279 source is preserved unchanged. The derived cover is used by the homepage and page social metadata. Vimeo retains its hosted player/poster; no unrelated imagery or autoplay was added.
 - Reproduce the crop with the existing Sharp dependency: `sharp(source).extract({left:0,top:0,width:1400,height:633}).webp({quality:95}).toFile(destination)`.
 
-Content questions remain: collaborators, detailed personal responsibilities, technical decisions and specific rendering/animation libraries. No adoption, performance or business results are asserted.
+Owner-confirmed final content: independent creative concept, interaction design and complete implementation of the visual and creation tool; Processing, JavaScript, HTML5 and CSS3. Section 04 presents the contribution and four responsibilities in one column; references are section 05. Optional story responsibilities and closing text reuse the existing typography and list styling. CMS technology, API architecture and editorial workflow remain unspecified. No adoption, performance or business results are asserted.
 
 Browser playback limitation: Vimeo’s player returned a Cloudflare security check in automated Chrome, with a challenge-domain DNS failure. The iframe URL, lazy loading, title, aspect ratio and direct fallback link were verified; successful playback could not be verified in this environment. Recheck playback in a normal browser. Screenshots used for review are `/tmp/cebit-desktop.png`, `/tmp/cebit-mobile.png`, `/tmp/cebit-small-mobile.png` and `/tmp/cebit-home-mobile.png`.

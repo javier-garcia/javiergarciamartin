@@ -40,6 +40,8 @@ export type ProjectCategory =
   | "IoT";
 
 export type ProjectStorySection = {
+  responsibilities?: string[];
+  closingText?: string;
   mediaIds?: string[];
   label?: string;
   id: string;
@@ -106,17 +108,19 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     published: true,
     eyebrow: "Generative design · Interactive experience · 2016",
     intro:
-      "Concept and development of an interactive, generative key visual for CeBIT 2016, built with web technologies and support for mobile devices.",
+      "An interactive, generative visual identity for CeBIT 2016, conceived, designed and developed by me — from the creative concept and responsive visual system to a custom-built tool for configuring its composition.",
     summary:
       "A generative visual identity for CeBIT, connecting a layered graphic system with interaction and editable web content.",
-    role: "Concept & development",
+    role: "Creative concept, interaction design & development",
     areas: ["Generative visuals", "Creative coding", "Interactive experiences"],
-    technologies: ["JavaScript", "HTML5", "CSS3"],
+    technologies: ["Processing", "JavaScript", "HTML5", "CSS3"],
     approach: [],
     contribution: [],
     technicalChallenges: [],
     outcome: "",
-    // Source: owner-supplied Behance HTML and original feature/structure/tool plates.
+    // Sources: owner-supplied Behance HTML, original plates and final owner confirmation.
+    // The owner independently conceived, designed and implemented the visual and its tool.
+    // Processing is confirmed; do not infer Processing.js, p5.js or CMS integration details.
     // Event year is 2016; the Behance case was published on 19 October 2015.
     storySections: [
       {
@@ -138,6 +142,20 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         mediaIds: ["tool"],
         title: "Designing a tool, not just a visual.",
         text: "The creation interface makes the composition configurable through controls for text, background imagery, colour and hotspots, with particle, pixelation and glow settings for each hotspot. The work extends from designing the visual itself to designing the controls for composing it.",
+      },
+      {
+        id: "my-contribution",
+        label: "My contribution",
+        title: "From creative concept to working system.",
+        text: "I conceived, designed and developed the entire interactive key visual, taking the project from its initial creative concept to a fully implemented generative system.\n\nMy work covered both the visual experience and the tools behind it, combining creative programming, interaction design and web development.",
+        responsibilities: [
+          "Conceived the generative visual system and its interactive behaviour.",
+          "Designed and implemented the particle systems, pixelation and glow effects.",
+          "Developed responsive interactions using pointer movement and mobile motion sensors.",
+          "Designed and built the creation tool, enabling the visual composition and its generative parameters to be configured through an interface.",
+        ],
+        closingText:
+          "The project brought together two complementary challenges: creating an expressive digital experience and building the underlying tool that made it configurable and adaptable.",
       },
     ],
     imageSlots: [
@@ -203,8 +221,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         "A generative visual identity that transforms a static brand concept into a dynamic, interactive digital experience.",
     },
     contentTodos: [
-      "Confirm collaborators and more detailed personal responsibilities before naming them.",
-      "Confirm any specific animation/rendering libraries; only JavaScript, HTML5 and CSS3 are listed in the supplied source.",
+      "CMS integration is documented, but the owner does not remember its exact implementation. Do not name a CMS, API architecture or editorial workflow without further evidence.",
     ],
   },
   {

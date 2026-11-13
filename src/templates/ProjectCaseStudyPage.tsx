@@ -332,7 +332,29 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
                       <h2 className="text-[clamp(38px,5vw,72px)] leading-[1.02] font-medium tracking-heading">
                         {section.title}
                       </h2>
-                      <p className="mt-8 text-lg leading-[1.65]">{section.text}</p>
+                      {section.text.split("\n\n").map((paragraph) => (
+                        <p className="mt-8 text-lg leading-[1.65]" key={paragraph}>
+                          {paragraph}
+                        </p>
+                      ))}
+                      {section.responsibilities?.length ? (
+                        <ul
+                          className="mt-9 list-none border-t border-ink p-0"
+                          aria-label="Responsibilities"
+                        >
+                          {section.responsibilities.map((responsibility) => (
+                            <li
+                              className="border-b border-line py-4 text-base leading-[1.55]"
+                              key={responsibility}
+                            >
+                              {responsibility}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      {section.closingText ? (
+                        <p className="mt-8 text-lg leading-[1.65]">{section.closingText}</p>
+                      ) : null}
                     </div>
                     {section.mediaIds?.map((id) => {
                       const media = project.imageSlots.find((slot) => slot.id === id);
