@@ -41,7 +41,7 @@ function ServiceItem({ service, index }: { service: (typeof services)[number]; i
 export function ExpertiseSection() {
   return (
     <section className={sectionClass} id="expertise">
-      <h2 className={`${labelClass} scroll-reveal`}>03 / What I can help with</h2>
+      <h2 className={`${labelClass} scroll-reveal`}>04 / What I can help with</h2>
 
       <ExpertiseEffects
         className="scroll-reveal relative my-20 mr-0 mb-27.5 ml-[17%] max-w-295 max-[800px]:my-15 max-[800px]:mb-18.75 max-[800px]:ml-0"
@@ -51,9 +51,8 @@ export function ExpertiseSection() {
           className="text-[clamp(33px,5vw,74px)] leading-[1.04] tracking-heading"
           data-distort-title
         >
-          Bring me into the project when the platform is{" "}
-          <span className="highlight-sweep">already live, already complex</span> and the team needs
-          useful output — not another onboarding problem.
+          From <span className="highlight-sweep">complex web platforms</span> to digital products
+          and interactive experiences, I connect engineering with design and practical exploration.
         </p>
       </ExpertiseEffects>
 

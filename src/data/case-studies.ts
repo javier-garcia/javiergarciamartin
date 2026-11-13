@@ -2,6 +2,7 @@ export type ProjectImageSlot = {
   id: string;
   src?: string;
   videoSrc?: string;
+  vimeoId?: string;
   animated?: boolean;
   alt: string;
   caption?: string;
@@ -30,7 +31,28 @@ export type VisualSequenceItem = {
   text?: string;
 };
 
+export type ProjectCategory =
+  | "Web platforms"
+  | "Digital products"
+  | "Creative technology"
+  | "Interactive experiences"
+  | "Data visualization"
+  | "IoT";
+
+export type ProjectStorySection = {
+  id: string;
+  title: string;
+  text: string;
+};
+
 export type ProjectCaseStudy = {
+  categories?: ProjectCategory[];
+  projectType?: "Commercial" | "Personal" | "Academic" | "Experimental";
+  year?: number;
+  featured?: boolean;
+  externalLinks?: { label: string; href: string }[];
+  storySections?: ProjectStorySection[];
+  omitMissingMedia?: boolean;
   slug: string;
   number: string;
   title: string;
@@ -55,12 +77,132 @@ export type ProjectCaseStudy = {
   published?: boolean;
   contentNotice?: string;
   home: {
+    section?: "selected-work" | "creative-technology";
+    order?: number;
     intro: string;
   };
   contentTodos?: string[];
 };
 
 export const projectCaseStudies: ProjectCaseStudy[] = [
+  {
+    slug: "cebit",
+    omitMissingMedia: true,
+    number: "06",
+    title: "CeBIT — Generative Key Visual",
+    client: "CeBIT",
+    year: 2016,
+    projectType: "Commercial",
+    categories: ["Creative technology", "Interactive experiences"],
+    featured: true,
+    published: true,
+    eyebrow: "Generative design · Interactive experience · 2016",
+    intro:
+      "Concept and development of an interactive, generative key visual for CeBIT 2016, built with web technologies and support for mobile devices.",
+    summary:
+      "A generative visual identity for CeBIT, connecting a layered graphic system with interaction and editable web content.",
+    role: "Concept & development",
+    areas: ["Generative visuals", "Creative coding", "Interactive experiences"],
+    technologies: ["JavaScript", "HTML5", "CSS3"],
+    approach: [],
+    contribution: [],
+    technicalChallenges: [],
+    outcome: "",
+    // Source: owner-supplied Behance HTML and original feature/structure/tool plates.
+    // Event year is 2016; the Behance case was published on 19 October 2015.
+    storySections: [
+      {
+        id: "concept",
+        title: "A visual identity built to respond.",
+        text: "The key visual combines imagery, typography, glow, particles and pixelation in a layered web experience. Instead of remaining a fixed composition, parts of the visual respond to the pointer on desktop and motion sensors on mobile devices.",
+      },
+      {
+        id: "generative-system",
+        title: "Programmed layers, editable content.",
+        text: "The documented system includes randomly generated particles animated through tweening, a second particle layer that follows the mouse or device tilt, and two dynamic pixelation layers. The text and background image are supplied by the existing client CMS, connecting the visual system to the website’s content workflow.",
+      },
+      {
+        id: "creation-tool",
+        title: "Controls for composing the visual.",
+        text: "A generative creation tool exposes the copy, background image, main colour and hotspot positions. Particle, pixelation and glow settings can be adjusted for individual hotspots, making the composition configurable through an interface.",
+      },
+    ],
+    imageSlots: [
+      {
+        id: "hero",
+        src: "/images/cebit-project-hero.webp",
+        sourceWidth: 1400,
+        sourceHeight: 1279,
+        alt: "CeBIT key visual with red translucent squares over a city image, followed by its web, interaction, responsive, CMS and creation-tool features",
+        brief: "Original CeBIT project overview and feature plate from Behance.",
+        suggestedFilename: "cebit-project-hero.webp",
+        aspectRatio: "1400 / 1279",
+        recommendedDimensions: "1400 × 1279 px",
+      },
+      {
+        id: "interaction",
+        vimeoId: "142719094",
+        sourceWidth: 640,
+        sourceHeight: 360,
+        alt: "CeBIT 2016 interactive generative key visual — original project video by Javier Garcia Martin",
+        caption:
+          "Original 17-second project video, embedded from the Vimeo account linked in the Behance case.",
+        brief: "Original Vimeo embed extracted from the owner-supplied Behance HTML.",
+        suggestedFilename: "cebit-interaction.mp4",
+        aspectRatio: "16 / 9",
+        recommendedDimensions: "640 × 360 px (Vimeo player aspect ratio)",
+      },
+      {
+        id: "system",
+        src: "/images/cebit-system-structure.webp",
+        sourceWidth: 1400,
+        sourceHeight: 1591,
+        alt: "Exploded diagram of the CeBIT visual: CMS text, pointer-responsive glow, generated and pointer-following particles, two pixelation layers and CMS background image",
+        brief: "Original annotated structure diagram from Behance.",
+        suggestedFilename: "cebit-system-structure.webp",
+        aspectRatio: "1400 / 1591",
+        recommendedDimensions: "1400 × 1591 px",
+      },
+      {
+        id: "tool",
+        src: "/images/cebit-creation-tool.webp",
+        sourceWidth: 1400,
+        sourceHeight: 1014,
+        alt: "CeBIT generative creation tool with controls for text, background, colour, hotspot positions, particles, pixelation and glow",
+        brief: "Original generative creation tool capture from Behance.",
+        suggestedFilename: "cebit-creation-tool.webp",
+        aspectRatio: "1400 / 1014",
+        recommendedDimensions: "1400 × 1014 px",
+      },
+    ],
+    visualSequence: [
+      { imageId: "interaction", eyebrow: "Interaction", title: "The visual in motion." },
+      { imageId: "system", eyebrow: "System structure", title: "How the layers work together." },
+      {
+        imageId: "tool",
+        eyebrow: "Generative creation tool",
+        title: "An interface for configuring the composition.",
+      },
+    ],
+    externalLinks: [
+      {
+        label: "Original project documentation on Behance",
+        href: "https://www.behance.net/gallery/29890051/CeBIT-Generative-Key-Visual-2016",
+      },
+      { label: "Original project video on Vimeo", href: "https://vimeo.com/142719094" },
+    ],
+    nextProject: "core-one",
+    home: {
+      section: "creative-technology",
+      order: 1,
+      intro:
+        "A generative visual identity that transforms a static brand concept into a dynamic, interactive digital experience.",
+    },
+    contentTodos: [
+      "Confirm collaborators and more detailed personal responsibilities before naming them.",
+      "Confirm any specific animation/rendering libraries; only JavaScript, HTML5 and CSS3 are listed in the supplied source.",
+    ],
+  },
   {
     slug: "morae",
     number: "01",
@@ -72,7 +214,8 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     summary:
       "I returned to a platform I had previously worked on in its monolithic WordPress period. That context became useful when our agency team took over its headless successor, substantially rebuilt the frontend and progressively introduced Craft CMS alongside the existing WordPress content source.",
     role: "Frontend development / CMS integration",
-    collaboration: "I worked with a project manager, designer and lead developer, with backend support when needed.",
+    collaboration:
+      "I worked with a project manager, designer and lead developer, with backend support when needed.",
     duration: "Approximately 2–3 years",
     areas: [
       "Platform evolution",
@@ -205,6 +348,8 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     ],
     nextProject: "core-one",
     home: {
+      section: "selected-work",
+      order: 1,
       intro:
         "Rebuilding an established headless platform and progressively changing its CMS architecture while it remained live.",
     },
@@ -249,8 +394,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         title: "Particle transformations",
         problem:
           "The particle experience includes movement between different forms as well as a 3D animated state.",
-        decision:
-          "Implemented the particle animation and the transitions connecting those forms.",
+        decision: "Implemented the particle animation and the transitions connecting those forms.",
         importance: "The transformation itself becomes a visible part of the experience.",
       },
     ],
@@ -340,6 +484,8 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     ],
     nextProject: "nti",
     home: {
+      section: "selected-work",
+      order: 2,
       intro:
         "Sole implementation of a designer-led website, including interactive graphics, responsive pages and 3D particle transformations.",
     },
@@ -379,14 +525,13 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         title: "Building pages from shared UI",
         problem:
           "Individual pages need their own content composition while belonging to the wider site and component system.",
-        decision:
-          "Used the common UI packages to implement new pages within that system.",
-        importance:
-          "New page development builds on reusable interface foundations.",
+        decision: "Used the common UI packages to implement new pages within that system.",
+        importance: "New page development builds on reusable interface foundations.",
       },
       {
         title: "Components in a multisite context",
-        problem: "Component work sits within a frontend architecture shared by several branded websites.",
+        problem:
+          "Component work sits within a frontend architecture shared by several branded websites.",
         decision:
           "Contributed components within the project’s shared structure alongside page implementation.",
         importance:
@@ -462,6 +607,8 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     ],
     nextProject: "morae",
     home: {
+      section: "selected-work",
+      order: 3,
       intro:
         "Developing pages and components across a multisite platform using shared UI packages.",
     },
@@ -532,6 +679,8 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     contentNotice:
       "This page documents confirmed implementation scope only. Project context, my specific contribution and outcomes are still being verified before publication.",
     home: {
+      section: "selected-work",
+      order: 4,
       intro: "Frontend implementation across a Next.js and Craft CMS platform.",
     },
     contentTodos: [
@@ -621,4 +770,10 @@ export const publishedProjectCaseStudies = projectCaseStudies.filter(
 
 export function getProjectCaseStudy(slug: string) {
   return projectCaseStudiesBySlug.get(slug);
+}
+
+export function getHomepageProjects(section: NonNullable<ProjectCaseStudy["home"]["section"]>) {
+  return publishedProjectCaseStudies
+    .filter((project) => project.home.section === section)
+    .sort((a, b) => (a.home.order ?? 0) - (b.home.order ?? 0));
 }

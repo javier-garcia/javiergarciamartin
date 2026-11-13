@@ -10,25 +10,31 @@ export function HeroSection() {
     >
       <div className="relative z-[2] flex min-h-[calc(100svh-187px)] w-full flex-col justify-between max-[800px]:min-h-[calc(100svh-140px)]">
         <p className={`${labelClass} intro-reveal`}>
-          Senior React / Next.js developer · 20+ years of experience
+          Independent developer &amp; creative technologist
         </p>
         <ExpertiseEffects className="intro-reveal relative my-[7vh] max-w-262.5 [animation-delay:.1s] max-[800px]:my-[9vh]">
           <h1
             className="text-[clamp(52px,6.75vw,112px)] leading-[.91] font-medium tracking-heading max-[800px]:text-[13.8vw]"
             data-distort-title
           >
-            Senior developer
+            Building digital
             <br />
-            for complex Next.js
+            experiences, products
             <br />
-            <em className="inline-block font-serif font-normal">&amp; React</em> projects.
+            <em className="inline-block font-serif font-normal">and tools.</em>
           </h1>
         </ExpertiseEffects>
         <div className="intro-reveal relative z-[2] flex items-end justify-between [animation-delay:.25s]">
-          <p className="ml-[17%] max-w-150 text-[19px] leading-[1.5] max-[800px]:ml-0 max-[800px]:max-w-[68%] max-[800px]:text-base">
-            I help digital agencies with existing, technically demanding web platforms — across
-            Craft CMS, WordPress and other content systems.
-          </p>
+          <div className="ml-[17%] max-w-150 text-[19px] leading-[1.5] max-[800px]:ml-0 max-[800px]:max-w-[68%] max-[800px]:text-base">
+            <p>
+              I combine software development, design and creative technology to build complex web
+              platforms, interactive experiences and data-driven applications.
+            </p>
+            <p className="mt-5 text-sm leading-[1.6] text-[#50524d]">
+              Senior developer · 20+ years of experience. React, Next.js, TypeScript and headless
+              CMS architectures. Available for freelance collaborations.
+            </p>
+          </div>
           <a
             className="flex size-31 shrink-0 flex-col items-center justify-center gap-2 rounded-[50%_50%_50%_50%] bg-acid p-5.25 text-center text-xs leading-[1.1] transition-all duration-300 hover:rotate-6 hover:scale-106 hover:rounded-[42%_58%_48%_52%] max-[800px]:size-23.5 max-[800px]:p-4"
             href="#work"

@@ -1,3 +1,4 @@
+import { CreativeTechnologySection } from "@/components/home/CreativeTechnologySection";
 import { AboutSection } from "@/components/home/AboutSection";
 import { AvailabilitySection } from "@/components/home/AvailabilitySection";
 import { ExpertiseSection } from "@/components/home/ExpertiseSection";
@@ -22,7 +23,17 @@ export default function Home() {
           url: siteConfig.url,
           email: `mailto:${siteConfig.email}`,
           jobTitle: siteConfig.title,
-          knowsAbout: ["React", "Next.js", "TypeScript", "Craft CMS", "WordPress", "GraphQL"],
+          knowsAbout: [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "Craft CMS",
+            "WordPress",
+            "GraphQL",
+            "Creative technology",
+            "Data visualization",
+            "UX/UI",
+          ],
         }}
       />
       <ScrollEffects />
@@ -30,6 +41,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <ProjectsSection />
+        <CreativeTechnologySection />
         <TechnicalChallengesSection />
         <ExpertiseSection />
         <WorkingSection />

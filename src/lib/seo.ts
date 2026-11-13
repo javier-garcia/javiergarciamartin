@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 
-export const allowIndexing = process.env.SITE_ALLOW_INDEXING !== "false" && process.env.VERCEL_ENV !== "preview";
+export const allowIndexing =
+  process.env.SITE_ALLOW_INDEXING !== "false" && process.env.VERCEL_ENV !== "preview";
 
 export const siteConfig = {
   name: "Javi Garcia",
-  title: "Senior React & Next.js Developer",
+  title: "Senior Developer & Creative Technologist",
   description:
-    "Senior React and Next.js developer helping digital agencies evolve complex web platforms across Craft CMS, WordPress and other content systems.",
+    "Independent senior React and Next.js developer combining design and creative technology to build web platforms, digital products and data-driven experiences.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://javiergarciamartin.com",
   locale: "en_GB",
   email: "javi@javiergarciamartin.com",

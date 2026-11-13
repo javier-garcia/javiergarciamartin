@@ -19,6 +19,28 @@ export function ProjectMedia({
     aspectRatio: media.aspectRatio,
   } as CSSProperties;
 
+  if (media.vimeoId && /^\d+$/.test(media.vimeoId) && !compact) {
+    return (
+      <figure className="m-0 min-w-0 w-full">
+        <iframe
+          className="block w-full border-0 bg-[#20221e]"
+          style={style}
+          src={`https://player.vimeo.com/video/${media.vimeoId}?dnt=1`}
+          title={media.alt}
+          loading="lazy"
+          allow="fullscreen; picture-in-picture"
+          allowFullScreen
+        />
+        <figcaption className="mt-3 text-xs leading-[1.5] text-muted">
+          {media.caption ? <p>{media.caption}</p> : null}
+          <a className="interactive-underline" href={`https://vimeo.com/${media.vimeoId}`}>
+            Watch on Vimeo ↗
+          </a>
+        </figcaption>
+      </figure>
+    );
+  }
+
   if (media.videoSrc && !compact) {
     return (
       <figure className="m-0 min-w-0 w-full">
@@ -46,9 +68,7 @@ export function ProjectMedia({
   if (media.src) {
     return (
       <figure className="m-0 min-w-0 w-full">
-        <div
-          className="relative bg-[#20221e] transition-transform duration-700 ease-out group-hover/project:-translate-y-1 group-focus-visible/project:-translate-y-1 motion-reduce:transform-none"
-        >
+        <div className="relative bg-[#20221e] transition-transform duration-700 ease-out group-hover/project:-translate-y-1 group-focus-visible/project:-translate-y-1 motion-reduce:transform-none">
           <Image
             className="block h-auto w-full"
             src={media.src}

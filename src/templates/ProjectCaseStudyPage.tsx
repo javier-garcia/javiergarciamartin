@@ -20,6 +20,9 @@ function ProjectHero({ project }: { project: ProjectCaseStudy }) {
   const heroMedia = project.imageSlots.find((media) => media.id === "hero");
   const metadata = [
     ["My role", project.role],
+    ["Year", project.year?.toString()],
+    ["Project type", project.projectType],
+    ["Categories", project.categories?.join(" / ")],
     ["Duration", project.duration],
     ["Collaboration", project.collaboration],
     ["Areas", project.areas.join(" / ")],
@@ -63,7 +66,8 @@ function ProjectHero({ project }: { project: ProjectCaseStudy }) {
         ) : null}
       </section>
 
-      {heroMedia ? (
+      {heroMedia &&
+      (!project.omitMissingMedia || heroMedia.src || heroMedia.videoSrc || heroMedia.vimeoId) ? (
         <div className="border-b border-line px-[3vw] py-8 max-[800px]:px-[5vw] max-[800px]:py-5">
           <ProjectMedia media={heroMedia} sizes="100vw" />
         </div>
@@ -144,7 +148,8 @@ function Contribution({ project }: { project: ProjectCaseStudy }) {
 function VisualSequence({ project }: { project: ProjectCaseStudy }) {
   if (!project.visualSequence.length) return null;
 
-  const fullWidthMedia = project.slug === "core-one" || project.slug === "nti";
+  const fullWidthMedia =
+    project.slug === "core-one" || project.slug === "nti" || Boolean(project.storySections);
 
   return (
     <section className={sectionClass} id="project-sequence">
@@ -154,7 +159,11 @@ function VisualSequence({ project }: { project: ProjectCaseStudy }) {
         {project.visualSequence.map((item) => {
           const media = project.imageSlots.find((candidate) => candidate.id === item.imageId);
 
-          if (!media) return null;
+          if (
+            !media ||
+            (project.omitMissingMedia && !media.src && !media.videoSrc && !media.vimeoId)
+          )
+            return null;
 
           return (
             <article
@@ -229,6 +238,7 @@ function TechnicalChallenges({ project }: { project: ProjectCaseStudy }) {
 }
 
 function Outcome({ project }: { project: ProjectCaseStudy }) {
+  if (!project.outcome) return null;
   return (
     <section
       className={`${sectionClass} grid grid-cols-[17%_1fr] bg-ink text-paper max-[800px]:grid-cols-1 max-[800px]:gap-10`}
@@ -266,7 +276,25 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
           <MoraeStory project={project} />
         ) : (
           <>
-            <ProjectContext project={project} />
+            {project.storySections ? (
+              project.storySections.map((section, index) => (
+                <section
+                  className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 max-[800px]:gap-10`}
+                  id={section.id}
+                  key={section.id}
+                >
+                  <p className={labelClass}>{String(index + 1).padStart(2, "0")} / Project story</p>
+                  <div className="max-w-225">
+                    <h2 className="text-[clamp(38px,5vw,72px)] leading-[1.02] font-medium tracking-heading">
+                      {section.title}
+                    </h2>
+                    <p className="mt-8 text-lg leading-[1.65]">{section.text}</p>
+                  </div>
+                </section>
+              ))
+            ) : (
+              <ProjectContext project={project} />
+            )}
             <Contribution project={project} />
             <VisualSequence project={project} />
             <TechnicalChallenges project={project} />
@@ -274,16 +302,30 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
           </>
         )}
 
+        {project.externalLinks?.length ? (
+          <section
+            className={`${sectionClass} flex flex-wrap gap-x-10 gap-y-4`}
+            aria-label="Project references"
+          >
+            {project.externalLinks.map((link) => (
+              <a
+                className="interactive-underline inline-block py-2 text-sm"
+                href={link.href}
+                key={link.href}
+              >
+                {link.label} ↗
+              </a>
+            ))}
+          </section>
+        ) : null}
+
         <Link
           className="flex items-end justify-between border-b border-line px-[3vw] py-13.75 max-[800px]:block max-[800px]:px-[5vw] max-[800px]:py-10"
           href={`/work/${nextProject.slug}`}
         >
           <span className={smallMetaClass}>Next project</span>
           <ExpertiseEffects className="relative max-[800px]:mt-5.5" intensity={0.4}>
-            <span
-              className="block text-[clamp(30px,5vw,72px)] tracking-heading"
-              data-distort-title
-            >
+            <span className="block text-[clamp(30px,5vw,72px)] tracking-heading" data-distort-title>
               {nextProject.title} →
             </span>
           </ExpertiseEffects>
