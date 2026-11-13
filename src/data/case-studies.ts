@@ -1,4 +1,5 @@
 export type ProjectImageSlot = {
+  fullWidth?: boolean;
   id: string;
   src?: string;
   videoSrc?: string;
@@ -40,6 +41,7 @@ export type ProjectCategory =
   | "IoT";
 
 export type ProjectStorySection = {
+  credits?: { role: string; names: string }[];
   responsibilities?: string[];
   closingText?: string;
   mediaIds?: string[];
@@ -92,6 +94,293 @@ export type ProjectCaseStudy = {
 };
 
 export const projectCaseStudies: ProjectCaseStudy[] = [
+  // Starspitter: author-confirmed installation facts; 2013 supported by original repository history.
+  {
+    slug: "starspitter",
+    number: "07",
+    title: "Starspitter — Visualizing brain waves",
+    displayTitle: "Starspitter",
+    subtitle: "Visualizing brain waves",
+    client: "Personal initiative / deepblue networks",
+    year: 2013,
+    projectType: "Personal",
+    categories: ["Creative technology", "Data visualization", "Interactive experiences"],
+    featured: true,
+    published: true,
+    omitMissingMedia: true,
+    eyebrow: "Interactive installation · EEG data visualization · 2013",
+    intro:
+      "Starspitter is an interactive installation that transforms brain activity into generative visual forms in real time.\n\nCombining EEG data, creative programming, handcrafted geometry and projection mapping, the project brings invisible biological signals into physical space.\n\nOriginally conceived as my own creative initiative, Starspitter was later adopted by deepblue networks for its Christmas campaign.",
+    summary:
+      "A personal creative initiative connecting EEG data, custom Processing software and a handcrafted paper installation, later adopted for the deepblue networks Christmas campaign.",
+    role: "Creative concept, design, development & fabrication",
+    areas: [
+      "Creative coding",
+      "Real-time data visualization",
+      "Physical computing",
+      "Generative design",
+      "Projection mapping",
+      "Digital fabrication",
+    ],
+    technologies: ["Processing", "NeuroSky MindWave"],
+    approach: [],
+    contribution: [],
+    technicalChallenges: [],
+    outcome: "",
+    storySections: [
+      {
+        id: "concept",
+        label: "Concept",
+        title: "Making the invisible visible.",
+        text: "Starspitter began as my own exploration of the relationship between brain activity, generative design and individual expression. I wanted to translate otherwise invisible biological signals into something people could experience, observe and share.\n\nThe star became the visual language of the project, its geometric form continuously evolving in response to incoming data.",
+        mediaIds: ["sketches"],
+      },
+      {
+        id: "real-time-visualization",
+        label: "Real-time visualization",
+        title: "From brain waves to generative geometry.",
+        text: "Using a NeuroSky MindWave EEG headset and custom software I developed in Processing, I translated incoming brain activity data into continuously evolving star compositions. Participants could observe their own star changing on the computer screen in real time.\n\nI could manually capture the current state of the visualization, turning a fleeting combination of data into an individual static graphic. Each captured star represented a moment in time: a creative interpretation of biological signals, rather than a validated measure of personality or ability.",
+        mediaIds: ["application", "visualization-video"],
+      },
+      {
+        id: "physical-fabrication",
+        label: "Physical fabrication",
+        title: "A thousand pieces. One star.",
+        text: "I designed and fabricated a large three-dimensional star from more than a thousand individual folded paper elements.\n\nI designed the geometry of each piece, cut the paper using a plotter, folded the elements and fitted them with magnets. I assembled the structure directly onto a metallic wall, bringing together digital fabrication and handcrafted construction.",
+        mediaIds: ["paper-elements", "assembly"],
+      },
+      {
+        id: "interactive-installation",
+        label: "Interactive installation",
+        title: "Bringing data into physical space.",
+        text: "The visualization extended beyond the computer screen. I integrated projection mapping so that the evolving compositions were projected in real time onto the three-dimensional paper star.\n\nAs the incoming EEG data changed, both the screen visualization and its physical projection responded. Biological signals, generative software, light and handcrafted geometry became one interactive experience.",
+        mediaIds: ["installation-video", "live-projection", "projection-detail"],
+      },
+      {
+        id: "campaign",
+        label: "Campaign",
+        title: "From personal exploration to collective identity.",
+        text: "Deepblue networks later adopted my original installation for its Christmas campaign. Employees participated in the experience, watching their brain activity become evolving star compositions.\n\nBy manually capturing individual moments, a collection of more than 150 generative graphics was created. The collection connected individual experiences through a shared visual language. The custom Processing software was also released as open source.",
+        closingText:
+          "The following credits document the wider campaign team, as listed in the original open-source repository.",
+        mediaIds: ["campaign-star"],
+        credits: [
+          {
+            role: "Head of Digital",
+            names: "Thorsten Schapmann",
+          },
+          {
+            role: "Managing Creative Director",
+            names: "Christian Thron, Oliver Drost",
+          },
+          {
+            role: "Creative Director",
+            names: "Burkhard Müller",
+          },
+          {
+            role: "Senior Interaction Designer",
+            names: "Karsten Bruns",
+          },
+          {
+            role: "Interaction Designer",
+            names: "Javier Garcia",
+          },
+          {
+            role: "Developer",
+            names: "Javier Garcia",
+          },
+          {
+            role: "Copywriter",
+            names: "Astarte Toomeh, Nina Drangmeister",
+          },
+          {
+            role: "Motion Designer",
+            names: "Björn Volkenand, Nils Pfeifer, Leon Friedrich",
+          },
+        ],
+      },
+      {
+        id: "my-contribution",
+        label: "My contribution",
+        title: "From the first idea to the final installation.",
+        text: "I conceived, designed, programmed, fabricated and assembled Starspitter, taking responsibility for the complete development of the original installation.\n\nMy work covered both the digital system and its physical realization:",
+        responsibilities: [
+          "Original creative concept and visual development.",
+          "Integration of the NeuroSky MindWave EEG headset.",
+          "Development of the real-time generative visualization software in Processing.",
+          "Design of the physical installation and folded paper geometry.",
+          "Plotter cutting, folding and preparation of more than a thousand individual magnetic elements.",
+          "Assembly of the physical star.",
+          "Integration of the real-time generative visualization and projection mapping.",
+        ],
+        closingText:
+          "Starspitter brought together software development, data visualization, interaction design, geometry and physical fabrication.",
+      },
+    ],
+    imageSlots: [
+      {
+        id: "hero",
+        src: "/images/starspitter/hero.webp",
+        sourceWidth: 1400,
+        sourceHeight: 612,
+        alt: "Blue generative light projected onto the folded paper geometry of the physical Starspitter installation",
+        brief:
+          "Original project imagery extracted from the owner-supplied Behance documentation; source preserved in originals/.",
+        suggestedFilename: "hero.webp",
+        aspectRatio: "1400 / 612",
+        recommendedDimensions: "1400 × 612 px",
+        priority: true,
+      },
+      {
+        id: "sketches",
+        src: "/images/starspitter/sketches.webp",
+        sourceWidth: 1400,
+        sourceHeight: 803,
+        alt: "Original printed star studies and geometric drawings laid out on a worktable",
+        brief:
+          "Original project imagery extracted from the owner-supplied Behance documentation; source preserved in originals/.",
+        suggestedFilename: "sketches.webp",
+        aspectRatio: "1400 / 803",
+        recommendedDimensions: "1400 × 803 px",
+      },
+      {
+        id: "participant",
+        src: "/images/starspitter/participant.webp",
+        sourceWidth: 1400,
+        sourceHeight: 803,
+        alt: "Participant wearing the MindWave headset beside the Processing application and its blue generative star",
+        brief:
+          "Original project imagery extracted from the owner-supplied Behance documentation; source preserved in originals/.",
+        suggestedFilename: "participant.webp",
+        aspectRatio: "1400 / 803",
+        recommendedDimensions: "1400 × 803 px",
+      },
+      {
+        id: "application",
+        src: "/images/starspitter/application.webp",
+        sourceWidth: 1400,
+        sourceHeight: 910,
+        alt: "Original Processing interface showing the geometric star visualization and controls for capturing a star",
+        brief:
+          "Original project imagery extracted from the owner-supplied Behance documentation; source preserved in originals/.",
+        suggestedFilename: "application.webp",
+        aspectRatio: "1400 / 910",
+        recommendedDimensions: "1400 × 910 px",
+        caption:
+          "Original visualization interface; its labels belong to the creative interpretation of EEG data.",
+      },
+      {
+        id: "paper-elements",
+        src: "/images/starspitter/paper-elements.webp",
+        sourceWidth: 1400,
+        sourceHeight: 804,
+        alt: "Three original fabrication photographs showing cut paper outlines, partially folded pieces and completed three-dimensional paper elements",
+        brief:
+          "Original project imagery extracted from the owner-supplied Behance documentation; source preserved in originals/.",
+        suggestedFilename: "paper-elements.webp",
+        aspectRatio: "1400 / 804",
+        recommendedDimensions: "1400 × 804 px",
+      },
+      {
+        id: "assembly",
+        src: "/images/starspitter/assembly.webp",
+        sourceWidth: 1400,
+        sourceHeight: 805,
+        alt: "Assembly of the folded paper star on the wall, showing its scale and individual geometric elements",
+        brief:
+          "Original project imagery extracted from the owner-supplied Behance documentation; source preserved in originals/.",
+        suggestedFilename: "assembly.webp",
+        aspectRatio: "1400 / 805",
+        recommendedDimensions: "1400 × 805 px",
+      },
+      {
+        id: "projection-detail",
+        src: "/images/starspitter/projection-detail.webp",
+        sourceWidth: 1400,
+        sourceHeight: 803,
+        alt: "Close-up of blue projected light aligned with a raised folded paper element",
+        brief:
+          "Original project imagery extracted from the owner-supplied Behance documentation; source preserved in originals/.",
+        suggestedFilename: "projection-detail.webp",
+        aspectRatio: "1400 / 803",
+        recommendedDimensions: "1400 × 803 px",
+      },
+      {
+        id: "live-projection",
+        src: "/images/starspitter/live-projection.webp",
+        sourceWidth: 1400,
+        sourceHeight: 803,
+        alt: "Participant wearing the EEG headset in front of the illuminated physical installation",
+        brief:
+          "Original project imagery extracted from the owner-supplied Behance documentation; source preserved in originals/.",
+        suggestedFilename: "live-projection.webp",
+        aspectRatio: "1400 / 803",
+        recommendedDimensions: "1400 × 803 px",
+      },
+      {
+        id: "campaign-star",
+        videoSrc: "/video/starspitter-original-star-animation.mp4",
+        src: "/images/starspitter/campaign-star.webp",
+        sourceWidth: 500,
+        sourceHeight: 402,
+        alt: "Original Starspitter animation showing a blue generative star changing shape",
+        brief:
+          "Original project imagery extracted from the owner-supplied Behance documentation; source preserved in originals/.",
+        suggestedFilename: "campaign-star.webp",
+        aspectRatio: "500 / 402",
+        recommendedDimensions: "500 × 402 px video; 500 × 401 px original poster",
+        caption:
+          "Changing states from the original project animation; these are not separate participant captures.",
+      },
+      {
+        id: "visualization-video",
+        vimeoId: "142719471",
+        sourceWidth: 640,
+        sourceHeight: 360,
+        alt: "Starspitter Processing software — changing generative star geometry",
+        caption: "The original Processing visualization in motion, 26 seconds.",
+        brief: "Verified original Vimeo iframe recovered from the supplied Behance HTML.",
+        suggestedFilename: "visualization-video.mp4",
+        aspectRatio: "16 / 9",
+        recommendedDimensions: "640 × 360 px (player aspect ratio)",
+      },
+      {
+        id: "installation-video",
+        fullWidth: true,
+        vimeoId: "142719498",
+        sourceWidth: 640,
+        sourceHeight: 360,
+        alt: "Starspitter physical installation — the complete star projected into the room",
+        caption: "The complete projected star in the physical installation, 21 seconds.",
+        brief: "Verified original Vimeo iframe recovered from the supplied Behance HTML.",
+        suggestedFilename: "installation-video.mp4",
+        aspectRatio: "16 / 9",
+        recommendedDimensions: "640 × 360 px (player aspect ratio)",
+      },
+    ],
+    visualSequence: [],
+    externalLinks: [
+      {
+        label: "Original project documentation on Behance",
+        href: "https://www.behance.net/gallery/20482631/Starspitter-Visualizing-brain-waves",
+      },
+      {
+        label: "Open-source Processing repository on GitHub",
+        href: "https://github.com/javier-garcia/starspitter",
+      },
+    ],
+    nextProject: "cebit",
+    home: {
+      section: "creative-technology",
+      order: 2,
+      intro:
+        "An interactive installation transforming brain activity into generative visual forms through real-time data visualization, creative coding and physical fabrication.",
+    },
+    contentTodos: [
+      "Exact headset communication protocol is not remembered; do not infer protocols, libraries, sampling frequencies or processing algorithms.",
+      "Campaign video is unavailable and intentionally omitted. No recovery work is required.",
+    ],
+  },
   {
     slug: "cebit",
     omitMissingMedia: true,

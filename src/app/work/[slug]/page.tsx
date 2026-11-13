@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props) {
 
   return createPageMetadata({
     title: `${project.title} project case study`,
-    description: project.intro,
+    description: project.intro.split("\n\n")[0],
     path: `/work/${project.slug}`,
     image: heroImage,
     imageWidth: heroImage ? heroMedia?.sourceWidth : undefined,

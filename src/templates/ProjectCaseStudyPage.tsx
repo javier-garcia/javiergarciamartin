@@ -42,7 +42,7 @@ function ProjectHero({ project }: { project: ProjectCaseStudy }) {
           intensity={0.5}
         >
           <h1
-            className="text-[clamp(68px,11vw,172px)] leading-[.85] font-medium tracking-heading"
+            className={`text-[clamp(68px,11vw,172px)] leading-[.85] font-medium tracking-heading ${project.displayTitle && project.displayTitle.length > 8 ? "max-[800px]:text-[12vw]" : ""}`}
             data-distort-title
           >
             {project.displayTitle ?? project.title}
@@ -54,9 +54,11 @@ function ProjectHero({ project }: { project: ProjectCaseStudy }) {
           ) : null}
         </ExpertiseEffects>
 
-        <p className="col-start-2 m-0 max-w-200 text-[clamp(20px,2vw,30px)] leading-[1.4] tracking-[-.02em]">
-          {project.intro}
-        </p>
+        <div className="col-start-2 m-0 max-w-200 space-y-5 text-[clamp(20px,2vw,30px)] leading-[1.4] tracking-[-.02em]">
+          {project.intro.split("\n\n").map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
 
         <dl className="col-start-2 mt-12 grid grid-cols-4 gap-6 border-t border-line pt-5 max-[900px]:grid-cols-2 max-[500px]:grid-cols-1">
           {metadata.map(([key, value]) => (
@@ -352,28 +354,58 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
                           ))}
                         </ul>
                       ) : null}
-                      {section.closingText ? (
+                      {section.closingText && !section.credits?.length ? (
                         <p className="mt-8 text-lg leading-[1.65]">{section.closingText}</p>
                       ) : null}
                     </div>
-                    {section.mediaIds?.map((id) => {
-                      const media = project.imageSlots.find((slot) => slot.id === id);
-                      if (
-                        !media ||
-                        id === (project.heroMediaId ?? "hero") ||
-                        (project.omitMissingMedia &&
-                          !media.src &&
-                          !media.videoSrc &&
-                          !media.vimeoId)
-                      )
-                        return null;
-                      return (
-                        <div className="mt-12 max-[800px]:mt-8" key={id}>
-                          <ProjectMedia media={media} sizes="(max-width: 800px) 90vw, 78vw" />
-                        </div>
-                      );
-                    })}
                   </div>
+                  {section.mediaIds?.map((id) => {
+                    const media = project.imageSlots.find((slot) => slot.id === id);
+                    if (
+                      !media ||
+                      id === (project.heroMediaId ?? "hero") ||
+                      (project.omitMissingMedia && !media.src && !media.videoSrc && !media.vimeoId)
+                    )
+                      return null;
+                    return (
+                      <div
+                        className={`mt-12 min-w-0 max-[800px]:mt-0 ${media.fullWidth ? "col-span-full" : "col-start-2 max-[800px]:col-start-1"}`}
+                        key={id}
+                        style={
+                          !media.fullWidth && !media.vimeoId
+                            ? { maxWidth: media.sourceWidth }
+                            : undefined
+                        }
+                      >
+                        <ProjectMedia
+                          media={media}
+                          sizes={
+                            media.fullWidth
+                              ? "(max-width: 800px) 90vw, 94vw"
+                              : "(max-width: 800px) 90vw, 78vw"
+                          }
+                        />
+                      </div>
+                    );
+                  })}
+                  {section.credits?.length ? (
+                    <div className="col-start-2 mt-10 max-w-225 border-t border-line pt-5 max-[800px]:col-start-1 max-[800px]:mt-0">
+                      <h3 className={smallMetaClass}>Campaign credits</h3>
+                      {section.closingText ? (
+                        <p className="mt-4 text-sm leading-[1.55] text-muted">
+                          {section.closingText}
+                        </p>
+                      ) : null}
+                      <dl className="mt-5 grid grid-cols-[1fr_2fr] gap-x-6 gap-y-4 text-sm leading-[1.55] max-[500px]:grid-cols-1 max-[500px]:gap-y-2">
+                        {section.credits.map((credit) => (
+                          <div className="contents" key={credit.role}>
+                            <dt className="text-muted max-[500px]:mt-3">{credit.role}</dt>
+                            <dd>{credit.names}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  ) : null}
                 </section>
               ))
             ) : (
