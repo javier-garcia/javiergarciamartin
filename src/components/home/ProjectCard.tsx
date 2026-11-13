@@ -46,8 +46,13 @@ export function ProjectCard({
             <span className={smallMetaClass}>{project.eyebrow}</span>
 
             <h3 className="mt-5 text-[clamp(44px,6vw,86px)] leading-[.88] font-medium tracking-heading transition-transform duration-500 ease-out group-hover/project:translate-x-1.5 group-focus-visible/project:translate-x-1.5 motion-reduce:transform-none">
-              {project.title}
+              {project.displayTitle ?? project.title}
             </h3>
+            {project.subtitle ? (
+              <p className="mt-3 text-[clamp(20px,2.5vw,32px)] leading-[1.15] tracking-heading">
+                {project.subtitle}
+              </p>
+            ) : null}
 
             <p className="mt-8 max-w-140 text-[18px] leading-[1.55] text-[#50524d]">
               {project.home.intro}

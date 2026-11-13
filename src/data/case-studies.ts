@@ -40,12 +40,17 @@ export type ProjectCategory =
   | "IoT";
 
 export type ProjectStorySection = {
+  mediaIds?: string[];
+  label?: string;
   id: string;
   title: string;
   text: string;
 };
 
 export type ProjectCaseStudy = {
+  displayTitle?: string;
+  subtitle?: string;
+  heroMediaId?: string;
   categories?: ProjectCategory[];
   projectType?: "Commercial" | "Personal" | "Academic" | "Experimental";
   year?: number;
@@ -90,6 +95,9 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     omitMissingMedia: true,
     number: "06",
     title: "CeBIT — Generative Key Visual",
+    displayTitle: "CeBIT",
+    subtitle: "Generative Key Visual",
+    heroMediaId: "interaction",
     client: "CeBIT",
     year: 2016,
     projectType: "Commercial",
@@ -113,31 +121,36 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     storySections: [
       {
         id: "concept",
+        label: "Concept & context",
         title: "A visual identity built to respond.",
-        text: "The key visual combines imagery, typography, glow, particles and pixelation in a layered web experience. Instead of remaining a fixed composition, parts of the visual respond to the pointer on desktop and motion sensors on mobile devices.",
+        text: "A brand composition becomes an interactive web experience: imagery, typography and generative effects respond to the pointer on desktop and motion sensors on mobile devices. The identity can adapt to different content while retaining its visual language.",
       },
       {
         id: "generative-system",
+        label: "Generative system",
+        mediaIds: ["system"],
         title: "Programmed layers, editable content.",
-        text: "The documented system includes randomly generated particles animated through tweening, a second particle layer that follows the mouse or device tilt, and two dynamic pixelation layers. The text and background image are supplied by the existing client CMS, connecting the visual system to the website’s content workflow.",
+        text: "The visual separates editorial content from animated behaviour. Text and background imagery come from the existing CMS; particles, pixelation and glow create the responsive layers above them. The original diagram below shows how these layers combine.",
       },
       {
         id: "creation-tool",
-        title: "Controls for composing the visual.",
-        text: "A generative creation tool exposes the copy, background image, main colour and hotspot positions. Particle, pixelation and glow settings can be adjusted for individual hotspots, making the composition configurable through an interface.",
+        label: "Creation tool",
+        mediaIds: ["tool"],
+        title: "Designing a tool, not just a visual.",
+        text: "The creation interface makes the composition configurable through controls for text, background imagery, colour and hotspots, with particle, pixelation and glow settings for each hotspot. The work extends from designing the visual itself to designing the controls for composing it.",
       },
     ],
     imageSlots: [
       {
         id: "hero",
-        src: "/images/cebit-project-hero.webp",
+        src: "/images/cebit-project-cover.webp",
         sourceWidth: 1400,
-        sourceHeight: 1279,
-        alt: "CeBIT key visual with red translucent squares over a city image, followed by its web, interaction, responsive, CMS and creation-tool features",
-        brief: "Original CeBIT project overview and feature plate from Behance.",
-        suggestedFilename: "cebit-project-hero.webp",
-        aspectRatio: "1400 / 1279",
-        recommendedDimensions: "1400 × 1279 px",
+        sourceHeight: 633,
+        alt: "CeBIT key visual with red translucent squares and typography over a city image",
+        brief: "Upper visual composition cropped from the preserved original CeBIT Behance plate.",
+        suggestedFilename: "cebit-project-cover.webp",
+        aspectRatio: "1400 / 633",
+        recommendedDimensions: "1400 × 633 px",
       },
       {
         id: "interaction",
@@ -145,8 +158,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         sourceWidth: 640,
         sourceHeight: 360,
         alt: "CeBIT 2016 interactive generative key visual — original project video by Javier Garcia Martin",
-        caption:
-          "Original 17-second project video, embedded from the Vimeo account linked in the Behance case.",
+        caption: "CeBIT 2016 — the generative key visual in motion.",
         brief: "Original Vimeo embed extracted from the owner-supplied Behance HTML.",
         suggestedFilename: "cebit-interaction.mp4",
         aspectRatio: "16 / 9",
@@ -175,15 +187,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         recommendedDimensions: "1400 × 1014 px",
       },
     ],
-    visualSequence: [
-      { imageId: "interaction", eyebrow: "Interaction", title: "The visual in motion." },
-      { imageId: "system", eyebrow: "System structure", title: "How the layers work together." },
-      {
-        imageId: "tool",
-        eyebrow: "Generative creation tool",
-        title: "An interface for configuring the composition.",
-      },
-    ],
+    visualSequence: [],
     externalLinks: [
       {
         label: "Original project documentation on Behance",

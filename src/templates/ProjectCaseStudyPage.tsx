@@ -17,7 +17,9 @@ const sectionClass =
   "relative border-b border-line px-[3vw] py-25 max-[800px]:px-[5vw] max-[800px]:py-18.75";
 
 function ProjectHero({ project }: { project: ProjectCaseStudy }) {
-  const heroMedia = project.imageSlots.find((media) => media.id === "hero");
+  const heroMedia = project.imageSlots.find(
+    (media) => media.id === (project.heroMediaId ?? "hero"),
+  );
   const metadata = [
     ["My role", project.role],
     ["Year", project.year?.toString()],
@@ -26,6 +28,7 @@ function ProjectHero({ project }: { project: ProjectCaseStudy }) {
     ["Duration", project.duration],
     ["Collaboration", project.collaboration],
     ["Areas", project.areas.join(" / ")],
+    ["Technologies", project.technologies.join(" · ")],
   ].filter((item): item is [string, string] => Boolean(item[1]));
 
   return (
@@ -42,8 +45,13 @@ function ProjectHero({ project }: { project: ProjectCaseStudy }) {
             className="text-[clamp(68px,11vw,172px)] leading-[.85] font-medium tracking-heading"
             data-distort-title
           >
-            {project.title}
+            {project.displayTitle ?? project.title}
           </h1>
+          {project.subtitle ? (
+            <p className="mt-5 max-w-full text-[clamp(24px,4vw,56px)] leading-[1.1] tracking-heading [overflow-wrap:anywhere]">
+              {project.subtitle}
+            </p>
+          ) : null}
         </ExpertiseEffects>
 
         <p className="col-start-2 m-0 max-w-200 text-[clamp(20px,2vw,30px)] leading-[1.4] tracking-[-.02em]">
@@ -105,7 +113,7 @@ function ProjectContext({ project }: { project: ProjectCaseStudy }) {
   );
 }
 
-function Contribution({ project }: { project: ProjectCaseStudy }) {
+function Contribution({ project, number = 2 }: { project: ProjectCaseStudy; number?: number }) {
   if (!project.contribution.length && !project.approach.length) return null;
 
   return (
@@ -113,7 +121,7 @@ function Contribution({ project }: { project: ProjectCaseStudy }) {
       className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 max-[800px]:gap-10`}
       id="contribution"
     >
-      <p className={labelClass}>02 / Contribution</p>
+      <p className={labelClass}>{String(number).padStart(2, "0")} / Contribution</p>
 
       <div className="grid grid-cols-2 gap-[7%] max-[800px]:grid-cols-1 max-[800px]:gap-10">
         <div>
@@ -145,18 +153,23 @@ function Contribution({ project }: { project: ProjectCaseStudy }) {
   );
 }
 
-function VisualSequence({ project }: { project: ProjectCaseStudy }) {
-  if (!project.visualSequence.length) return null;
+function VisualSequence({ project, number = 3 }: { project: ProjectCaseStudy; number?: number }) {
+  const assignedMedia = new Set([
+    project.heroMediaId ?? "hero",
+    ...(project.storySections?.flatMap((section) => section.mediaIds ?? []) ?? []),
+  ]);
+  const sequence = project.visualSequence.filter((item) => !assignedMedia.has(item.imageId));
+  if (!sequence.length) return null;
 
   const fullWidthMedia =
     project.slug === "core-one" || project.slug === "nti" || Boolean(project.storySections);
 
   return (
     <section className={sectionClass} id="project-sequence">
-      <p className={labelClass}>03 / Project sequence</p>
+      <p className={labelClass}>{String(number).padStart(2, "0")} / Project sequence</p>
 
       <div className="mt-14 grid gap-24 max-[800px]:mt-10 max-[800px]:gap-15">
-        {project.visualSequence.map((item) => {
+        {sequence.map((item) => {
           const media = project.imageSlots.find((candidate) => candidate.id === item.imageId);
 
           if (
@@ -196,7 +209,13 @@ function VisualSequence({ project }: { project: ProjectCaseStudy }) {
   );
 }
 
-function TechnicalChallenges({ project }: { project: ProjectCaseStudy }) {
+function TechnicalChallenges({
+  project,
+  number = 4,
+}: {
+  project: ProjectCaseStudy;
+  number?: number;
+}) {
   if (!project.technicalChallenges.length) return null;
 
   return (
@@ -204,7 +223,7 @@ function TechnicalChallenges({ project }: { project: ProjectCaseStudy }) {
       className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 max-[800px]:gap-10`}
       id="technical-challenges"
     >
-      <p className={labelClass}>04 / Technical challenges</p>
+      <p className={labelClass}>{String(number).padStart(2, "0")} / Technical challenges</p>
 
       <div className="border-t border-ink">
         {project.technicalChallenges.map((challenge, index) => (
@@ -237,14 +256,16 @@ function TechnicalChallenges({ project }: { project: ProjectCaseStudy }) {
   );
 }
 
-function Outcome({ project }: { project: ProjectCaseStudy }) {
+function Outcome({ project, number = 5 }: { project: ProjectCaseStudy; number?: number }) {
   if (!project.outcome) return null;
   return (
     <section
       className={`${sectionClass} grid grid-cols-[17%_1fr] bg-ink text-paper max-[800px]:grid-cols-1 max-[800px]:gap-10`}
       id="outcome"
     >
-      <p className={labelClass}>{project.contentNotice ? "05 / Verified scope" : "05 / Outcome"}</p>
+      <p className={labelClass}>
+        {String(number).padStart(2, "0")} / {project.contentNotice ? "Verified scope" : "Outcome"}
+      </p>
 
       <div>
         <p
@@ -265,6 +286,26 @@ function Outcome({ project }: { project: ProjectCaseStudy }) {
 }
 
 export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
+  const storyCount = project.storySections?.length;
+  const hasContribution = Boolean(project.contribution.length || project.approach.length);
+  const assignedMedia = new Set([
+    project.heroMediaId ?? "hero",
+    ...(project.storySections?.flatMap((section) => section.mediaIds ?? []) ?? []),
+  ]);
+  const hasSequence = project.visualSequence.some((item) => !assignedMedia.has(item.imageId));
+  const contributionNumber = storyCount === undefined ? undefined : storyCount + 1;
+  const sequenceNumber =
+    storyCount === undefined ? undefined : storyCount + Number(hasContribution) + 1;
+  const technicalNumber =
+    storyCount === undefined
+      ? undefined
+      : storyCount + Number(hasContribution) + Number(hasSequence) + 1;
+  const outcomeNumber =
+    technicalNumber === undefined
+      ? undefined
+      : technicalNumber + Number(Boolean(project.technicalChallenges.length));
+  const referencesNumber =
+    outcomeNumber === undefined ? undefined : outcomeNumber + Number(Boolean(project.outcome));
   return (
     <>
       <ScrollEffects atmosphere={false} />
@@ -283,22 +324,43 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
                   id={section.id}
                   key={section.id}
                 >
-                  <p className={labelClass}>{String(index + 1).padStart(2, "0")} / Project story</p>
-                  <div className="max-w-225">
-                    <h2 className="text-[clamp(38px,5vw,72px)] leading-[1.02] font-medium tracking-heading">
-                      {section.title}
-                    </h2>
-                    <p className="mt-8 text-lg leading-[1.65]">{section.text}</p>
+                  <p className={labelClass}>
+                    {String(index + 1).padStart(2, "0")} / {section.label ?? "Project story"}
+                  </p>
+                  <div className="min-w-0">
+                    <div className="max-w-225">
+                      <h2 className="text-[clamp(38px,5vw,72px)] leading-[1.02] font-medium tracking-heading">
+                        {section.title}
+                      </h2>
+                      <p className="mt-8 text-lg leading-[1.65]">{section.text}</p>
+                    </div>
+                    {section.mediaIds?.map((id) => {
+                      const media = project.imageSlots.find((slot) => slot.id === id);
+                      if (
+                        !media ||
+                        id === (project.heroMediaId ?? "hero") ||
+                        (project.omitMissingMedia &&
+                          !media.src &&
+                          !media.videoSrc &&
+                          !media.vimeoId)
+                      )
+                        return null;
+                      return (
+                        <div className="mt-12 max-[800px]:mt-8" key={id}>
+                          <ProjectMedia media={media} sizes="(max-width: 800px) 90vw, 78vw" />
+                        </div>
+                      );
+                    })}
                   </div>
                 </section>
               ))
             ) : (
               <ProjectContext project={project} />
             )}
-            <Contribution project={project} />
-            <VisualSequence project={project} />
-            <TechnicalChallenges project={project} />
-            <Outcome project={project} />
+            <Contribution project={project} number={contributionNumber} />
+            <VisualSequence project={project} number={sequenceNumber} />
+            <TechnicalChallenges project={project} number={technicalNumber} />
+            <Outcome project={project} number={outcomeNumber} />
           </>
         )}
 
@@ -307,6 +369,11 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
             className={`${sectionClass} flex flex-wrap gap-x-10 gap-y-4`}
             aria-label="Project references"
           >
+            {referencesNumber !== undefined ? (
+              <h2 className={`${labelClass} w-full`}>
+                {String(referencesNumber).padStart(2, "0")} / References
+              </h2>
+            ) : null}
             {project.externalLinks.map((link) => (
               <a
                 className="interactive-underline inline-block py-2 text-sm"

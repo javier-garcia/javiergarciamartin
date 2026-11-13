@@ -52,7 +52,7 @@ Remaining content questions: collaborators, detailed personal responsibilities a
 
 ## Validation
 
-TypeScript, ESLint and the production build passed during implementation. The build generated `/work/cebit` alongside the existing published routes. No browser visual review has been performed; responsive classes follow the existing card and section breakpoints, including the no-media variant. Original media and Vimeo integration are complete. A browser visual review remains pending.
+TypeScript, ESLint and the production build passed during implementation. The build generated `/work/cebit` alongside the existing published routes. The editorial refinement was reviewed in Chrome at 1440 × 1000, 390 × 844 and 320 × 740. No horizontal overflow or overflowing headings were detected. The two story images loaded once each, in context, and exactly one lazy Vimeo iframe appeared before the story. The homepage card uses the derived cover and display title. Existing Morae, Core One and NTI routes returned 200 without page script errors. Original media and Vimeo integration are complete.
 
 ## Changed files
 
@@ -73,3 +73,17 @@ Modified:
 - `src/lib/seo.ts`: broader homepage metadata.
 - `src/templates/ProjectCaseStudyPage.tsx`: optional narrative sections, project metadata and reference links.
 - `src/components/case-studies/ProjectMedia.tsx`: optional Vimeo player.
+
+## CeBIT editorial refinement
+
+- Optional `displayTitle` and `subtitle` separate the visible CeBIT heading from the full `title` retained for SEO. Existing projects continue to use `title` unchanged.
+- `heroMediaId` selects the interaction video immediately after introduction and metadata, without changing the default `hero` slot for existing projects.
+- Optional `ProjectStorySection.mediaIds` references existing media slots and renders them using `ProjectMedia`. `label` provides the section eyebrow. Assigned hero/story media is excluded from the standalone visual sequence.
+- CeBIT follows: video → concept/context → system explanation and diagram → creation-tool explanation and interface → references → next project. No unconfirmed contribution or technical-decision section is published.
+- Confirmed technologies appear in project metadata even when the outcome is empty. Numbering follows the sections actually included in the story layout; legacy numbering is retained for other project templates.
+- `public/images/cebit-project-cover.webp` is a 1400 × 633 crop from the upper composition of `cebit-project-hero.webp` (left 0, top 0). The original 1400 × 1279 source is preserved unchanged. The derived cover is used by the homepage and page social metadata. Vimeo retains its hosted player/poster; no unrelated imagery or autoplay was added.
+- Reproduce the crop with the existing Sharp dependency: `sharp(source).extract({left:0,top:0,width:1400,height:633}).webp({quality:95}).toFile(destination)`.
+
+Content questions remain: collaborators, detailed personal responsibilities, technical decisions and specific rendering/animation libraries. No adoption, performance or business results are asserted.
+
+Browser playback limitation: Vimeo’s player returned a Cloudflare security check in automated Chrome, with a challenge-domain DNS failure. The iframe URL, lazy loading, title, aspect ratio and direct fallback link were verified; successful playback could not be verified in this environment. Recheck playback in a normal browser. Screenshots used for review are `/tmp/cebit-desktop.png`, `/tmp/cebit-mobile.png`, `/tmp/cebit-small-mobile.png` and `/tmp/cebit-home-mobile.png`.
