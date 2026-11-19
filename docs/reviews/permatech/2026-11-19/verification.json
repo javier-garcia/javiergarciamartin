@@ -1,0 +1,51 @@
+{
+  "verifiedAt": "2026-11-19T11:26:47.006Z",
+  "browser": "Installed Google Chrome through Playwright",
+  "checks": [
+    {
+      "viewport": 1440,
+      "result": "passed",
+      "checks": [
+        "chapter order and early hero",
+        "correct hardware and design media",
+        "terminal images optional only",
+        "video metadata loaded",
+        "all four evidence tabs and original download hashes",
+        "keyboard navigation",
+        "internal review notes absent; baseline/capture totals remain distinct",
+        "no horizontal overflow or runtime/HTTP errors",
+        "Selected work card preserved"
+      ]
+    },
+    {
+      "viewport": 390,
+      "result": "passed",
+      "checks": [
+        "chapter order and early hero",
+        "correct hardware and design media",
+        "terminal images optional only",
+        "video metadata loaded",
+        "all four evidence tabs and original download hashes",
+        "keyboard navigation",
+        "internal review notes absent; baseline/capture totals remain distinct",
+        "no horizontal overflow or runtime/HTTP errors",
+        "Selected work card preserved"
+      ]
+    },
+    {
+      "viewport": 320,
+      "result": "passed",
+      "checks": [
+        "chapter order and early hero",
+        "correct hardware and design media",
+        "terminal images optional only",
+        "video metadata loaded",
+        "all four evidence tabs and original download hashes",
+        "keyboard navigation",
+        "internal review notes absent; baseline/capture totals remain distinct",
+        "no horizontal overflow or runtime/HTTP errors",
+        "Selected work card preserved"
+      ]
+    }
+  ]
+}

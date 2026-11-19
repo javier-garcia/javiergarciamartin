@@ -19,12 +19,12 @@ export async function generateMetadata({ params }: Props) {
 
   if (!project || project.published === false) return {};
 
-  const heroImage = project.imageSlots.find((media) => media.id === "hero")?.src;
   const heroMedia = project.imageSlots.find((media) => media.id === "hero");
+  const heroImage = heroMedia?.src;
 
   return createPageMetadata({
-    title: `${project.title} project case study`,
-    description: project.intro.split("\n\n")[0],
+    title: project.seoTitle ?? `${project.title} project case study`,
+    description: project.seoDescription ?? project.intro.split("\n\n")[0],
     path: `/work/${project.slug}`,
     image: heroImage,
     imageWidth: heroImage ? heroMedia?.sourceWidth : undefined,

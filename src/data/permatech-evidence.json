@@ -1,0 +1,65 @@
+{
+  "messageId": "64267b73-6e4c-44be-95a0-75ebef87bbe0",
+  "readings": [
+    {
+      "metric": "air_temperature",
+      "value": 21.24,
+      "unit": "°C",
+      "label": "Air temperature"
+    },
+    {
+      "metric": "relative_humidity",
+      "value": 73.14,
+      "unit": "%",
+      "label": "Relative humidity"
+    },
+    {
+      "metric": "atmospheric_pressure",
+      "value": 951.31,
+      "unit": "hPa",
+      "label": "Pressure"
+    },
+    {
+      "metric": "wind_speed",
+      "value": 0,
+      "unit": "m/s",
+      "label": "Wind speed"
+    },
+    {
+      "metric": "wind_direction",
+      "value": 0,
+      "unit": "deg",
+      "label": "Wind direction"
+    }
+  ],
+  "artifacts": [
+    {
+      "filename": "mqtt.payload.json",
+      "description": "The original non-retained MQTT publication from physical lark-001, delivered at QoS 0.",
+      "raw": "{\"schemaVersion\":1,\"messageId\":\"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\"deviceId\":\"lark-001\",\"timestamp\":\"2026-11-19T10:26:36Z\",\"readings\":[{\"metric\":\"air_temperature\",\"value\":21.24,\"unit\":\"°C\"},{\"metric\":\"relative_humidity\",\"value\":73.14,\"unit\":\"%\"},{\"metric\":\"atmospheric_pressure\",\"value\":951.31,\"unit\":\"hPa\"},{\"metric\":\"wind_speed\",\"value\":0,\"unit\":\"m/s\"},{\"metric\":\"wind_direction\",\"value\":0,\"unit\":\"deg\"}]}",
+      "sha256": "5c54172252738b2862bf01a6c677f38a280fae359f6cb2912e7cbf3094b076a2",
+      "path": "/evidence/permatech/2026-11-19/mqtt.payload.json"
+    },
+    {
+      "filename": "postgres.observation.json",
+      "description": "The parameterized PostgreSQL query returned five readings, with is_virtual=false and the same message UUID.",
+      "raw": "[\n  {\n    \"message_id\": \"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\n    \"device_id\": \"lark-001\",\n    \"is_virtual\": false,\n    \"captured_at\": \"2026-11-19T10:26:36.000000Z\",\n    \"received_at\": \"2026-11-19T10:26:36.719077Z\",\n    \"reading_id\": \"262524\",\n    \"metric_key\": \"air_temperature\",\n    \"value\": 21.24,\n    \"unit\": \"°C\",\n    \"reading_captured_at\": \"2026-11-19T10:26:36.000000Z\"\n  },\n  {\n    \"message_id\": \"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\n    \"device_id\": \"lark-001\",\n    \"is_virtual\": false,\n    \"captured_at\": \"2026-11-19T10:26:36.000000Z\",\n    \"received_at\": \"2026-11-19T10:26:36.719077Z\",\n    \"reading_id\": \"262526\",\n    \"metric_key\": \"atmospheric_pressure\",\n    \"value\": 951.31,\n    \"unit\": \"hPa\",\n    \"reading_captured_at\": \"2026-11-19T10:26:36.000000Z\"\n  },\n  {\n    \"message_id\": \"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\n    \"device_id\": \"lark-001\",\n    \"is_virtual\": false,\n    \"captured_at\": \"2026-11-19T10:26:36.000000Z\",\n    \"received_at\": \"2026-11-19T10:26:36.719077Z\",\n    \"reading_id\": \"262525\",\n    \"metric_key\": \"relative_humidity\",\n    \"value\": 73.14,\n    \"unit\": \"%\",\n    \"reading_captured_at\": \"2026-11-19T10:26:36.000000Z\"\n  },\n  {\n    \"message_id\": \"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\n    \"device_id\": \"lark-001\",\n    \"is_virtual\": false,\n    \"captured_at\": \"2026-11-19T10:26:36.000000Z\",\n    \"received_at\": \"2026-11-19T10:26:36.719077Z\",\n    \"reading_id\": \"262528\",\n    \"metric_key\": \"wind_direction\",\n    \"value\": 0,\n    \"unit\": \"deg\",\n    \"reading_captured_at\": \"2026-11-19T10:26:36.000000Z\"\n  },\n  {\n    \"message_id\": \"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\n    \"device_id\": \"lark-001\",\n    \"is_virtual\": false,\n    \"captured_at\": \"2026-11-19T10:26:36.000000Z\",\n    \"received_at\": \"2026-11-19T10:26:36.719077Z\",\n    \"reading_id\": \"262527\",\n    \"metric_key\": \"wind_speed\",\n    \"value\": 0,\n    \"unit\": \"m/s\",\n    \"reading_captured_at\": \"2026-11-19T10:26:36.000000Z\"\n  }\n]\n",
+      "sha256": "afd7cba3f6c000676e2b6a75e485df506009efc0c03efc5451ff129564c85a53",
+      "path": "/evidence/permatech/2026-11-19/postgres.observation.json"
+    },
+    {
+      "filename": "websocket.event.json",
+      "description": "The telemetry.created event was emitted by the ingestion service after the database transaction committed.",
+      "raw": "{\"schemaVersion\":1,\"messageId\":\"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\"deviceId\":\"lark-001\",\"timestamp\":\"2026-11-19T10:26:36.000Z\",\"readings\":[{\"metric\":\"air_temperature\",\"value\":21.24,\"unit\":\"°C\"},{\"metric\":\"relative_humidity\",\"value\":73.14,\"unit\":\"%\"},{\"metric\":\"atmospheric_pressure\",\"value\":951.31,\"unit\":\"hPa\"},{\"metric\":\"wind_speed\",\"value\":0,\"unit\":\"m/s\"},{\"metric\":\"wind_direction\",\"value\":0,\"unit\":\"deg\"}],\"type\":\"telemetry.created\",\"receivedAt\":\"2026-11-19T10:26:36.719Z\"}",
+      "sha256": "a98271e0d6fef821d3285dac39a4d019b58981c098e1dc7f613fc617d82c471f",
+      "path": "/evidence/permatech/2026-11-19/websocket.event.json"
+    },
+    {
+      "filename": "rest.latest.json",
+      "description": "The authoritative latest response was captured before the next publication replaced this observation.",
+      "raw": "{\"data\":{\"deviceId\":\"lark-001\",\"readings\":[{\"metric\":\"air_temperature\",\"value\":21.24,\"unit\":\"°C\",\"messageId\":\"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\"capturedAt\":\"2026-11-19T10:26:36.000Z\",\"receivedAt\":\"2026-11-19T10:26:36.719Z\"},{\"metric\":\"atmospheric_pressure\",\"value\":951.31,\"unit\":\"hPa\",\"messageId\":\"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\"capturedAt\":\"2026-11-19T10:26:36.000Z\",\"receivedAt\":\"2026-11-19T10:26:36.719Z\"},{\"metric\":\"relative_humidity\",\"value\":73.14,\"unit\":\"%\",\"messageId\":\"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\"capturedAt\":\"2026-11-19T10:26:36.000Z\",\"receivedAt\":\"2026-11-19T10:26:36.719Z\"},{\"metric\":\"wind_direction\",\"value\":0,\"unit\":\"deg\",\"messageId\":\"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\"capturedAt\":\"2026-11-19T10:26:36.000Z\",\"receivedAt\":\"2026-11-19T10:26:36.719Z\"},{\"metric\":\"wind_speed\",\"value\":0,\"unit\":\"m/s\",\"messageId\":\"64267b73-6e4c-44be-95a0-75ebef87bbe0\",\"capturedAt\":\"2026-11-19T10:26:36.000Z\",\"receivedAt\":\"2026-11-19T10:26:36.719Z\"}]},\"meta\":{\"generatedAt\":\"2026-11-19T10:26:36.758Z\"}}",
+      "sha256": "1af2aec3784a443b5ae4da347430081a38ccfe9106ea60133a483ed82061d2ab",
+      "path": "/evidence/permatech/2026-11-19/rest.latest.json"
+    }
+  ]
+}

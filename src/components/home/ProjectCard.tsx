@@ -15,9 +15,7 @@ export function ProjectCard({
   const projectMedia =
     project.imageSlots.find((media) => media.id === "cover") ??
     project.imageSlots.find((media) => media.id === "hero");
-  const hasMedia = Boolean(
-    projectMedia && (!project.omitMissingMedia || projectMedia.src || projectMedia.videoSrc),
-  );
+  const hasMedia = Boolean(projectMedia && (!project.omitMissingMedia || projectMedia.src));
   return (
     <article
       className="scroll-reveal border-b border-line py-14 max-[800px]:py-10"

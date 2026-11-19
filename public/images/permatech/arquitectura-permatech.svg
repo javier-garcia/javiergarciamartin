@@ -1,0 +1,30 @@
+<svg font-family="-apple-system-body, ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol" font-weight="400" fill="currentColor" style="color:rgb(237, 237, 237)" viewBox="0 0 340 415" width="100%" xmlns="http://www.w3.org/2000/svg">
+<rect x="65" y="15" width="210" height="48" rx="5" fill="#1B3034" stroke="#86A68A" stroke-width=".7"/>
+<text x="170" y="34" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#E9E3D0">Physical environment</text>
+<text x="170" y="49" text-anchor="middle" font-size="9" fill="#86A68A">DFRobot Lark · ESP8266</text>
+<path d="M170 63v20 m-4 -5l4 5 4 -5" stroke="#86A68A" fill="none"/>
+<rect x="65" y="83" width="210" height="48" rx="5" fill="#1B3034" stroke="#83B6BF" stroke-width=".7"/>
+<text x="170" y="102" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#E9E3D0">Communication layer</text>
+<text x="170" y="117" text-anchor="middle" font-size="9" fill="#83B6BF">Wi-Fi · MQTT · Aedes</text>
+<path d="M170 131v20 m-4 -5l4 5 4 -5" stroke="#86A68A" fill="none"/>
+<rect x="65" y="151" width="210" height="48" rx="5" fill="#1B3034" stroke="#D4AC77" stroke-width=".7"/>
+<text x="170" y="170" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#E9E3D0">Telemetry ingestion</text>
+<text x="170" y="185" text-anchor="middle" font-size="9" fill="#D4AC77">Node.js · TypeScript · Zod</text>
+<path d="M170 199v20 m-4 -5l4 5 4 -5" stroke="#86A68A" fill="none"/>
+<rect x="65" y="219" width="210" height="48" rx="5" fill="#1B3034" stroke="#86A68A" stroke-width=".7"/>
+<text x="170" y="238" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#E9E3D0">Data persistence</text>
+<text x="170" y="253" text-anchor="middle" font-size="9" fill="#86A68A">PostgreSQL · Drizzle ORM</text>
+<path d="M170 267V278H84V290" stroke="#86A68A" fill="none"/>
+<path d="M170 267V278H256V290" stroke="#D4AC77" fill="none" stroke-dasharray="3 3"/>
+<text x="260" y="274" font-size="8" fill="#D4AC77" text-anchor="middle">AFTER COMMIT</text>
+<rect x="8" y="290" width="152" height="43" rx="5" fill="#1B3034" stroke="#83B6BF" stroke-width=".7"/>
+<text x="84" y="308" text-anchor="middle" font-size="12" fill="#E9E3D0">REST API</text>
+<text x="84" y="321" text-anchor="middle" font-size="9" fill="#83B6BF">Latest · History</text>
+<rect x="180" y="290" width="152" height="43" rx="5" fill="#1B3034" stroke="#83B6BF" stroke-width=".7"/>
+<text x="256" y="308" text-anchor="middle" font-size="12" fill="#E9E3D0">WebSocket</text>
+<text x="256" y="321" text-anchor="middle" font-size="9" fill="#83B6BF">Committed events</text>
+<path d="M84 333V344H170V356M256 333V344H170" stroke="#86A68A" fill="none"/>
+<rect x="65" y="356" width="210" height="48" rx="5" fill="#29443D" stroke="#D4AC77" stroke-width=".7"/>
+<text x="170" y="376" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#E9E3D0">Living Systems</text>
+<text x="170" y="391" text-anchor="middle" font-size="9" fill="#D4AC77">Next.js · React · Real-time UI</text>
+</svg>

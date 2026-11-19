@@ -2,11 +2,15 @@ import Link from "next/link";
 import { MoraeStory } from "@/components/case-studies/MoraeStory";
 import { ExpertiseEffects } from "@/components/home/ExpertiseEffects";
 import { ScrollEffects } from "@/components/home/ScrollEffects";
+import { PermaTechEvidence } from "@/components/case-studies/PermaTechEvidence";
+import { PermaTechReliability } from "@/components/case-studies/PermaTechReliability";
+import { PermaTechDesign } from "@/components/case-studies/PermaTechDesign";
+import { PermaTechArchitecture } from "@/components/case-studies/PermaTechArchitecture";
 import { ProjectMedia } from "@/components/case-studies/ProjectMedia";
 import { CaseHeader } from "@/components/layout/CaseHeader";
 import { ContactFooter } from "@/components/layout/ContactFooter";
 import { labelClass, smallMetaClass } from "@/components/styles";
-import type { ProjectCaseStudy } from "@/data/case-studies";
+import type { ProjectCaseStudy, ProjectImageSlot } from "@/data/case-studies";
 
 type Props = {
   project: ProjectCaseStudy;
@@ -15,6 +19,16 @@ type Props = {
 
 const sectionClass =
   "relative border-b border-line px-[3vw] py-25 max-[800px]:px-[5vw] max-[800px]:py-18.75";
+
+function getStoryMedia(project: ProjectCaseStudy, id: string | undefined) {
+  if (!id || id === (project.heroMediaId ?? "hero")) return undefined;
+
+  const media = project.imageSlots.find((slot) => slot.id === id);
+  if (!media || (project.omitMissingMedia && !media.src && !media.videoSrc && !media.vimeoId)) {
+    return undefined;
+  }
+  return media;
+}
 
 function ProjectHero({ project }: { project: ProjectCaseStudy }) {
   const heroMedia = project.imageSlots.find(
@@ -51,6 +65,9 @@ function ProjectHero({ project }: { project: ProjectCaseStudy }) {
             <p className="mt-5 max-w-full text-[clamp(24px,4vw,56px)] leading-[1.1] tracking-heading [overflow-wrap:anywhere]">
               {project.subtitle}
             </p>
+          ) : null}
+          {project.tagline ? (
+            <p className="mt-5 text-lg leading-[1.5] text-muted">{project.tagline}</p>
           ) : null}
         </ExpertiseEffects>
 
@@ -158,7 +175,11 @@ function Contribution({ project, number = 2 }: { project: ProjectCaseStudy; numb
 function VisualSequence({ project, number = 3 }: { project: ProjectCaseStudy; number?: number }) {
   const assignedMedia = new Set([
     project.heroMediaId ?? "hero",
-    ...(project.storySections?.flatMap((section) => section.mediaIds ?? []) ?? []),
+    ...(project.storySections?.flatMap((section) => [
+      ...(section.mediaIds ?? []),
+      ...(section.mediaGalleryIds ?? []),
+      section.detail?.mediaId,
+    ]) ?? []),
   ]);
   const sequence = project.visualSequence.filter((item) => !assignedMedia.has(item.imageId));
   if (!sequence.length) return null;
@@ -292,7 +313,11 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
   const hasContribution = Boolean(project.contribution.length || project.approach.length);
   const assignedMedia = new Set([
     project.heroMediaId ?? "hero",
-    ...(project.storySections?.flatMap((section) => section.mediaIds ?? []) ?? []),
+    ...(project.storySections?.flatMap((section) => [
+      ...(section.mediaIds ?? []),
+      ...(section.mediaGalleryIds ?? []),
+      section.detail?.mediaId,
+    ]) ?? []),
   ]);
   const hasSequence = project.visualSequence.some((item) => !assignedMedia.has(item.imageId));
   const contributionNumber = storyCount === undefined ? undefined : storyCount + 1;
@@ -320,94 +345,137 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
         ) : (
           <>
             {project.storySections ? (
-              project.storySections.map((section, index) => (
-                <section
-                  className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 max-[800px]:gap-10`}
-                  id={section.id}
-                  key={section.id}
-                >
-                  <p className={labelClass}>
-                    {String(index + 1).padStart(2, "0")} / {section.label ?? "Project story"}
-                  </p>
-                  <div className="min-w-0">
-                    <div className="max-w-225">
-                      <h2 className="text-[clamp(38px,5vw,72px)] leading-[1.02] font-medium tracking-heading">
-                        {section.title}
-                      </h2>
-                      {section.text.split("\n\n").map((paragraph) => (
-                        <p className="mt-8 text-lg leading-[1.65]" key={paragraph}>
-                          {paragraph}
-                        </p>
-                      ))}
-                      {section.responsibilities?.length ? (
-                        <ul
-                          className="mt-9 list-none border-t border-ink p-0"
-                          aria-label="Responsibilities"
-                        >
-                          {section.responsibilities.map((responsibility) => (
-                            <li
-                              className="border-b border-line py-4 text-base leading-[1.55]"
-                              key={responsibility}
-                            >
-                              {responsibility}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                      {section.closingText && !section.credits?.length ? (
-                        <p className="mt-8 text-lg leading-[1.65]">{section.closingText}</p>
-                      ) : null}
-                    </div>
-                  </div>
-                  {section.mediaIds?.map((id) => {
-                    const media = project.imageSlots.find((slot) => slot.id === id);
-                    if (
-                      !media ||
-                      id === (project.heroMediaId ?? "hero") ||
-                      (project.omitMissingMedia && !media.src && !media.videoSrc && !media.vimeoId)
-                    )
-                      return null;
-                    return (
-                      <div
-                        className={`mt-12 min-w-0 max-[800px]:mt-0 ${media.fullWidth ? "col-span-full" : "col-start-2 max-[800px]:col-start-1"}`}
-                        key={id}
-                        style={
-                          !media.fullWidth && !media.vimeoId
-                            ? { maxWidth: media.sourceWidth }
-                            : undefined
-                        }
-                      >
-                        <ProjectMedia
-                          media={media}
-                          sizes={
-                            media.fullWidth
-                              ? "(max-width: 800px) 90vw, 94vw"
-                              : "(max-width: 800px) 90vw, 78vw"
-                          }
-                        />
-                      </div>
-                    );
-                  })}
-                  {section.credits?.length ? (
-                    <div className="col-start-2 mt-10 max-w-225 border-t border-line pt-5 max-[800px]:col-start-1 max-[800px]:mt-0">
-                      <h3 className={smallMetaClass}>Campaign credits</h3>
-                      {section.closingText ? (
-                        <p className="mt-4 text-sm leading-[1.55] text-muted">
-                          {section.closingText}
-                        </p>
-                      ) : null}
-                      <dl className="mt-5 grid grid-cols-[1fr_2fr] gap-x-6 gap-y-4 text-sm leading-[1.55] max-[500px]:grid-cols-1 max-[500px]:gap-y-2">
-                        {section.credits.map((credit) => (
-                          <div className="contents" key={credit.role}>
-                            <dt className="text-muted max-[500px]:mt-3">{credit.role}</dt>
-                            <dd>{credit.names}</dd>
-                          </div>
+              project.storySections.map((section, index) => {
+                const gallery = section.mediaGalleryIds
+                  ?.map((id) => getStoryMedia(project, id))
+                  .filter((media): media is ProjectImageSlot => Boolean(media));
+                const detailMedia = getStoryMedia(project, section.detail?.mediaId);
+
+                return (
+                  <section
+                    className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 max-[800px]:gap-10`}
+                    id={section.id}
+                    key={section.id}
+                  >
+                    <p className={labelClass}>
+                      {String(index + 1).padStart(2, "0")} / {section.label ?? "Project story"}
+                    </p>
+                    <div className="min-w-0">
+                      <div className="max-w-225">
+                        <h2 className="text-[clamp(38px,5vw,72px)] leading-[1.02] font-medium tracking-heading">
+                          {section.title}
+                        </h2>
+                        {section.text.split("\n\n").map((paragraph) => (
+                          <p className="mt-8 text-lg leading-[1.65]" key={paragraph}>
+                            {paragraph}
+                          </p>
                         ))}
-                      </dl>
+                        {section.responsibilities?.length ? (
+                          <ul
+                            className="mt-9 list-none border-t border-ink p-0"
+                            aria-label="Responsibilities"
+                          >
+                            {section.responsibilities.map((responsibility) => (
+                              <li
+                                className="border-b border-line py-4 text-base leading-[1.55]"
+                                key={responsibility}
+                              >
+                                {responsibility}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        {section.closingText && !section.credits?.length ? (
+                          <p className="mt-8 text-lg leading-[1.65]">{section.closingText}</p>
+                        ) : null}
+                      </div>
                     </div>
-                  ) : null}
-                </section>
-              ))
+                    {section.illustration ? (
+                      <div className="col-span-full mt-12 min-w-0 max-[800px]:mt-0">
+                        {section.illustration === "permatech-architecture" ? (
+                          <PermaTechArchitecture />
+                        ) : null}
+                        {section.illustration === "permatech-evidence" ? (
+                          <PermaTechEvidence />
+                        ) : null}
+                        {section.illustration === "permatech-reliability" ? (
+                          <PermaTechReliability />
+                        ) : null}
+                        {section.illustration === "permatech-design" ? <PermaTechDesign /> : null}
+                      </div>
+                    ) : null}
+                    {section.mediaIds?.map((id) => {
+                      const media = getStoryMedia(project, id);
+                      if (!media) return null;
+                      return (
+                        <div
+                          className={`mt-12 min-w-0 max-[800px]:mt-0 ${media.fullWidth ? "col-span-full" : "col-start-2 max-[800px]:col-start-1"}`}
+                          key={id}
+                          style={
+                            !media.fullWidth && !media.vimeoId
+                              ? { maxWidth: media.sourceWidth }
+                              : undefined
+                          }
+                        >
+                          <ProjectMedia
+                            media={media}
+                            sizes={
+                              media.fullWidth
+                                ? "(max-width: 800px) 90vw, 94vw"
+                                : "(max-width: 800px) 90vw, 78vw"
+                            }
+                          />
+                        </div>
+                      );
+                    })}
+                    {gallery?.length ? (
+                      <div className="col-start-2 mt-12 grid min-w-0 grid-cols-2 items-start gap-6 max-[800px]:col-start-1 max-[800px]:mt-0 max-[800px]:grid-cols-1">
+                        {gallery.map((media) => (
+                          <ProjectMedia
+                            key={media.id}
+                            media={media}
+                            sizes="(max-width: 800px) 90vw, 39vw"
+                          />
+                        ))}
+                      </div>
+                    ) : null}
+                    {section.detail ? (
+                      <div
+                        className="col-start-2 mt-12 min-w-0 max-w-225 border-t border-line pt-5 max-[800px]:col-start-1 max-[800px]:mt-0"
+                        id={section.detail.id}
+                      >
+                        <h3 className="text-2xl font-medium tracking-heading">
+                          {section.detail.title}
+                        </h3>
+                        <p className="mt-4 text-base leading-[1.6]">{section.detail.text}</p>
+                        {detailMedia ? (
+                          <div className="mt-6">
+                            <ProjectMedia media={detailMedia} />
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : null}
+                    {section.credits?.length ? (
+                      <div className="col-start-2 mt-10 max-w-225 border-t border-line pt-5 max-[800px]:col-start-1 max-[800px]:mt-0">
+                        <h3 className={smallMetaClass}>Campaign credits</h3>
+                        {section.closingText ? (
+                          <p className="mt-4 text-sm leading-[1.55] text-muted">
+                            {section.closingText}
+                          </p>
+                        ) : null}
+                        <dl className="mt-5 grid grid-cols-[1fr_2fr] gap-x-6 gap-y-4 text-sm leading-[1.55] max-[500px]:grid-cols-1 max-[500px]:gap-y-2">
+                          {section.credits.map((credit) => (
+                            <div className="contents" key={credit.role}>
+                              <dt className="text-muted max-[500px]:mt-3">{credit.role}</dt>
+                              <dd>{credit.names}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </div>
+                    ) : null}
+                  </section>
+                );
+              })
             ) : (
               <ProjectContext project={project} />
             )}
@@ -432,6 +500,8 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
               <a
                 className="interactive-underline inline-block py-2 text-sm"
                 href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 key={link.href}
               >
                 {link.label} ↗

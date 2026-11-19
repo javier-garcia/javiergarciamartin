@@ -1,3 +1,5 @@
+import { permatech } from "./permatech";
+
 export type ProjectImageSlot = {
   fullWidth?: boolean;
   id: string;
@@ -38,13 +40,18 @@ export type ProjectCategory =
   | "Creative technology"
   | "Interactive experiences"
   | "Data visualization"
-  | "IoT";
+  | "IoT"
+  | "Full-stack development";
 
 export type ProjectStorySection = {
   credits?: { role: string; names: string }[];
   responsibilities?: string[];
   closingText?: string;
   mediaIds?: string[];
+  mediaGalleryIds?: string[];
+  illustration?:
+    "permatech-architecture" | "permatech-evidence" | "permatech-reliability" | "permatech-design";
+  detail?: { id: string; title: string; text: string; mediaId?: string };
   label?: string;
   id: string;
   title: string;
@@ -54,10 +61,13 @@ export type ProjectStorySection = {
 export type ProjectCaseStudy = {
   displayTitle?: string;
   subtitle?: string;
+  tagline?: string;
+  seoTitle?: string;
+  seoDescription?: string;
   heroMediaId?: string;
   categories?: ProjectCategory[];
   projectType?: "Commercial" | "Personal" | "Academic" | "Experimental";
-  year?: number;
+  year?: number | string;
   featured?: boolean;
   externalLinks?: { label: string; href: string }[];
   storySections?: ProjectStorySection[];
@@ -94,6 +104,7 @@ export type ProjectCaseStudy = {
 };
 
 export const projectCaseStudies: ProjectCaseStudy[] = [
+  permatech,
   // Starspitter: author-confirmed installation facts; 2013 supported by original repository history.
   {
     slug: "starspitter",
@@ -915,7 +926,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         title: "The same page across screen sizes.",
       },
     ],
-    nextProject: "morae",
+    nextProject: "permatech",
     home: {
       section: "selected-work",
       order: 3,
