@@ -31,6 +31,7 @@ export type TechnicalChallenge = {
 
 export type VisualSequenceItem = {
   imageId: string;
+  pairedImageId?: string;
   eyebrow: string;
   title: string;
   text?: string;
@@ -93,6 +94,7 @@ export type ProjectCaseStudy = {
   technicalChallenges: TechnicalChallenge[];
   technicalChallengesLabel?: string;
   outcome: string;
+  outcomeHref?: string;
   imageSlots: ProjectImageSlot[];
   visualSequence: VisualSequenceItem[];
   nextProject: string;

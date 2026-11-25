@@ -193,26 +193,37 @@ function VisualSequence({ project, number = 3 }: { project: ProjectCaseStudy; nu
     <section className={sectionClass} id="project-sequence">
       <p className={labelClass}>{String(number).padStart(2, "0")} / Project sequence</p>
 
-      <div className="mt-14 grid gap-24 max-[800px]:mt-10 max-[800px]:gap-15">
+      <div
+        className={`mt-14 grid max-[800px]:mt-10 ${project.slug === "ukf" ? "gap-14 max-[800px]:gap-10" : "gap-24 max-[800px]:gap-15"}`}
+      >
         {sequence.map((item) => {
           const media = getStoryMedia(project, item.imageId);
           if (!media) return null;
+          const pairedMedia = getStoryMedia(project, item.pairedImageId);
+          const stacked = fullWidthMedia || media.fullWidth || pairedMedia;
 
           return (
             <article
               className={
-                fullWidthMedia
+                stacked
                   ? "flex flex-col gap-8 max-[800px]:gap-7"
                   : "grid grid-cols-[1.45fr_.55fr] items-end gap-[6%] odd:[&>figure]:order-2 max-[800px]:grid-cols-1 max-[800px]:gap-7 max-[800px]:odd:[&>figure]:order-none"
               }
               key={item.imageId}
             >
-              <ProjectMedia
-                media={media}
-                sizes={fullWidthMedia ? "(max-width: 800px) 90vw, 94vw" : undefined}
-              />
+              {pairedMedia ? (
+                <div className="mx-auto grid w-full max-w-160 grid-cols-2 items-start gap-5 max-[480px]:max-w-70 max-[480px]:grid-cols-1">
+                  <ProjectMedia media={media} sizes="(max-width: 350px) 90vw, 310px" />
+                  <ProjectMedia media={pairedMedia} sizes="(max-width: 350px) 90vw, 310px" />
+                </div>
+              ) : (
+                <ProjectMedia
+                  media={media}
+                  sizes={stacked ? "(max-width: 800px) 90vw, 94vw" : undefined}
+                />
+              )}
 
-              <div className={fullWidthMedia ? "order-first max-w-225" : "pb-5"}>
+              <div className={stacked ? "order-first max-w-225" : "pb-5"}>
                 <span className={smallMetaClass}>{item.eyebrow}</span>
                 <h2 className="mt-5 text-[clamp(28px,3.5vw,50px)] leading-[1.05] font-medium tracking-heading">
                   {item.title}
@@ -297,7 +308,18 @@ function Outcome({ project, number = 5 }: { project: ProjectCaseStudy; number?: 
               : "max-w-250 text-[clamp(36px,5vw,76px)]"
           }`}
         >
-          {project.outcome}
+          {project.outcomeHref ? (
+            <a
+              className="underline decoration-1 underline-offset-8"
+              href={project.outcomeHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {project.outcome}
+            </a>
+          ) : (
+            project.outcome
+          )}
         </p>
         <p className="mt-12 text-xs tracking-[.1em] text-[#aeb0a8] uppercase">
           {project.technologies.join(" · ")}

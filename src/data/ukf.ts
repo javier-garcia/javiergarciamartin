@@ -105,6 +105,7 @@ export const ukf: ProjectCaseStudy = {
     },
   ],
   outcome: "Awwwards — Honorable Mention",
+  outcomeHref: "https://www.awwwards.com/sites/ukf-the-home-of-bass-music",
   externalLinks: [{ label: "Visit UKF", href: "https://ukf.com/" }],
   omitMissingMedia: true,
   imageSlots: [
@@ -118,21 +119,33 @@ export const ukf: ProjectCaseStudy = {
       "home",
       "UKF homepage with its navigation, welcome marquee and live music imagery",
     ),
-    screenshot(
-      "player",
-      "player",
-      "Feature.fm preview panel opened from UKF Releases, showing the pause control and streaming links",
-    ),
-    screenshot(
-      "genres",
-      "genres",
-      "UKF genre selector with three circular choices against a pattern of concentric rings",
-    ),
-    screenshot(
-      "listings",
-      "listings",
-      "UKF Releases catalogue with the Genre filter expanded beside the Artist, Label and Sort controls",
-    ),
+    {
+      ...screenshot(
+        "player",
+        "player",
+        "Feature.fm preview panel opened from UKF Releases, showing the pause control and streaming links",
+      ),
+      fullWidth: true,
+      videoPreload: "none",
+      // Set videoSrc to "/video/ukf/ukf-player.mp4" when the recording is supplied.
+    },
+    {
+      ...screenshot(
+        "genres",
+        "genres",
+        "UKF genre selector with three circular choices against a pattern of concentric rings",
+      ),
+      videoPreload: "none",
+      // Set videoSrc to "/video/ukf/ukf-genres.mp4" when the recording is supplied.
+    },
+    {
+      ...screenshot(
+        "listings",
+        "listings",
+        "UKF Releases catalogue with the Genre filter expanded beside the Artist, Label and Sort controls",
+      ),
+      fullWidth: true,
+    },
     screenshot(
       "events",
       "events",
@@ -161,8 +174,12 @@ export const ukf: ProjectCaseStudy = {
     { imageId: "genres", eyebrow: "Motion", title: "Interactive genre selector" },
     { imageId: "listings", eyebrow: "Data", title: "Filterable release listings" },
     { imageId: "events", eyebrow: "Interaction", title: "Live events and lineups" },
-    { imageId: "mobile-home", eyebrow: "Mobile", title: "The UKF homepage on mobile" },
-    { imageId: "mobile-listings", eyebrow: "Mobile", title: "Browsing releases on mobile" },
+    {
+      imageId: "mobile-home",
+      pairedImageId: "mobile-listings",
+      eyebrow: "Mobile",
+      title: "The homepage and releases on mobile",
+    },
   ],
   nextProject: "permatech",
   home: {
