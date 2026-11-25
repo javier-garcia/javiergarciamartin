@@ -353,7 +353,7 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
 
                 return (
                   <section
-                    className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 max-[800px]:gap-10`}
+                    className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 ${section.illustration === "permatech-design" ? "pb-16 max-[800px]:gap-6 max-[800px]:pb-12" : "max-[800px]:gap-10"}`}
                     id={section.id}
                     key={section.id}
                   >
@@ -391,7 +391,9 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
                       </div>
                     </div>
                     {section.illustration ? (
-                      <div className="col-span-full mt-12 min-w-0 max-[800px]:mt-0">
+                      <div
+                        className={`col-span-full min-w-0 max-[800px]:mt-0 ${section.illustration === "permatech-design" ? "mt-7" : "mt-12"}`}
+                      >
                         {section.illustration === "permatech-architecture" ? (
                           <PermaTechArchitecture />
                         ) : null}

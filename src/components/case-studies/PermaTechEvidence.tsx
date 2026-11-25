@@ -34,7 +34,6 @@ function HighlightedJson({ text }: { text: string }) {
 export function PermaTechEvidence() {
   const [active, setActive] = useState(0);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
-  const artifact = evidence.artifacts[active];
   function navigate(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next = index;
     if (event.key === "ArrowRight") next = (index + 1) % labels.length;
@@ -50,12 +49,12 @@ export function PermaTechEvidence() {
     <div className="min-w-0 border border-line" aria-label="Recorded physical observation explorer">
       <div className="border-b border-line p-6 max-[500px]:p-4">
         <p className="text-[10px] tracking-[.14em] uppercase text-muted">
-          Physical observation / lark-001
+          Recorded physical observation / lark-001
         </p>
         <h3 className="mt-3 text-2xl tracking-heading">One observation. Four views.</h3>
         <p className="mt-3 text-sm leading-relaxed">
-          Captured 19 November 2026, 10:26:36 UTC. The same identity and five values follow the
-          observation through the backend.
+          Captured 19 November 2026, 10:26:36 UTC. These archived records show the same UUID and
+          five values across four stages. The explorer uses a fixed capture.
         </p>
         <p className="mt-4 text-xs text-muted">Observation UUID</p>
         <code className="mt-1 block break-all text-sm">
@@ -91,37 +90,42 @@ export function PermaTechEvidence() {
             }}
             onClick={() => setActive(index)}
             onKeyDown={(event) => navigate(event, index)}
-            className={`cursor-pointer px-4 py-4 text-left text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-ink ${active === index ? "bg-ink text-paper" : "hover:bg-ink/5"}`}
+            className={`cursor-pointer px-4 py-4 text-left text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[#6a8870] ${active === index ? "bg-ink text-paper" : "hover:bg-ink/5"}`}
           >
             <span className="mr-2 opacity-60">0{index + 1}</span>
             {label}
           </button>
         ))}
       </div>
-      <div
-        role="tabpanel"
-        id={`evidence-panel-${active}`}
-        aria-labelledby={`evidence-tab-${active}`}
-        tabIndex={0}
-        className="min-w-0 p-6 focus-visible:outline-2 focus-visible:outline-ink max-[500px]:p-4"
-      >
-        <p className="text-sm leading-relaxed">{artifact.description}</p>
-        <pre
-          className="mt-4 max-h-100 overflow-auto border border-line bg-white/30 p-4 text-[12px] leading-relaxed"
-          aria-label={labels[active] + " JSON"}
+      {evidence.artifacts.map((artifact, index) => (
+        <div
+          key={artifact.path}
+          role="tabpanel"
+          id={`evidence-panel-${index}`}
+          aria-labelledby={`evidence-tab-${index}`}
+          hidden={active !== index}
+          tabIndex={0}
+          className="min-w-0 p-6 focus-visible:outline-2 focus-visible:outline-ink max-[500px]:p-4"
         >
-          <code>
-            <HighlightedJson text={JSON.stringify(JSON.parse(artifact.raw), null, 2)} />
-          </code>
-        </pre>
-        <a
-          href={artifact.path}
-          download
-          className="interactive-underline mt-4 inline-block text-xs"
-        >
-          Download original JSON ↓
-        </a>
-      </div>
+          <p className="text-sm leading-relaxed">{artifact.description}</p>
+          <pre
+            className="mt-4 max-h-100 overflow-auto border border-line bg-white/30 p-4 text-[12px] leading-relaxed whitespace-pre-wrap [overflow-wrap:anywhere] focus-visible:outline-2"
+            aria-label={labels[index] + " JSON"}
+            tabIndex={0}
+          >
+            <code>
+              <HighlightedJson text={JSON.stringify(JSON.parse(artifact.raw), null, 2)} />
+            </code>
+          </pre>
+          <a
+            href={artifact.path}
+            download
+            className="interactive-underline mt-4 inline-block text-xs"
+          >
+            Download original JSON ↓
+          </a>
+        </div>
+      ))}
     </div>
   );
 }

@@ -5,6 +5,7 @@ export type ProjectImageSlot = {
   id: string;
   src?: string;
   videoSrc?: string;
+  videoPreload?: "none" | "metadata";
   vimeoId?: string;
   animated?: boolean;
   alt: string;

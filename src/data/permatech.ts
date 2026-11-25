@@ -11,6 +11,7 @@ const capturedMedia: Record<string, Partial<ProjectImageSlot>> = {
   "station-demonstration": {
     src: "/images/permatech/permatech-physical-demonstration-poster.jpg",
     videoSrc: "/video/permatech-physical-telemetry-demonstration.mp4",
+    videoPreload: "none",
     sourceWidth: 1920,
     sourceHeight: 1080,
     fullWidth: true,
@@ -127,7 +128,7 @@ export const permatech: ProjectCaseStudy = {
       title: "Physical computing",
       text: "The first physical instrument is a DFRobot Lark weather station connected to an ESP8266 microcontroller. Custom C++ firmware reads the station over I²C, normalizes the readings, synchronizes capture time using NTP and publishes structured telemetry over Wi-Fi. A unique capture identifier follows each observation through the system.\n\nThe station measures air temperature, relative humidity, atmospheric pressure, wind speed and wind direction.",
       mediaIds: ["weather-station"],
-      mediaGalleryIds: ["esp8266-wiring", "hardware-setup"],
+      mediaGalleryIds: ["lark-detail", "esp8266-wiring"],
     },
     {
       id: "system-architecture",
@@ -161,7 +162,7 @@ export const permatech: ProjectCaseStudy = {
       id: "engineering-reliability",
       label: "Verification",
       title: "Engineering reliability",
-      text: "116 automated tests cover data contracts, telemetry ingestion, transactional persistence, API queries and frontend behavior. A physical observation can be traced across MQTT, PostgreSQL, WebSocket and REST through its unique identifier.\n\nI led the architecture, product design, physical integration and verification, using AI to support implementation and testing. The client reconciles incoming observations and recovers its authoritative state through REST after a disconnect.",
+      text: "The accepted Delivery 2.1A baseline passed 116 automated tests. During the physical evidence session, 110 contract, integration and frontend data tests were rerun. A physical observation can be traced across MQTT, PostgreSQL, WebSocket and REST through its unique identifier.\n\nI led the architecture, product design, physical integration and verification, using AI to support implementation and testing. The client reconciles incoming observations and recovers its authoritative state through REST after a disconnect.",
       illustration: "permatech-reliability",
     },
     {
@@ -200,11 +201,11 @@ export const permatech: ProjectCaseStudy = {
       [1200, 900],
     ),
     media(
-      "hardware-setup",
-      "complete-hardware-setup.webp",
-      "Complete PermaTech hardware setup with the Lark station and ESP8266",
-      "The assembled hardware during local verification.",
-      [1800, 1200],
+      "lark-detail",
+      "lark-detail.webp",
+      "Close-up of the DFRobot Lark weather station",
+      "The DFRobot Lark weather station in detail.",
+      [1200, 900],
     ),
     media(
       "firmware-evidence",

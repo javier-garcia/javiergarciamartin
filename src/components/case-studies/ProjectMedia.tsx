@@ -53,7 +53,7 @@ export function ProjectMedia({
           controls
           playsInline
           muted
-          preload="metadata"
+          preload={media.videoPreload ?? "metadata"}
           aria-label={media.alt}
         >
           <a href={media.videoSrc}>Watch video</a>
