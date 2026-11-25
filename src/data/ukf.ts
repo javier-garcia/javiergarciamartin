@@ -1,15 +1,23 @@
 import type { ProjectCaseStudy, ProjectImageSlot } from "./case-studies";
 
-// Set src and source dimensions for each supplied image. Set videoSrc for MP4 clips,
-// with src as the poster when available. The cover always needs a still image.
-function media(id: string, brief: string, alt: string): ProjectImageSlot {
+function screenshot(
+  id: string,
+  filename: string,
+  alt: string,
+  [sourceWidth, sourceHeight] = [1920, 1080],
+): ProjectImageSlot {
+  const src = `/images/ukf/ukf-${filename}.webp`;
+
   return {
     id,
-    brief,
+    src,
     alt,
-    suggestedFilename: `/images/ukf/ukf-${id}.webp`,
-    aspectRatio: "16:9",
-    recommendedDimensions: "1920 × 1080",
+    brief: alt,
+    suggestedFilename: src,
+    aspectRatio: `${sourceWidth} / ${sourceHeight}`,
+    recommendedDimensions: `${sourceWidth} × ${sourceHeight}`,
+    sourceWidth,
+    sourceHeight,
   };
 }
 
@@ -100,30 +108,61 @@ export const ukf: ProjectCaseStudy = {
   externalLinks: [{ label: "Visit UKF", href: "https://ukf.com/" }],
   omitMissingMedia: true,
   imageSlots: [
-    media("cover", "Selected work thumbnail", "UKF project cover"),
-    media("hero", "Homepage screenshot or video poster", "UKF homepage"),
-    media(
-      "music-preview",
-      "Music catalogue and preview player",
-      "UKF music catalogue with preview controls",
+    screenshot(
+      "cover",
+      "cover",
+      "UKF logotype framing a DJ and crowd beneath blue and yellow lights",
     ),
-    media(
+    screenshot(
+      "hero",
+      "home",
+      "UKF homepage with its navigation, welcome marquee and live music imagery",
+    ),
+    screenshot(
+      "player",
+      "player",
+      "Feature.fm preview panel opened from UKF Releases, showing the pause control and streaming links",
+    ),
+    screenshot(
       "genres",
-      "Interactive music genre visualisations",
-      "UKF interactive music genre visualisations",
+      "genres",
+      "UKF genre selector with three circular choices against a pattern of concentric rings",
     ),
-    media("navigation-lineup", "Navigation or event lineup", "UKF navigation or event lineup"),
-    media(
-      "dynamic-listings",
-      "Advanced content listings screenshot",
-      "UKF dynamic content listings",
+    screenshot(
+      "listings",
+      "listings",
+      "UKF Releases catalogue with the Genre filter expanded beside the Artist, Label and Sort controls",
+    ),
+    screenshot(
+      "events",
+      "events",
+      "Past events on UKF Rave with the UKF New Zealand lineup expanded",
+    ),
+    screenshot(
+      "mobile-home",
+      "mobile-home",
+      "Mobile UKF homepage with its menu, logotype and latest releases heading",
+      [780, 1688],
+    ),
+    screenshot(
+      "mobile-listings",
+      "mobile-listings",
+      "Mobile UKF Releases catalogue with four filter controls and the first release card",
+      [780, 1688],
     ),
   ],
   visualSequence: [
-    { imageId: "music-preview", eyebrow: "Playback", title: "Music catalogue and previews" },
-    { imageId: "genres", eyebrow: "Motion", title: "Interactive genre visualisations" },
-    { imageId: "navigation-lineup", eyebrow: "Interaction", title: "Navigation and live events" },
-    { imageId: "dynamic-listings", eyebrow: "Data", title: "Dynamic content listings" },
+    {
+      imageId: "player",
+      eyebrow: "Playback",
+      title: "Music previews in the live catalogue",
+      text: "The current Releases page opens a Feature.fm preview panel. The custom YouTube IFrame implementation described below was part of the original project.",
+    },
+    { imageId: "genres", eyebrow: "Motion", title: "Interactive genre selector" },
+    { imageId: "listings", eyebrow: "Data", title: "Filterable release listings" },
+    { imageId: "events", eyebrow: "Interaction", title: "Live events and lineups" },
+    { imageId: "mobile-home", eyebrow: "Mobile", title: "The UKF homepage on mobile" },
+    { imageId: "mobile-listings", eyebrow: "Mobile", title: "Browsing releases on mobile" },
   ],
   nextProject: "permatech",
   home: {
