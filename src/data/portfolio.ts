@@ -72,4 +72,12 @@ export const insideWorkStories = [
     action: "Explore project",
     href: "/work/core-one#technical-challenges",
   },
+  {
+    project: "UKF",
+    title: "Music previews inside dynamic WordPress listings",
+    description:
+      "Coordinating YouTube playback with AJAX filtering and building custom motion and SQL-powered listings.",
+    action: "Explore project",
+    href: "/work/ukf#technical-challenges",
+  },
 ] as const;

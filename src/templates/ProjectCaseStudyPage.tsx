@@ -181,7 +181,9 @@ function VisualSequence({ project, number = 3 }: { project: ProjectCaseStudy; nu
       section.detail?.mediaId,
     ]) ?? []),
   ]);
-  const sequence = project.visualSequence.filter((item) => !assignedMedia.has(item.imageId));
+  const sequence = project.visualSequence.filter(
+    (item) => !assignedMedia.has(item.imageId) && getStoryMedia(project, item.imageId),
+  );
   if (!sequence.length) return null;
 
   const fullWidthMedia =
@@ -193,13 +195,8 @@ function VisualSequence({ project, number = 3 }: { project: ProjectCaseStudy; nu
 
       <div className="mt-14 grid gap-24 max-[800px]:mt-10 max-[800px]:gap-15">
         {sequence.map((item) => {
-          const media = project.imageSlots.find((candidate) => candidate.id === item.imageId);
-
-          if (
-            !media ||
-            (project.omitMissingMedia && !media.src && !media.videoSrc && !media.vimeoId)
-          )
-            return null;
+          const media = getStoryMedia(project, item.imageId);
+          if (!media) return null;
 
           return (
             <article
@@ -246,7 +243,9 @@ function TechnicalChallenges({
       className={`${sectionClass} grid grid-cols-[17%_1fr] max-[800px]:grid-cols-1 max-[800px]:gap-10`}
       id="technical-challenges"
     >
-      <p className={labelClass}>{String(number).padStart(2, "0")} / Technical challenges</p>
+      <p className={labelClass}>
+        {String(number).padStart(2, "0")} / {project.technicalChallengesLabel ?? "Technical challenges"}
+      </p>
 
       <div className="border-t border-ink">
         {project.technicalChallenges.map((challenge, index) => (
@@ -319,7 +318,9 @@ export default function ProjectCaseStudyPage({ project, nextProject }: Props) {
       section.detail?.mediaId,
     ]) ?? []),
   ]);
-  const hasSequence = project.visualSequence.some((item) => !assignedMedia.has(item.imageId));
+  const hasSequence = project.visualSequence.some(
+    (item) => !assignedMedia.has(item.imageId) && getStoryMedia(project, item.imageId),
+  );
   const contributionNumber = storyCount === undefined ? undefined : storyCount + 1;
   const sequenceNumber =
     storyCount === undefined ? undefined : storyCount + Number(hasContribution) + 1;

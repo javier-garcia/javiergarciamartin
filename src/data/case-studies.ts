@@ -1,4 +1,5 @@
 import { permatech } from "./permatech";
+import { ukf } from "./ukf";
 
 export type ProjectImageSlot = {
   fullWidth?: boolean;
@@ -90,6 +91,7 @@ export type ProjectCaseStudy = {
   approach: string[];
   contribution: string[];
   technicalChallenges: TechnicalChallenge[];
+  technicalChallengesLabel?: string;
   outcome: string;
   imageSlots: ProjectImageSlot[];
   visualSequence: VisualSequenceItem[];
@@ -106,6 +108,7 @@ export type ProjectCaseStudy = {
 
 export const projectCaseStudies: ProjectCaseStudy[] = [
   permatech,
+  ukf,
   // Starspitter: author-confirmed installation facts; 2013 supported by original repository history.
   {
     slug: "starspitter",
@@ -927,7 +930,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
         title: "The same page across screen sizes.",
       },
     ],
-    nextProject: "permatech",
+    nextProject: "ukf",
     home: {
       section: "selected-work",
       order: 3,
